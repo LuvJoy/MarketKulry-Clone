@@ -1,9 +1,9 @@
-package com.joseph.marketkurly_clone.ui
+package com.joseph.marketkurly_clone.src.activity_main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.ui.interfaces.MainActivityValidation
+import com.joseph.marketkurly_clone.src.activity_main.interfaces.MainActivityValidation
 
 class MainActivity : AppCompatActivity(), MainActivityValidation {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity(), MainActivityValidation {
     }
 
     override fun validateSuccess(text: String?) {
-
         // 인증 성공 시
         TODO("Not yet implemented")
     }

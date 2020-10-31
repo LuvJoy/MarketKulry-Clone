@@ -3,7 +3,7 @@ package com.joseph.marketkurly_clone
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.joseph.marketkurly_clone.constants.AppConstants.SHARED_PREPERENCE_KEY
+import com.joseph.marketkurly_clone.ApplicationConstants.SHARED_PREPERENCE_KEY
 
 class ApplicationClass: Application() {
 

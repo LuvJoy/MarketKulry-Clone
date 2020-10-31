@@ -3,6 +3,7 @@ package com.joseph.marketkurly_clone
 import android.app.ProgressDialog
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.joseph.marketkurly_clone.R
 
 class BaseActivity : AppCompatActivity() {
     lateinit var mProgressDialog: ProgressDialog

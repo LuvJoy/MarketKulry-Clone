@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.constants
+package com.joseph.marketkurly_clone.src.app_network
 
 object NetworkConstants {
     const val X_ACCESS_TOKEN: String = "X-ACCESS-TOKEN"

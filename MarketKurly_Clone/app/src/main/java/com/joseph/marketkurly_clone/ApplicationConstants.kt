@@ -1,11 +1,11 @@
-package com.joseph.marketkurly_clone.constants
+package com.joseph.marketkurly_clone
 
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.text.SimpleDateFormat
 import java.util.*
 
-object AppConstants {
+object ApplicationConstants {
 
     const val TAG = "[ 로그 ]"
     const val SHARED_PREPERENCE_KEY = "MARKET_KURLY_APP"

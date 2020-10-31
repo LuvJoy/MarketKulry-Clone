@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.model
+package com.joseph.marketkurly_clone.src.activity_main.models
 
 import com.google.gson.annotations.SerializedName
 

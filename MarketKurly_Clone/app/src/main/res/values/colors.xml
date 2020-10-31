@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 마켓컬리 주요 컬러 -->
+    <color name="kurly_purple">#630e82</color>
+
+    <!-- 폰트 색상 -->
+    <color name="text_black">#181818</color>
 </resources>

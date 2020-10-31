@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.ui.interfaces
+package com.joseph.marketkurly_clone.src.activity_main.interfaces
 
 interface MainActivityValidation {
 

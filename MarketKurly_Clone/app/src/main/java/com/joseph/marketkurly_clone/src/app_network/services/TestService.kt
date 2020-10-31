@@ -1,6 +1,6 @@
-package com.joseph.marketkurly_clone.network.interfaces
+package com.joseph.marketkurly_clone.src.app_network.services
 
-import com.joseph.marketkurly_clone.model.TestResponse
+import com.joseph.marketkurly_clone.src.activity_main.models.TestResponse
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
