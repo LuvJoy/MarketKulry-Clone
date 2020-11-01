@@ -27,15 +27,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:textColor="@color/subtitle_gray"
+            android:textColor="@color/title_gray"
             android:textSize="22sp"
             android:paddingStart="16dp"
             android:fontFamily="@font/sandol_bold"
             android:text="이 상품 어때요?"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reckurly_suggest_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
+                android:layout_height="380dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_product" />
 
         </LinearLayout>
 
