@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.src.app_network.services
+package com.joseph.marketkurly_clone.src.activity_main.network
 
 import com.joseph.marketkurly_clone.src.activity_main.models.TestResponse
 import okhttp3.RequestBody
