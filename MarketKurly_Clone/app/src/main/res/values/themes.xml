@@ -20,4 +20,26 @@
     </style>
 
 
+    <!-- BottomNavigationView Text Setting -->
+    <style name="BottomNavTextActive">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="fontFamily">@font/sandol_regular</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/nomal_gray</item>
+    </style>
+
+    <style name="BottomNavTextInActive">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="fontFamily">@font/sandol_regular</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/kurly_purple</item>
+    </style>
+
+    <!-- TabLayout TextSettings -->
+    <style name="TabLayoutTextAppearance">
+        <item name="fontFamily">@font/sandol_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>
