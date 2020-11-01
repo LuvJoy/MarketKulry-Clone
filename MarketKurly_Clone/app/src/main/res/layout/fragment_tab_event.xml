@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.activity_main.fragments.frag_home.fragments.TabEventFragment">
+    tools:context=".src.activity_main.fragments.frag_home.fragments.frag_tab_event.TabEventFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

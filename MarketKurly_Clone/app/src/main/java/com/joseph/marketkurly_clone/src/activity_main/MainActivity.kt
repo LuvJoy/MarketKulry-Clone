@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.src.activity_main.interfaces.MainActivityValidation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
@@ -20,8 +19,8 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun initActivity () {
-        bottomNavigationView.setupWithNavController(findNavController(R.id.nav_host_fragment_container))
-        bottomNavigationView.setOnNavigationItemSelectedListener(this)
+        main_menu_bottomnav.setupWithNavController(findNavController(R.id.nav_host_fragment_container))
+        main_menu_bottomnav.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

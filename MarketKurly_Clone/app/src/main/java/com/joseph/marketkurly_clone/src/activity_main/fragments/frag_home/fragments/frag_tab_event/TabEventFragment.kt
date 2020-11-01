@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments
+package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_event
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

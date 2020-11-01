@@ -2,7 +2,11 @@ package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.adapt
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.*
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_alshopping.TabAlShoppingFragment
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_best.TabBestFragment
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_event.TabEventFragment
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_newproduct.TabNewProductFragment
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.TabRecKurlyFragment
 
 class TabViewPagerAdapter(frag: Fragment): FragmentStateAdapter(frag){
     override fun getItemCount(): Int {
