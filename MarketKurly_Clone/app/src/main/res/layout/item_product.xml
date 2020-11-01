@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/sandol_extrabold"
-        android:letterSpacing="-0.03"
+        android:letterSpacing="-0.04"
         android:maxHeight="200dp"
         android:maxLines="1"
         android:paddingLeft="4dp"
@@ -55,10 +55,11 @@
         android:id="@+id/item_price_dummytext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sandol_extrabold"
+        android:fontFamily="@font/sandol_bold"
         android:text="원"
         android:textColor="@color/title_gray"
-        android:textSize="18sp"
+        android:layout_marginBottom="2dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/item_price_textview"
         app:layout_constraintStart_toEndOf="@+id/item_price_textview" />
 

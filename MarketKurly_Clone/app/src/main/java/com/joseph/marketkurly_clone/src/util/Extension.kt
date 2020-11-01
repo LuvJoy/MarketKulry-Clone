@@ -1,5 +1,7 @@
 package com.joseph.marketkurly_clone.src.util
 
+import android.graphics.Paint
+import android.widget.TextView
 import java.text.DecimalFormat
 
 // 문자열이 JSON 형태인지, JSON 배열 형태인지
@@ -16,4 +18,9 @@ fun String?.isJsonArray(): Boolean {
 fun Int.toDecimalFormat(): String {
     val myFormatter = DecimalFormat("###,###")
     return myFormatter.format(this)
+}
+
+// Product에서 원래가격을 취소선 처리해줌
+fun TextView.setStrikeThru() {
+    this.paintFlags = this.paintFlags.or(Paint.STRIKE_THRU_TEXT_FLAG)
 }

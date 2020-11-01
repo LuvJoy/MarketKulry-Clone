@@ -15,6 +15,7 @@
         android:title="카테고리" />
     <item
         android:id="@+id/searchFragment"
+        android:icon="@drawable/selector_search_tab"
         android:title="검색" />
     <item
         android:id="@+id/myKurlyFragment"

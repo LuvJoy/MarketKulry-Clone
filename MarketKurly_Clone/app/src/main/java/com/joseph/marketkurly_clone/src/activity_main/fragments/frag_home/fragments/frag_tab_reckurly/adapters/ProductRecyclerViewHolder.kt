@@ -2,6 +2,7 @@ package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragm
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.model.ProductCompact
+import com.joseph.marketkurly_clone.src.util.setStrikeThru
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 
 class ProductRecyclerViewHolder(private var itemView: View, private var context: Context) :
@@ -37,6 +39,8 @@ class ProductRecyclerViewHolder(private var itemView: View, private var context:
         if(itemData.salePercentage != null) {
             tvSalePercent.text = itemData.salePercentage.toString()
             tvSalePrice.text = itemData.salePrice?.toDecimalFormat()
+            tvSalePrice.setStrikeThru()
+            tvSalePriceDummy.setStrikeThru()
             showSaleLayout()
         }
 

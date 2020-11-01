@@ -13,24 +13,11 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         home_tab_viewPager.adapter = TabViewPagerAdapter(this)
-        val tablayoutMediator = TabLayoutMediator(home_tablayout, home_tab_viewPager,
+        TabLayoutMediator(home_tablayout, home_tab_viewPager,
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                 when (position) {
                     0 ->  tab.text = "컬리추천"

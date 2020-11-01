@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="60dp"
-    android:layout_height="50dp"
+    android:layout_width="54dp"
+    android:layout_height="44dp"
     android:background="@color/kurly_purple_alpha">
 
     <TextView
@@ -16,34 +16,35 @@
         android:letterSpacing="0.02"
         android:text="SAVE"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/salesign_percent_textview"
-        android:layout_width="26dp"
+        android:layout_width="24dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/sandol_bold"
-        android:maxLines="1"
         android:gravity="end"
+        android:letterSpacing="-0.04"
+        android:maxLines="1"
         android:text="40"
-        android:letterSpacing="0.02"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/salesign_dummytext1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/sandol_medium"
         android:text="%"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/salesign_percent_textview"
         app:layout_constraintStart_toEndOf="@+id/salesign_percent_textview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

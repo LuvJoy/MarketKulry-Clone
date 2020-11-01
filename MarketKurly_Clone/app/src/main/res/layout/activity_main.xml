@@ -33,7 +33,7 @@
         android:layout_height="54dp"
         android:background="@color/actionbar_background"
         android:elevation="3dp"
-        app:itemIconSize="20dp"
+        app:itemIconSize="24dp"
         app:itemTextAppearanceActive="@style/BottomNavTextActive"
         app:itemTextAppearanceInactive="@style/BottomNavTextInActive"
         app:labelVisibilityMode="labeled"
