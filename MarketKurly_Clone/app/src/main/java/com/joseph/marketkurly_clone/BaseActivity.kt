@@ -1,35 +1,41 @@
 package com.joseph.marketkurly_clone
 
 import android.app.ProgressDialog
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.joseph.marketkurly_clone.R
 
-class BaseActivity : AppCompatActivity() {
-    lateinit var mProgressDialog: ProgressDialog
+open class BaseActivity : AppCompatActivity(), View.OnClickListener {
+    var mProgressDialog: ProgressDialog? = null
 
     fun showCustomToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
-    fun showProgressDialog () {
+    fun showProgressDialog() {
         if (mProgressDialog == null) {
-            mProgressDialog = ProgressDialog(this)
-            mProgressDialog.setMessage(getString(R.string.loading))
-            mProgressDialog.isIndeterminate = true
+            mProgressDialog = ProgressDialog(this).apply {
+                setMessage(getString(R.string.loading))
+                isIndeterminate = true
+            }
         }
-
-        mProgressDialog.show()
+        mProgressDialog?.show()
     }
 
     fun hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing) {
-            mProgressDialog.dismiss()
+        if (mProgressDialog != null && mProgressDialog!!.isShowing) {
+            mProgressDialog!!.dismiss()
         }
     }
 
     override fun onStop() {
         super.onStop()
-        hideProgressDialog()
+        if (mProgressDialog != null) {
+            hideProgressDialog()
+        }
     }
+
+    override fun onClick(v: View?){}
 }

@@ -4,6 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".src.activity_login.LoginActivity">
+
+    <include
+        android:id="@+id/inner_actionbar"
+        layout="@layout/actionbar_inner_page_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/login_id_edittext"
+        style="@style/kurly_edittext_style"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/selector_edittext"
+        android:hint="아이디를 입력해주세요"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inner_actionbar" />
+
+    <EditText
+        android:id="@+id/login_pw_edittext"
+        style="@style/kurly_edittext_style"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/selector_edittext"
+        android:hint="비밀번호를 입력해주세요"
+        app:layout_constraintEnd_toEndOf="@+id/login_id_edittext"
+        app:layout_constraintStart_toStartOf="@+id/login_id_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/login_id_edittext" />
+
+    <Button
+        android:id="@+id/login_signin_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/shape_rounded_button"
+        android:fontFamily="@font/sandol_medium"
+        android:letterSpacing="0.01"
+        android:text="로그인"
+        app:backgroundTint="@color/kurly_purple"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_pw_edittext" />
+
+    <TextView
+        android:id="@+id/login_find_id_button"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/sandol_regular"
+        android:gravity="end|center_vertical"
+        android:letterSpacing="-0.01"
+        android:text="아이디 찾기"
+        android:layout_marginBottom="2dp"
+        android:textColor="@color/nomal_gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_middle_marker_dummy"
+        app:layout_constraintEnd_toStartOf="@+id/login_middle_marker_dummy"
+        app:layout_constraintTop_toTopOf="@+id/login_middle_marker_dummy" />
+
+    <View
+        android:id="@+id/login_middle_marker_dummy"
+        android:layout_width="1dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/nomal_gray"
+        app:layout_constraintEnd_toEndOf="@+id/login_signin_button"
+        app:layout_constraintStart_toStartOf="@+id/login_signin_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_signin_button" />
+
+    <TextView
+        android:id="@+id/login_find_pw_button"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/sandol_regular"
+        android:gravity="start|center_vertical"
+        android:letterSpacing="-0.01"
+        android:layout_marginBottom="2dp"
+        android:text="비밀번호 찾기"
+        android:textColor="@color/nomal_gray"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_middle_marker_dummy"
+        app:layout_constraintStart_toEndOf="@+id/login_middle_marker_dummy"
+        app:layout_constraintTop_toTopOf="@+id/login_middle_marker_dummy" />
+
+    <Button
+        android:id="@+id/login_signup_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/shape_rounded_button_stroke"
+        android:fontFamily="@font/sandol_medium"
+        android:letterSpacing="0.01"
+        android:text="회원가입"
+        android:textColor="@color/kurly_purple"
+        android:textSize="16sp"
+        app:backgroundTint="@color/kurly_purple"
+        app:layout_constraintTop_toBottomOf="@+id/login_middle_marker_dummy"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

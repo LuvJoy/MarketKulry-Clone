@@ -17,7 +17,11 @@
         android:theme="@style/Theme.MarketKurly_Clone"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.activity_login.LoginActivity"></activity>
+        <activity
+            android:name=".src.activity_login.LoginActivity"
+            android:theme="@style/InnerActivityTheme">
+
+        </activity>
         <activity
             android:name=".src.activity_splash.SplashActivity"
             android:theme="@style/SplashActivityTheme">

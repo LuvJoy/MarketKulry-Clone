@@ -21,7 +21,7 @@
             android:layout_height="210dp"
             android:background="@color/white"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,6 +67,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mykurly_member_info_section"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:paddingBottom="20dp">
@@ -150,6 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <LinearLayout
@@ -285,6 +287,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <LinearLayout
@@ -484,7 +487,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 style="@style/text_menu_style"
@@ -711,14 +714,90 @@
 
         </LinearLayout>  <!-- 마켓컬리 서비스 섹션 (공지사항, 배송안내, 자주하는 질문 등) -->
 
-        <!-- 알람설정 개인정보 조회 섹션 -->
+        <!-- 설정 섹션 (알람, 개인정보 수정) -->
         <LinearLayout
-            android:id="@+id/mykurly_alram_section"
+            android:id="@+id/mykurly_settings_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/mykurly_alram_latout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="알림설정" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <!-- [Member] 유저정보수정 -->
+            <LinearLayout
+                android:id="@+id/mykurly_member_user_edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="개인정보 수정" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+
+            </LinearLayout><!-- [Member] 유저정보수정 -->
+
+        </LinearLayout> <!-- 알람설정 개인정보 조회 섹션 -->
+
+        <!-- [Member] 로그아웃 섹션 (로그인 하지 않았을때) -->
+        <LinearLayout
+            android:id="@+id/mykurly_member_logout_section"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="24dp"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 style="@style/text_menu_style"
@@ -728,7 +807,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/sandol_regular"
-                android:text="알림설정" />
+                android:text="로그아웃" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -740,7 +819,8 @@
                 android:src="@drawable/ic_rihgt_sign"
                 app:tint="@color/text_whitegray_deep" />
 
-        </LinearLayout>  <!-- 알람설정 개인정보 조회 섹션 -->
+        </LinearLayout> <!-- [Member] 로그아웃 섹션 (로그인 하지 않았을때) -->
+
 
     </LinearLayout> <!-- Background -->
 </ScrollView>
