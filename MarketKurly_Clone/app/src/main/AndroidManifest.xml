@@ -17,7 +17,9 @@
         android:theme="@style/Theme.MarketKurly_Clone"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name="com.joseph.marketkurly_clone.src.activity_splash.SplashActivity"
+        <activity android:name=".src.activity_login.LoginActivity"></activity>
+        <activity
+            android:name=".src.activity_splash.SplashActivity"
             android:theme="@style/SplashActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.joseph.marketkurly_clone.src.activity_main.MainActivity">
-        </activity>
+        <activity android:name=".src.activity_main.MainActivity"></activity>
     </application>
 
 </manifest>
