@@ -16,9 +16,7 @@
         android:orientation="vertical">
 
         <!-- Action Bar -->
-        <include
-            android:id="@+id/inner_actionbar"
-            layout="@layout/actionbar_inner_page_top" />
+        <include layout="@layout/actionbar_inner_page_top" />
 
         <!-- 유저정보 기입 섹션 -->
         <LinearLayout

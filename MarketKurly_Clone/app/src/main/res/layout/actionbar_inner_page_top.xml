@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    app:layout_scrollFlags="scroll|exitUntilCollapsed"
     android:background="@color/white"
     app:elevation="0dp">
 
@@ -12,33 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ab_inner_back_button"
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
-            android:padding="17dp"
-            android:src="@drawable/ic_back_arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/title_gray" />
-
-        <TextView
-            android:id="@+id/ab_inner_title_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/sandol_medium"
-            android:gravity="center_vertical"
-            android:text="페이지 이름"
-            android:textColor="@color/title_gray"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/ab_inner_back_button"
-            app:layout_constraintStart_toEndOf="@+id/ab_inner_back_button"
-            app:layout_constraintTop_toTopOf="@+id/ab_inner_back_button"
-            app:layout_constraintVertical_bias="0.513" />
-
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/ab_inner_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:navigationIcon="@drawable/ic_back_arrow"
+            app:title="페이지이름"
+            app:titleTextAppearance="@style/text_actionbar_title" />
 
         <View
             android:layout_width="match_parent"
@@ -48,4 +30,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.appbar.AppBarLayout>
+
