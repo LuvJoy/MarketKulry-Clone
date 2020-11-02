@@ -5,7 +5,7 @@ data class ProductCompact (
     var title: String,
     var imageUrl: String,
     var price: Int,
-    var salePrice: Int?,
-    var salePercentage: Int?
+    var salePrice: Int? = null,
+    var salePercentage: Int? = null
 ) {
 }

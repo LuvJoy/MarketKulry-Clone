@@ -24,8 +24,8 @@ class TabRecKurlyFragment : Fragment(R.layout.fragment_tab_rec_kurly) {
         initRecyclerView()
 
         val dummy = ProductCompact("00010","[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
-        val dummy2 = ProductCompact("00010","[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
-        val dummy3 = ProductCompact("00010","[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
+        val dummy2 = ProductCompact("00010","[남향푸드또띠아] 간편 간식 부리또 8종", "ㅇㅇ", 2800, null, null)
+        val dummy3 = ProductCompact("00010","[해찬들] 태양초 순창 고추장", "ㅇㅇ", 6000, 4444, 30)
         val dummy4 = ProductCompact("00010","[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
         val dummy5 = ProductCompact("00010","[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
         val list = arrayListOf<ProductCompact>(dummy,dummy2,dummy3,dummy4,dummy5)

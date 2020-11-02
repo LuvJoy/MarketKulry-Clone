@@ -7,19 +7,21 @@
     android:background="@color/fragment_background"
     tools:context=".src.activity_main.fragments.frag_my_kurly.MyKurlyFragment">
 
+    <!-- Background -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="24dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
 
-        <!-- 로그인 섹션 (로그인이 안된상태에 표시됨) -->
+        <!-- [Non-Member] 로그인 섹션 (로그인이 안된상태에 표시됨) -->
         <LinearLayout
             android:id="@+id/mykurly_login_section"
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:background="@color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,17 +61,430 @@
                 android:letterSpacing="-0.02"
                 android:text="로그인/회원가입"
                 android:textSize="18sp" />
-        </LinearLayout> <!-- 로그인 섹션 (로그인이 안된상태에 표시됨) -->
+        </LinearLayout> <!-- [Non-Member] 로그인 섹션 (로그인이 안된상태에 표시됨) -->
+
+        <!-- [Member] 회원정보 섹션 (최상단 회원등급, 등급보기 등) -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mykurly_member_info_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/mykurly_member_grade_textview"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_member_grade"
+                android:fontFamily="@font/sandol_bold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="웰컴"
+                android:textColor="@color/text_whitegray_deep"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mykurly_member_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/sandol_bold"
+                android:text="조셉님"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/mykurly_member_grade_textview"
+                app:layout_constraintStart_toEndOf="@+id/mykurly_member_grade_textview"
+                app:layout_constraintTop_toTopOf="@+id/mykurly_member_grade_textview" />
+
+            <TextView
+                android:id="@+id/mykurly_member_grade_benefit_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="2dp"
+                android:text="적립 5%\n최초 1회 무료배송"
+                android:textColor="@color/title_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/mykurly_member_grade_textview"
+                app:layout_constraintTop_toBottomOf="@+id/mykurly_member_grade_textview" />
+
+            <Button
+                android:id="@+id/myKurly_member_overall_grade_button"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/shape_edge_oval_button"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="0.01"
+                android:text="전체등급 보기"
+                android:textColor="@color/title_gray"
+                app:backgroundTint="@color/fragment_background"
+                app:layout_constraintStart_toStartOf="@+id/mykurly_member_grade_benefit_textview"
+                app:layout_constraintTop_toBottomOf="@+id/mykurly_member_grade_benefit_textview" />
+
+            <Button
+                android:id="@+id/myKurly_member_expected_grade_button"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_edge_oval_button"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="0.01"
+                android:text="다음 달 예상등급 보기"
+                android:textColor="@color/title_gray"
+                app:backgroundTint="@color/fragment_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/myKurly_member_overall_grade_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout> <!-- [Member] 회원정보 섹션 (최상단 회원등급, 등급보기 등) -->
+
+        <!-- [Member] 마켓컬리 유저 속성 섹션 (적립금, 쿠폰, 친구초대) -->
+        <LinearLayout
+            android:id="@+id/mykurly_member_property_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_mileage_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="적립금" />
+
+                <TextView
+                    android:id="@+id/mykurly_member_mileage_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_bold"
+                    android:letterSpacing="-0.01"
+                    android:paddingRight="8dp"
+                    android:text="0 원"
+                    android:textColor="@color/kurly_purple"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_coupon_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="쿠폰" />
+
+                <TextView
+                    android:id="@+id/mykurly_member_coupon_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_bold"
+                    android:letterSpacing="-0.01"
+                    android:paddingRight="8dp"
+                    android:text="2 장"
+                    android:textColor="@color/kurly_purple"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_friend_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="쿠폰" />
+
+                <TextView
+                    android:id="@+id/mykurly_member_invite_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_bold"
+                    android:letterSpacing="-0.01"
+                    android:paddingRight="8dp"
+                    android:text="지금 5,000원 받기"
+                    android:textColor="@color/kurly_purple"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
 
 
-        <!-- 비회원 주문조회 섹션 (로그인 하지 않았을때) -->
+        </LinearLayout> <!-- [Member] 마켓컬리 유저 속성 섹션 (적립금, 쿠폰, 친구초대) -->
+
+        <!-- [Member] 주문 조회 섹션 (주문내역, 배송지관리, 상품후기) -->
+        <LinearLayout
+            android:id="@+id/mykurly_member_order_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_order_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="주문 내역" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_shipping_site_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="배송지 관리" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_review_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="상품 후기" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_inquiry_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="상품 문의" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_onebyone_inquiry_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="1:1 문의" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/menu_divider_line" />
+
+            <LinearLayout
+                android:id="@+id/mykurly_member_massorder_inquiry_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_menu_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="대량주문 문의" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/ic_rihgt_sign"
+                    app:tint="@color/text_whitegray_deep" />
+            </LinearLayout>
+
+        </LinearLayout> <!-- [Member] 주문 조회 섹션 (주문내역, 배송지관리, 상품후기) -->
+
+        <!-- [Non-Member] 비회원 주문조회 섹션 (로그인 하지 않았을때) -->
         <LinearLayout
             android:id="@+id/mykurly_non_member_section"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 style="@style/text_menu_style"
@@ -91,9 +506,9 @@
                 android:src="@drawable/ic_rihgt_sign"
                 app:tint="@color/text_whitegray_deep" />
 
-        </LinearLayout> <!-- 비회원 주문조회 섹션 (로그인 하지 않았을때) -->
+        </LinearLayout> <!-- [Non-Member] 비회원 주문조회 섹션 (로그인 하지 않았을때) -->
 
-        <!-- 마켓컬리 서비스 섹션 -->
+        <!-- 마켓컬리 서비스 섹션 (공지사항, 배송안내, 자주하는 질문 등) -->
         <LinearLayout
             android:id="@+id/mykurly_custom_service_section"
             android:layout_width="match_parent"
@@ -294,9 +709,9 @@
                     app:tint="@color/text_whitegray_deep" />
             </LinearLayout>
 
-        </LinearLayout> <!-- 마켓컬리 서비스 섹션 -->
+        </LinearLayout>  <!-- 마켓컬리 서비스 섹션 (공지사항, 배송안내, 자주하는 질문 등) -->
 
-        <!-- 알람설 주문조회 섹션 -->
+        <!-- 알람설정 개인정보 조회 섹션 -->
         <LinearLayout
             android:id="@+id/mykurly_alram_section"
             android:layout_width="match_parent"
@@ -325,6 +740,7 @@
                 android:src="@drawable/ic_rihgt_sign"
                 app:tint="@color/text_whitegray_deep" />
 
-        </LinearLayout> <!-- 알람설정 색션 -->
+        </LinearLayout>  <!-- 알람설정 개인정보 조회 섹션 -->
+
     </LinearLayout> <!-- Background -->
 </ScrollView>

@@ -47,12 +47,9 @@ class ProductRecyclerViewHolder(private var itemView: View, private var context:
         tvTitle.text = itemData.title
         tvPrice.text = itemData.price.toDecimalFormat()
 
-        /*
         Glide.with(itemView)
-            .load(itemData.imageUrl)
+            .load(R.drawable.image_dummy_apple)
             .into(imgProduct)
-        */
-
     }
 
     fun showSaleLayout() {
