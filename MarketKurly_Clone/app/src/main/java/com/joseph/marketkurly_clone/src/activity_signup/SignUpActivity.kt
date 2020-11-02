@@ -16,12 +16,43 @@ class SignUpActivity : BaseActivity() {
         settingsActionBar()
     }
 
+    fun initAcitivty() {
+        signup_play_signup_button.setOnClickListener(this)
+
+        /*
+        signup_id_edittext
+        signup_pw_edittext
+        signup_pw_check_edittext
+
+        signup_name_edittext
+        signup_email_edittext
+
+        signup_phone_num_edittext
+
+        signup_adress_edittext
+
+        signup_birth_year_edittext
+        signup_birth_month_edittext
+        signup_birth_day_edittext
+
+        signup_sex_radiogroup
+        signup_additional_radiogroup
+        */
+
+    }
+
     fun settingsActionBar() {
         ab_inner_toolbar.title = "회원가입"
         ab_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun onClick(view: View?) {
+        when (view?.id) {
 
+            R.id.signup_play_signup_button -> {
+
+            }
+
+        }
     }
 }
