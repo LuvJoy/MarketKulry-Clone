@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".src.activity_signup.SignUpActivity">
+
+    <!-- BackGround -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Action Bar -->
+        <include
+            android:id="@+id/inner_actionbar"
+            layout="@layout/actionbar_inner_page_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- [유효성 검사] 아이디 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_id_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_id_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_id_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/signup_id_edittext"
+                style="@style/kurly_edittext_style"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_edittext"
+                android:hint="예: marketkurly12" />
+
+            <Button
+                android:id="@+id/signup_check_id_button"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_rounded_button_stroke"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="-0.02"
+                android:text="중복확인"
+                android:textColor="@color/kurly_purple"
+                android:textSize="16sp"
+                app:backgroundTint="@color/kurly_purple" />
+
+        </LinearLayout> <!-- 아이디 파트 -->
+
+
+        <!-- [유효성 검사] 비밀번호 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_pw_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_pw_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_pw_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/signup_pw_edittext"
+            style="@style/kurly_edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/selector_edittext"
+            android:hint="비밀번호를 입력해주세요" />  <!-- 비밀번호 파트 -->
+
+        <!-- [유효성 검사] 비밀번호 확인파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_pw_check_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 확인"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_pw_check_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_pw_check_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/signup_pw_check_edittext"
+            style="@style/kurly_edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/selector_edittext"
+            android:hint="비밀번호를 입력해주세요" /> <!-- 비밀번호 확인파트 -->
+
+        <!-- 이름 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_name_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_name_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_name_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/signup_name_edittext"
+            style="@style/kurly_edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/selector_edittext"
+            android:hint="이름을 입력해주세요" /> <!-- 이름 파트 -->
+
+        <!-- 이메일 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_email_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이메일"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_email_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_email_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/signup_email_edittext"
+            style="@style/kurly_edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/selector_edittext"
+            android:hint="예: marketkurly@kurly.com" /> <!-- 이메일 파트 -->
+
+        <!-- 휴대폰 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_phone_num_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="휴대폰"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_phone_num_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_phone_num_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/signup_phone_num_edittext"
+                style="@style/kurly_edittext_style"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_edittext"
+                android:hint="숫자만 입력해주세요"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/signup_phone_auth_button"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_rounded_button_stroke_disable"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:text="인증번호 받기"
+                android:textColor="@color/kurly_purple"
+                android:textSize="16sp"
+                app:backgroundTint="@color/kurly_purple" />
+
+        </LinearLayout><!-- 휴대폰 파트 -->
+
+        <!-- 주소 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_adress_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주소"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="*"
+                android:textColor="#e46e7d"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:tint="#e46e7d"
+                app:layout_constraintStart_toEndOf="@+id/signup_adress_dummy"
+                app:layout_constraintTop_toTopOf="@+id/signup_adress_dummy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/signup_adress_edittext"
+            style="@style/kurly_edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/selector_edittext"
+            android:drawableRight="@drawable/ic_search"
+            android:hint="도로명, 지번, 건물명 검색" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/sandol_regular"
+            android:text="배송지에 따라 상품정보가 달라질 수 있습니다."
+            android:textColor="@color/text_whitegray_deep"
+            android:textSize="12sp" /><!-- 주소파트 -->
+
+        <!-- 생년월일 파트 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/signup_birth_dummy"
+                style="@style/text_edittext_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="생년월일"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/selector_edittext"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/signup_birth_year_edittext"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center"
+                android:hint="YYYY"
+                android:inputType="number"
+                android:maxLength="4"
+                android:textColor="@color/title_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sandol_regular"
+                android:text="/"
+                android:textColor="@color/text_whitegray"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/signup_birth_month_edittext"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center"
+                android:hint="MM"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="@color/title_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sandol_regular"
+                android:text="/"
+                android:textColor="@color/text_whitegray"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/signup_birth_day_edittext"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center"
+                android:hint="DD"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="@color/title_gray" />
+
+        </LinearLayout>
+
+
+    </LinearLayout> <!-- Backround -->
+</ScrollView>
