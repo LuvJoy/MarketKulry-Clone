@@ -1,763 +1,770 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".src.activity_signup.SignUpActivity">
 
-    <!-- BackGround -->
-    <LinearLayout
+    <!-- Action Bar -->
+    <include layout="@layout/actionbar_inner_page_top" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/fragment_background"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Action Bar -->
-        <include layout="@layout/actionbar_inner_page_top" />
-
-        <!-- 유저정보 기입 섹션 -->
+        <!-- BackGround -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="16dp">
+            android:layout_height="wrap_content"
+            android:background="@color/fragment_background"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
-            <!-- [유효성 검사] 아이디 파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/signup_id_dummy"
-                    style="@style/text_edittext_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="아이디"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_id_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_id_dummy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+            <!-- 유저정보 기입 섹션 -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="16dp">
+
+                <!-- [유효성 검사] 아이디 파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/signup_id_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="아이디"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_id_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_id_dummy" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/signup_id_edittext"
+                        style="@style/kurly_edittext_style"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_edittext"
+                        android:hint="예: marketkurly12" />
+
+                    <Button
+                        android:id="@+id/signup_check_id_button"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_rounded_button_stroke"
+                        android:fontFamily="@font/sandol_regular"
+                        android:letterSpacing="0.03"
+                        android:text="중복확인"
+                        android:textColor="@color/kurly_purple"
+                        android:textSize="16sp"
+                        app:backgroundTint="@color/kurly_purple" />
+
+                </LinearLayout> <!-- 아이디 파트 -->
+
+
+                <!-- [유효성 검사] 비밀번호 파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/signup_pw_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="비밀번호"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_pw_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_pw_dummy" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
-                    android:id="@+id/signup_id_edittext"
+                    android:id="@+id/signup_pw_edittext"
                     style="@style/kurly_edittext_style"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="예: marketkurly12" />
+                    android:hint="비밀번호를 입력해주세요" />  <!-- 비밀번호 파트 -->
 
-                <Button
-                    android:id="@+id/signup_check_id_button"
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_rounded_button_stroke"
-                    android:fontFamily="@font/sandol_regular"
-                    android:letterSpacing="0.03"
-                    android:text="중복확인"
-                    android:textColor="@color/kurly_purple"
-                    android:textSize="16sp"
-                    app:backgroundTint="@color/kurly_purple" />
-
-            </LinearLayout> <!-- 아이디 파트 -->
-
-
-            <!-- [유효성 검사] 비밀번호 파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/signup_pw_dummy"
-                    style="@style/text_edittext_tag"
+                <!-- [유효성 검사] 비밀번호 확인파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="비밀번호"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginTop="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_pw_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_pw_dummy" />
+                    <TextView
+                        android:id="@+id/signup_pw_check_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="비밀번호 확인"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_pw_check_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_pw_check_dummy" />
 
-            <EditText
-                android:id="@+id/signup_pw_edittext"
-                style="@style/kurly_edittext_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/selector_edittext"
-                android:hint="비밀번호를 입력해주세요" />  <!-- 비밀번호 파트 -->
-
-            <!-- [유효성 검사] 비밀번호 확인파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/signup_pw_check_dummy"
-                    style="@style/text_edittext_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="비밀번호 확인"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_pw_check_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_pw_check_dummy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <EditText
-                android:id="@+id/signup_pw_check_edittext"
-                style="@style/kurly_edittext_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/selector_edittext"
-                android:hint="비밀번호를 입력해주세요" /> <!-- 비밀번호 확인파트 -->
-
-            <!-- 이름 파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/signup_name_dummy"
-                    style="@style/text_edittext_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이름"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_name_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_name_dummy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <EditText
-                android:id="@+id/signup_name_edittext"
-                style="@style/kurly_edittext_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/selector_edittext"
-                android:hint="이름을 입력해주세요" /> <!-- 이름 파트 -->
-
-            <!-- 이메일 파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/signup_email_dummy"
-                    style="@style/text_edittext_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이메일"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_email_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_email_dummy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <EditText
-                android:id="@+id/signup_email_edittext"
-                style="@style/kurly_edittext_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/selector_edittext"
-                android:hint="예: marketkurly@kurly.com" /> <!-- 이메일 파트 -->
-
-            <!-- 휴대폰 파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:id="@+id/signup_phone_num_dummy"
-                    style="@style/text_edittext_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="휴대폰"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_phone_num_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_phone_num_dummy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
-                    android:id="@+id/signup_phone_num_edittext"
+                    android:id="@+id/signup_pw_check_edittext"
                     style="@style/kurly_edittext_style"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="숫자만 입력해주세요"
-                    android:inputType="number" />
+                    android:hint="비밀번호를 입력해주세요" /> <!-- 비밀번호 확인파트 -->
 
-                <Button
-                    android:id="@+id/signup_phone_auth_button"
-                    android:layout_width="118dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_rounded_button_stroke_disable"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center"
-                    android:letterSpacing="-0.02"
-                    android:text="인증번호 받기"
-                    android:textColor="@color/kurly_purple"
-                    android:textSize="16sp"
-                    app:backgroundTint="@color/kurly_purple" />
+                <!-- 이름 파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
-            </LinearLayout><!-- 휴대폰 파트 -->
+                    <TextView
+                        android:id="@+id/signup_name_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이름"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- 주소 파트 -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_name_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_name_dummy" />
 
-                android:layout_marginTop="20dp">
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/signup_name_edittext"
+                    style="@style/kurly_edittext_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/selector_edittext"
+                    android:hint="이름을 입력해주세요" /> <!-- 이름 파트 -->
+
+                <!-- 이메일 파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/signup_email_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이메일"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_email_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_email_dummy" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/signup_email_edittext"
+                    style="@style/kurly_edittext_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/selector_edittext"
+                    android:hint="예: marketkurly@kurly.com" /> <!-- 이메일 파트 -->
+
+                <!-- 휴대폰 파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/signup_phone_num_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="휴대폰"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_phone_num_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_phone_num_dummy" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/signup_phone_num_edittext"
+                        style="@style/kurly_edittext_style"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_edittext"
+                        android:hint="숫자만 입력해주세요"
+                        android:inputType="number" />
+
+                    <Button
+                        android:id="@+id/signup_phone_auth_button"
+                        android:layout_width="118dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_rounded_button_stroke_disable"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:letterSpacing="-0.02"
+                        android:text="인증번호 받기"
+                        android:textColor="@color/kurly_purple"
+                        android:textSize="16sp"
+                        app:backgroundTint="@color/kurly_purple" />
+
+                </LinearLayout><!-- 휴대폰 파트 -->
+
+                <!-- 주소 파트 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/signup_adress_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="주소"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_adress_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_adress_dummy" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/signup_adress_edittext"
+                    style="@style/kurly_edittext_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/selector_edittext"
+                    android:drawableRight="@drawable/ic_search"
+                    android:hint="도로명, 지번, 건물명 검색" />
 
                 <TextView
-                    android:id="@+id/signup_adress_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="배송지에 따라 상품정보가 달라질 수 있습니다."
+                    android:textColor="@color/text_whitegray_deep"
+                    android:textSize="12sp" /><!-- 주소파트 -->
+
+                <!-- 생년월일 파트 -->
+                <TextView
+                    android:id="@+id/signup_birth_dummy"
                     style="@style/text_edittext_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="주소"
+                    android:layout_marginTop="20dp"
+                    android:text="생년월일"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/selector_edittext"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/signup_birth_year_edittext"
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:hint="YYYY"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:textColor="@color/title_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="/"
+                        android:textColor="@color/text_whitegray"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/signup_birth_month_edittext"
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:hint="MM"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textColor="@color/title_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="/"
+                        android:textColor="@color/text_whitegray"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/signup_birth_day_edittext"
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:hint="DD"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textColor="@color/title_gray" />
+
+                </LinearLayout> <!-- 생년월일 파트-->
+
+                <!-- 성별 파트 -->
+                <TextView
+                    style="@style/text_edittext_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="성별"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/signup_sex_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/signup_sex_male_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="남자"
+                        android:textColor="@color/title_gray"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/signup_sex_female_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="여자"
+                        android:textColor="@color/title_gray"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/signup_sex_none_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="선택안함"
+                        android:textColor="@color/title_gray"
+                        android:textSize="16sp" />
+                </RadioGroup> <!-- 성별 파트 -->
+
+                <!-- 추가 입력사항 -->
+                <TextView
+                    style="@style/text_edittext_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="추가입력 사항"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_adress_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_adress_dummy" />
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="추천인 아이디와 참여 이벤트명 중 하나만 선택 가능합니다."
+                    android:textSize="12sp" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioGroup
+                    android:id="@+id/signup_additional_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
 
-            <EditText
-                android:id="@+id/signup_adress_edittext"
-                style="@style/kurly_edittext_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/selector_edittext"
-                android:drawableRight="@drawable/ic_search"
-                android:hint="도로명, 지번, 건물명 검색" />
+                    <RadioButton
+                        android:id="@+id/signup_additional_id_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="추천인 아이디"
+                        android:textColor="@color/title_gray"
+                        android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/sandol_regular"
-                android:text="배송지에 따라 상품정보가 달라질 수 있습니다."
-                android:textColor="@color/text_whitegray_deep"
-                android:textSize="12sp" /><!-- 주소파트 -->
+                    <RadioButton
+                        android:id="@+id/signup_additional_event_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="12dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="참여 이벤트명"
+                        android:textColor="@color/title_gray"
+                        android:textSize="16sp" />
+                </RadioGroup><!-- 추가 입력사항 -->
 
-            <!-- 생년월일 파트 -->
-            <TextView
-                android:id="@+id/signup_birth_dummy"
-                style="@style/text_edittext_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="생년월일"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout><!-- 유저정보 기입 섹션 -->
 
+            <!-- 이용약관 & 가입버튼 섹션 -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/selector_edittext"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp">
 
-                <EditText
-                    android:id="@+id/signup_birth_year_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="24dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center"
-                    android:hint="YYYY"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:textColor="@color/title_gray" />
-
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sandol_regular"
-                    android:text="/"
-                    android:textColor="@color/text_whitegray"
-                    android:textSize="16sp" />
+                    android:layout_marginTop="20dp">
 
-                <EditText
-                    android:id="@+id/signup_birth_month_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="24dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center"
-                    android:hint="MM"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:textColor="@color/title_gray" />
+                    <TextView
+                        android:id="@+id/signup_consent_dummy"
+                        style="@style/text_edittext_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이용약관동의"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sandol_regular"
-                    android:text="/"
-                    android:textColor="@color/text_whitegray"
-                    android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:text="*"
+                        android:textColor="#e46e7d"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:tint="#e46e7d"
+                        app:layout_constraintStart_toEndOf="@+id/signup_consent_dummy"
+                        app:layout_constraintTop_toTopOf="@+id/signup_consent_dummy" />
 
-                <EditText
-                    android:id="@+id/signup_birth_day_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="24dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center"
-                    android:hint="DD"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:textColor="@color/title_gray" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout> <!-- 생년월일 파트-->
-
-            <!-- 성별 파트 -->
-            <TextView
-                style="@style/text_edittext_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="성별"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <RadioGroup
-                android:id="@+id/signup_sex_radiogroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/signup_sex_male_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="남자"
-                    android:textColor="@color/title_gray"
-                    android:textSize="16sp" />
-
-                <RadioButton
-                    android:id="@+id/signup_sex_female_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="여자"
-                    android:textColor="@color/title_gray"
-                    android:textSize="16sp" />
-
-                <RadioButton
-                    android:id="@+id/signup_sex_none_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="선택안함"
-                    android:textColor="@color/title_gray"
-                    android:textSize="16sp" />
-            </RadioGroup> <!-- 성별 파트 -->
-
-            <!-- 추가 입력사항 -->
-            <TextView
-                style="@style/text_edittext_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="추가입력 사항"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:fontFamily="@font/sandol_regular"
-                android:text="추천인 아이디와 참여 이벤트명 중 하나만 선택 가능합니다."
-                android:textSize="12sp" />
-
-            <RadioGroup
-                android:id="@+id/signup_additional_radiogroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-
-                <RadioButton
-                    android:id="@+id/signup_additional_id_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="추천인 아이디"
-                    android:textColor="@color/title_gray"
-                    android:textSize="16sp" />
-
-                <RadioButton
-                    android:id="@+id/signup_additional_event_radiobutton"
+                <!-- 전체동의 -->
+                <CheckBox
+                    android:id="@+id/signup_consent_all_radiobutton"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginTop="12dp"
                     android:button="@null"
-                    android:drawableStart="@drawable/selector_radiobutton"
-                    android:drawablePadding="12dp"
+                    android:drawableStart="@drawable/selector_consent_radiobutton"
+                    android:drawablePadding="16dp"
                     android:fontFamily="@font/sandol_regular"
                     android:gravity="center_vertical"
-                    android:text="참여 이벤트명"
+                    android:text="전체동의합니다."
                     android:textColor="@color/title_gray"
                     android:textSize="16sp" />
-            </RadioGroup><!-- 추가 입력사항 -->
-
-        </LinearLayout><!-- 유저정보 기입 섹션 -->
-
-        <!-- 이용약관 & 가입버튼 섹션 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingBottom="20dp"
-            android:paddingEnd="20dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/signup_consent_dummy"
-                    style="@style/text_edittext_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이용약관동의"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="선택 항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다."
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/text_whitegray" />
+
+                <!-- 이용약관 동의 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/signup_consent_al_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_consent_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="이용약관 동의"
+                        android:textColor="@color/title_gray"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:src="@drawable/ic_rihgt_sign"
+                        app:tint="@color/text_whitegray_deep" />
+
+                </LinearLayout> <!-- 이용약관 동의 -->
+
+                <!-- 개인정보 처리방침 동의 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/signup_consent_al2_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_consent_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="개인정보처리방침 동의"
+                        android:textColor="@color/title_gray"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:src="@drawable/ic_rihgt_sign"
+                        app:tint="@color/text_whitegray_deep" />
+
+                </LinearLayout> <!-- 개인정보 처리방침 동의 -->
+
+                <!-- 개인정보 처리방침 동의 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/signup_consent_al3_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_consent_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="개인정보처리방침 동의"
+                        android:textColor="@color/title_gray"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:src="@drawable/ic_rihgt_sign"
+                        app:tint="@color/text_whitegray_deep" />
+
+                </LinearLayout> <!-- 개인정보 처리방침 동의 -->
+
+                <!-- 개인정보 처리방침 동의 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/signup_consent_al4_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_consent_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="본인은 만 14세 이상입니다."
+                        android:textColor="@color/title_gray"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:src="@drawable/ic_rihgt_sign"
+                        app:tint="@color/text_whitegray_deep" />
+
+                </LinearLayout> <!-- 개인정보 처리방침 동의 -->
+
+                <Button
+                    android:id="@+id/signup_play_signup_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/shape_rounded_button"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.01"
+                    android:text="가입하기"
+                    android:textSize="16sp"
+                    app:backgroundTint="@color/kurly_purple"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:text="*"
-                    android:textColor="#e46e7d"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:tint="#e46e7d"
-                    app:layout_constraintStart_toEndOf="@+id/signup_consent_dummy"
-                    app:layout_constraintTop_toTopOf="@+id/signup_consent_dummy" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- 전체동의 -->
-            <CheckBox
-                android:id="@+id/signup_consent_all_radiobutton"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginTop="12dp"
-                android:button="@null"
-                android:drawableStart="@drawable/selector_consent_radiobutton"
-                android:drawablePadding="16dp"
-                android:fontFamily="@font/sandol_regular"
-                android:gravity="center_vertical"
-                android:text="전체동의합니다."
-                android:textColor="@color/title_gray"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/sandol_regular"
-                android:letterSpacing="0.03"
-                android:text="선택 항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다."
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/text_whitegray" />
-
-            <!-- 이용약관 동의 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/signup_consent_al_radiobutton"
-                    android:layout_width="0dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_consent_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="이용약관 동의"
-                    android:textColor="@color/title_gray"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:src="@drawable/ic_rihgt_sign"
-                    app:tint="@color/text_whitegray_deep" />
-
-            </LinearLayout> <!-- 이용약관 동의 -->
-
-            <!-- 개인정보 처리방침 동의 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/signup_consent_al2_radiobutton"
-                    android:layout_width="0dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_consent_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="개인정보처리방침 동의"
-                    android:textColor="@color/title_gray"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:src="@drawable/ic_rihgt_sign"
-                    app:tint="@color/text_whitegray_deep" />
-
-            </LinearLayout> <!-- 개인정보 처리방침 동의 -->
-
-            <!-- 개인정보 처리방침 동의 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/signup_consent_al3_radiobutton"
-                    android:layout_width="0dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_consent_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="개인정보처리방침 동의"
-                    android:textColor="@color/title_gray"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:src="@drawable/ic_rihgt_sign"
-                    app:tint="@color/text_whitegray_deep" />
-
-            </LinearLayout> <!-- 개인정보 처리방침 동의 -->
-
-            <!-- 개인정보 처리방침 동의 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/signup_consent_al4_radiobutton"
-                    android:layout_width="0dp"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableStart="@drawable/selector_consent_radiobutton"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="@font/sandol_regular"
-                    android:gravity="center_vertical"
-                    android:text="본인은 만 14세 이상입니다."
-                    android:textColor="@color/title_gray"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:src="@drawable/ic_rihgt_sign"
-                    app:tint="@color/text_whitegray_deep" />
-
-            </LinearLayout> <!-- 개인정보 처리방침 동의 -->
-
-            <Button
-                android:id="@+id/signup_play_signup_button"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/shape_rounded_button"
-                android:fontFamily="@font/sandol_regular"
-                android:letterSpacing="0.01"
-                android:text="가입하기"
-                android:textSize="16sp"
-                app:backgroundTint="@color/kurly_purple"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/login_pw_edittext" />
+                    app:layout_constraintTop_toBottomOf="@+id/login_pw_edittext" />
 
 
-        </LinearLayout> <!-- 이용약관 & 가입버튼 섹션 -->
+            </LinearLayout> <!-- 이용약관 & 가입버튼 섹션 -->
 
-    </LinearLayout> <!-- Backround -->
-</ScrollView>
+        </LinearLayout> <!-- Backround -->
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
