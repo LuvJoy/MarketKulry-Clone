@@ -1,9 +1,9 @@
-package com.joseph.marketkurly_clone.src.app_network
+package com.joseph.marketkurly_clone
 
 import android.util.Log
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
-import com.joseph.marketkurly_clone.ApplicationConstants.TAG
-import com.joseph.marketkurly_clone.src.app_network.NetworkConstants.X_ACCESS_TOKEN
+import com.joseph.marketkurly_clone.Constants.TAG
+import com.joseph.marketkurly_clone.NetworkConstants.X_ACCESS_TOKEN
 import com.joseph.marketkurly_clone.src.util.isJsonArray
 import com.joseph.marketkurly_clone.src.util.isJsonObject
 
