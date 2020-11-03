@@ -23,7 +23,7 @@
     <color name="text_gray_tablayout">#6b6b6b</color>
     <color name="default_gray">#7b7b7b</color>
 
-    <color name="warning_red">#b42922</color>
+    <color name="not_success_red">#b42922</color>
     <color name="success_green">#1b8626</color>
 
     <!-- 백그라운드 색상 -->

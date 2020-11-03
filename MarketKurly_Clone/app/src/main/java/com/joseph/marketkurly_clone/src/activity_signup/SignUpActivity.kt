@@ -1,13 +1,10 @@
 package com.joseph.marketkurly_clone.src.activity_signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import com.joseph.marketkurly_clone.BaseActivity
-import com.joseph.marketkurly_clone.Constants
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
@@ -23,14 +20,26 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
         setContentView(R.layout.activity_sign_up)
 
         initAcitivty()
+        settingsActionBar()
+
+        mSignUpValidationManager = SignUpValidationManager(this)
 
         signup_id_edittext.addTextChangedListener {
-            Log.d(TAG, "[SignUpActivity] - TextChangedListener() : ${it.toString()}")
+            val text = it.toString()
+            Log.d(TAG, "[SignUpActivity] - TextChangedListener() : ${text}")
+
+            mSignUpValidationManager.checkValidationID(text)
+
+            if(mSignUpValidationManager.ID_COMBINATION_VALIDATION) {
+                mSignUpValidationManager.setSuccess(signup_id_validation_combination)
+            } else {
+                mSignUpValidationManager.setNotSuccess(signup_id_validation_combination)
+            }
         }
         signup_pw_edittext.addTextChangedListener {
 
         }
-        settingsActionBar()
+
     }
 
     fun initAcitivty() {

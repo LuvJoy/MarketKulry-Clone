@@ -1,12 +1,17 @@
 package com.joseph.marketkurly_clone.src.activity_signup
 
-import android.view.KeyEvent
-import android.view.View
-import android.widget.EditText
+import android.content.Context
+import android.graphics.ColorFilter
 import android.widget.TextView
-import java.util.regex.Pattern
+import androidx.core.content.ContextCompat
+import com.joseph.marketkurly_clone.R
 
-class SignUpValidationManager {
+class SignUpValidationManager(private var context: Context) {
+
+    private val COLOR_NOT_SUCCESS_RED = ContextCompat.getColor(context, R.color.not_success_red)
+    private val COLOR_SUCCESS_GREEN = ContextCompat.getColor(context, R.color.success_green)
+    private val ICON_SUCCESS = ContextCompat.getDrawable(context, R.drawable.ic_check)
+    private val ICON_NOT_SUCCESS = ContextCompat.getDrawable(context, R.drawable.ic_cross)
 
     // 아이디 조합, 중복체크 여부
     var ID_COMBINATION_VALIDATION: Boolean = false
@@ -49,9 +54,8 @@ class SignUpValidationManager {
     }
 
     fun checkValidationID(text: String) {
-        val duplicatePattern = Pattern.compile("")
-
-
+        val isNum = Regex("(^[0-9]*$)")
+        ID_COMBINATION_VALIDATION = text.matches(isNum)
     }
 
     fun checkValidationPW(text: String) {
@@ -66,5 +70,23 @@ class SignUpValidationManager {
 
     }
 
+
+    fun setSuccess(view: TextView, text: String = "") {
+        view.setTextColor(COLOR_SUCCESS_GREEN)
+        view.setCompoundDrawablesWithIntrinsicBounds(ICON_SUCCESS, null, null, null)  //체크표시로 해야함
+        view.compoundDrawables[0].setTint(COLOR_SUCCESS_GREEN)
+        if (text != "") {
+            view.text = text
+        }
+    }
+
+    fun setNotSuccess(view: TextView, text: String = "") {
+        view.setTextColor(COLOR_NOT_SUCCESS_RED)
+        view.setCompoundDrawablesWithIntrinsicBounds(ICON_NOT_SUCCESS, null, null, null)  //체크표시로 해야함
+        view.compoundDrawables[0].setTint(COLOR_NOT_SUCCESS_RED)
+        if (text != "") {
+            view.text = text
+        }
+    }
 
 }
