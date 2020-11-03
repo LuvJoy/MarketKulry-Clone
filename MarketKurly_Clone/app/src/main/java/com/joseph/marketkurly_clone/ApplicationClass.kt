@@ -25,6 +25,6 @@ class ApplicationClass: Application() {
             )
             Log.d(TAG, "[ApplicationClass] - onCreate() : $sSharedPreferences")
         }
-        Log.d(TAG, "[ApplicationClass] - onCreate() : null")
+
     }
 }

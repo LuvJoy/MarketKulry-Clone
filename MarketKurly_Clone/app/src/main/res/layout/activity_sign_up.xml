@@ -203,7 +203,7 @@
                         android:drawableLeft="@drawable/ic_dot"
                         android:drawablePadding="4dp"
                         android:fontFamily="@font/sandol_regular"
-                        android:text="합동일한 숫자 3개 이상 연속 사용 불가"
+                        android:text="동일한 숫자 3개 이상 연속 사용 불가"
                         android:textColor="@color/default_gray"
                         android:textSize="12sp" />
                 </LinearLayout><!-- [유효성 검사] 비밀번호 입력 확인파트 -->

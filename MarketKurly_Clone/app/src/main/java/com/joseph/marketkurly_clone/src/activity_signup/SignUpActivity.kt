@@ -64,20 +64,23 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
             val text = it.toString()
             Log.d(TAG, "[SignUpActivity] - TextChangedListener() : ${text}")
 
-            mSignUpValidationManager.checkValidationID(text)
-
-            if (mSignUpValidationManager.ID_COMBINATION_VALIDATION) {
-                mSignUpValidationManager.setTextViewSuccess(signup_id_validation_combination)
-            } else {
-                mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_combination)
-            }
+            mSignUpValidationManager.checkIdCombination(text, signup_id_validation_combination)
         }
 
         signup_pw_edittext.addTextChangedListener {
+            val text = it.toString()
 
+            mSignUpValidationManager.checkPwLength(text, signup_pw_validation_length)
+            mSignUpValidationManager.checkPwCombination(text, signup_pw_validation_combination)
+            mSignUpValidationManager.checkPwSameNumber(text, signup_pw_validation_same_number)
+        }
+
+        signup_pw_check_edittext.addTextChangedListener {
+            val text = it.toString()
+            val password = signup_pw_edittext.text.toString()
+            mSignUpValidationManager.checkPwSame(text, password, signup_pw_check_validation_same)
         }
     }
-
 
 
     override fun onClick(v: View?) {
@@ -157,11 +160,11 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
                 val isExist = response.body()?.get("is_exist")?.asString!!
                 if (isExist == "Y") {
                     showCustomToast("아이디가 이미 존재합니다.")
-                    mSignUpValidationManager.ID_DUPLICATE_VALIDATION = false
+                    mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
                     mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
                 } else {
                     showCustomToast("사용가능한 아이디입니다.")
-                    mSignUpValidationManager.ID_DUPLICATE_VALIDATION = true
+                    mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = true
                     mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
                 }
             }

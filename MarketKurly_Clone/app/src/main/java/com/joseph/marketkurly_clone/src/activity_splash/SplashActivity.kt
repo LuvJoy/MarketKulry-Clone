@@ -4,12 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
+import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.MainActivity
+import com.joseph.marketkurly_clone.src.util.getToken
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
+
+    val TAG = "[ 로그 ]"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -17,6 +23,8 @@ class SplashActivity : AppCompatActivity() {
         var moveNextAcitivity: Runnable? = null
         var changeBackground: Runnable? = null
         var handle: Handler? = null
+
+        Log.d(TAG, "[SplashActivity] - onCreate() : ${sSharedPreferences?.getToken()}")
 
         moveNextAcitivity = Runnable {
             startActivity(Intent(this, MainActivity::class.java))

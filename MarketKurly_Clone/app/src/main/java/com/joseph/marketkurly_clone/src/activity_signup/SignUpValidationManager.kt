@@ -25,17 +25,54 @@ class SignUpValidationManager(private var context: Context) {
             Pair("BIRTH_DAY", false),
     )
 
-    fun checkValidationID(text: String) {
-        val isNum = Regex("(^[0-9]*$)")
-        mValidationHash["ID_COMBINATION"] = text.matches(isNum)
+    fun checkIdCombination(text: String, view: TextView) {
+        val patternCombination = Regex("^(?=.*\\d)(?=.*[a-z])([^\\s]){6,16}\$")
+        mValidationHash["ID_COMBINATION"] = text.matches(patternCombination)
+        if(mValidationHash["ID_COMBINATION"]!!) {
+            setTextViewSuccess(view)
+        } else {
+            setTextViewNotSuccess(view)
+        }
     }
 
-    fun checkValidationPW(text: String) {
-
+    fun checkPwLength(text: String, view: TextView) {
+        val patternLength = Regex("^([^\\s]){10,20}\$")
+        mValidationHash["PW_LENGTH"] = text.matches(patternLength)
+        if(mValidationHash["PW_LENGTH"]!!) {
+            setTextViewSuccess(view)
+        } else {
+            setTextViewNotSuccess(view)
+        }
     }
 
-    fun checkValidationSamePw(text: String) {
+    fun checkPwCombination(text: String, view: TextView) {
+        val patternCombination = Regex("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W))\$")
+        mValidationHash["PW_COMBINATION"] = text.matches(patternCombination)
+        if(mValidationHash["PW_COMBINATION"]!!) {
+            setTextViewSuccess(view)
+        } else {
+            setTextViewNotSuccess(view)
+        }
+    }
 
+
+    fun checkPwSameNumber(text: String, view: TextView) {
+        val patternCombination = Regex("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W))\$")
+        mValidationHash["PW_COMBINATION"] = text.matches(patternCombination)
+        if(mValidationHash["PW_COMBINATION"]!!) {
+            setTextViewSuccess(view)
+        } else {
+            setTextViewNotSuccess(view)
+        }
+    }
+
+    fun checkPwSame(text: String, password:String ,view: TextView) {
+        mValidationHash["PW_COMBINATION"] = password == text
+        if(mValidationHash["PW_COMBINATION"]!!) {
+            setTextViewSuccess(view)
+        } else {
+            setTextViewNotSuccess(view)
+        }
     }
 
     fun checkIdValidationBIRTH(text: String) {
