@@ -94,8 +94,39 @@
 
                 </LinearLayout> <!-- 아이디 파트 -->
 
+                <LinearLayout
+                    android:id="@+id/signup_id_validation_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
 
-                <!-- [유효성 검사] 비밀번호 파트 -->
+                    <TextView
+                        android:id="@+id/signup_id_validation_combination"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="6자 이상의 영문 혹 영문과 숫자를 조합"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/signup_id_validation_duplicate"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="아이디 중복확인"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
+                </LinearLayout> <!-- [유효성 검사] 아이디 파트 -->
+
+                <!-- [유효성 검사] 비밀번호 입력 파트 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,6 +164,50 @@
                     android:background="@drawable/selector_edittext"
                     android:hint="비밀번호를 입력해주세요" />  <!-- 비밀번호 파트 -->
 
+                <LinearLayout
+                    android:id="@+id/signup_pw_validation_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/signup_pw_validation_length"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="10자 이상 입력"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/signup_pw_validation_combination"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/signup_pw_validation_same_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="합동일한 숫자 3개 이상 연속 사용 불가"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
+                </LinearLayout><!-- [유효성 검사] 비밀번호 입력 확인파트 -->
+
                 <!-- [유효성 검사] 비밀번호 확인파트 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -169,7 +244,28 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="비밀번호를 입력해주세요" /> <!-- 비밀번호 확인파트 -->
+                    android:hint="비밀번호를 입력해주세요" />
+
+                <LinearLayout
+                    android:id="@+id/signup_pw_check_validation_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/signup_pw_check_validation_same"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="동일한 비밀번호를 입력해주세요"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <!-- [유효성 검사] 비밀번호 확인파트 -->
 
                 <!-- 이름 파트 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -369,6 +465,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
+                    android:id="@+id/signup_birth_layout"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -431,6 +528,26 @@
                         android:maxLength="2"
                         android:textColor="@color/title_gray" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/signup_birth_validation_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/signup_birth_validation_same"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:drawableLeft="@drawable/ic_dot"
+                        android:drawablePadding="4dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="올바른 생년월일을 입력해주세요"
+                        android:textColor="@color/default_gray"
+                        android:textSize="12sp" />
                 </LinearLayout> <!-- 생년월일 파트-->
 
                 <!-- 성별 파트 -->

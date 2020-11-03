@@ -4,6 +4,7 @@ import android.util.Log
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.Constants.TAG
 import com.joseph.marketkurly_clone.NetworkConstants.X_ACCESS_TOKEN
+import com.joseph.marketkurly_clone.src.util.getToken
 import com.joseph.marketkurly_clone.src.util.isJsonArray
 import com.joseph.marketkurly_clone.src.util.isJsonObject
 
@@ -19,7 +20,7 @@ import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 // 싱글턴
-object MovieRetrofitClient {
+object RetrofitClient {
     // 레트로핏 클라이언트 선언
     private var retrofitClient: Retrofit? = null
 
@@ -57,8 +58,8 @@ object MovieRetrofitClient {
         val xAccessTokenInterceptor = object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
                 val builder: Request.Builder = chain.request().newBuilder()
-                val jwtToken: String =
-                    sSharedPreferences?.getString(X_ACCESS_TOKEN, null).toString()
+                val jwtToken: String? = sSharedPreferences?.getToken()
+
                 if (jwtToken != null) {
                     builder.addHeader("X-ACCESS-TOKEN", jwtToken)
                 }

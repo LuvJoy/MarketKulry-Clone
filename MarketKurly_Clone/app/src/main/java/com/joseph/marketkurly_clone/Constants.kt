@@ -16,7 +16,7 @@ object Constants {
 }
 
 object NetworkConstants {
-    const val X_ACCESS_TOKEN: String = "x-access-token"
+    const val X_ACCESS_TOKEN: String = "X-ACCESS-TOKEN"
 
     // 테스트 서버 주소
     val BASE_URL = "http://apis.newvement.com/"
