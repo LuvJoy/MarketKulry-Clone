@@ -29,7 +29,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     private var mRetrofitClient = RetrofitClient.getClient(KURLY_URL).create(SignUpAPI::class.java)
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -56,7 +55,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         signup_name_edittext.onFocusChangeListener = this
         signup_email_edittext.onFocusChangeListener = this
         signup_phone_num_edittext.onFocusChangeListener = this
-        signup_adress_textview.onFocusChangeListener = this
         signup_birth_year_edittext.onFocusChangeListener = this
         signup_birth_month_edittext.onFocusChangeListener = this
         signup_birth_day_edittext.onFocusChangeListener = this
@@ -140,7 +138,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
     fun settingsRadioButtonListener() {
         signup_additional_id_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
+            if (isChecked) {
                 signup_additional_id_edittext.setVisible()
             } else {
                 signup_additional_id_edittext.setGone()
@@ -148,7 +146,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         }
 
         signup_additional_event_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
+            if (isChecked) {
                 signup_additional_event_edittext.setVisible()
             } else {
                 signup_additional_event_edittext.setGone()
@@ -159,7 +157,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     fun settingsCheckBox() {
         // 전체동의 체크박스
         signup_consent_all_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
+            if (isChecked) {
                 signup_consent_al1_radiobutton.isChecked = true
                 signup_consent_al2_radiobutton.isChecked = true
                 signup_consent_al3_radiobutton.isChecked = true
@@ -189,7 +187,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             R.id.signup_adress_textview -> {
                 signup_address_layout.setVisible()
-                val addressLayout= AddressApiManager(address_layout_webview, this)
+                val addressLayout = AddressApiManager(address_layout_webview, this)
                 addressLayout.initWebView()
             }
 
@@ -231,10 +229,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                     Log.d(TAG, "[SignUpActivity] - onFocusChange() : signup_phone_num_edittext")
                 }
 
-                R.id.signup_adress_textview -> {
-                    Log.d(TAG, "[SignUpActivity] - onFocusChange() : signup_adress_edittext")
-                }
-
                 R.id.signup_birth_year_edittext -> {
                     Log.d(TAG, "[SignUpActivity] - onFocusChange() : signup_birth_year_edittext")
                 }
@@ -245,6 +239,24 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
                 R.id.signup_birth_day_edittext -> {
                     Log.d(TAG, "[SignUpActivity] - onFocusChange() : signup_birth_day_edittext")
+                }
+
+            }
+        }
+
+        if (hasFocus == false) {
+            when (v?.id) {
+                R.id.signup_pw_edittext -> {
+                    if ((mSignUpValidationManager.mValidationHash["PW_LENGTH"] == false)
+                            && (mSignUpValidationManager.mValidationHash["PW_COMBINATION"] == false)) {
+                        signup_pw_edittext.background.setTint(mSignUpValidationManager.COLOR_NOT_SUCCESS_RED)
+                    }
+                }
+
+                R.id.signup_pw_check_edittext -> {
+                    if(mSignUpValidationManager.mValidationHash["PW_CHECK"] == false) {
+                        signup_pw_check_edittext.background.setTint(mSignUpValidationManager.COLOR_NOT_SUCCESS_RED)
+                    }
                 }
 
             }
