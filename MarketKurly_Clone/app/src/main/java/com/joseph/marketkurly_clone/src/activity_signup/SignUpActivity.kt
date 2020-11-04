@@ -10,6 +10,7 @@ import com.joseph.marketkurly_clone.NetworkConstants.KURLY_URL
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.RetrofitClient
 import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpAPI
+import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -80,6 +81,50 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
             val password = signup_pw_edittext.text.toString()
             mSignUpValidationManager.checkPwSame(text, password, signup_pw_check_validation_same)
         }
+
+
+        signup_birth_year_edittext.addTextChangedListener {
+            val text = it.toString()
+
+            if (text != "") {
+                val isValidation = mSignUpValidationManager.checkYearValidation(text)
+                if (isValidation) {
+                    signup_birth_validation_layout.setGone()
+                } else {
+                    signup_birth_validation_layout.setVisible()
+                    mSignUpValidationManager.setTextViewNotSuccess(signup_birth_validation, "생년월일을 다시 확인해 주세요")
+                }
+            }
+        }
+
+        signup_birth_month_edittext.addTextChangedListener {
+            val text = it.toString()
+
+            if (text != "") {
+                val isValidation = mSignUpValidationManager.checkMonthValidation(text)
+                if (isValidation) {
+                    signup_birth_validation_layout.setGone()
+                } else {
+                    signup_birth_validation_layout.setVisible()
+                    mSignUpValidationManager.setTextViewNotSuccess(signup_birth_validation, "태어난 월을 정확하게 입력해주세요")
+                }
+            }
+        }
+
+        signup_birth_day_edittext.addTextChangedListener {
+            val text = it.toString()
+
+            if (text != "") {
+                val isValidation = mSignUpValidationManager.checkDayValidation(text)
+                if (isValidation) {
+                    signup_birth_validation_layout.setGone()
+                } else {
+                    signup_birth_validation_layout.setVisible()
+                    mSignUpValidationManager.setTextViewNotSuccess(signup_birth_validation, "태어난 일을 정확하게 입력해주세요")
+                }
+            }
+        }
+
     }
 
 

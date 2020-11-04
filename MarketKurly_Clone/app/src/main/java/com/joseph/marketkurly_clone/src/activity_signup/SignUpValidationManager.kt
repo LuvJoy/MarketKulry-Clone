@@ -1,10 +1,12 @@
 package com.joseph.marketkurly_clone.src.activity_signup
 
 import android.content.Context
-import android.graphics.ColorFilter
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.joseph.marketkurly_clone.R
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class SignUpValidationManager(private var context: Context) {
 
@@ -28,7 +30,7 @@ class SignUpValidationManager(private var context: Context) {
     fun checkIdCombination(text: String, view: TextView) {
         val patternCombination = Regex("^(?=.*\\d)(?=.*[a-z])([^\\s]){6,16}\$")
         mValidationHash["ID_COMBINATION"] = text.matches(patternCombination)
-        if(mValidationHash["ID_COMBINATION"]!!) {
+        if (mValidationHash["ID_COMBINATION"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)
@@ -38,7 +40,7 @@ class SignUpValidationManager(private var context: Context) {
     fun checkPwLength(text: String, view: TextView) {
         val patternLength = Regex("^([^\\s]){10,20}\$")
         mValidationHash["PW_LENGTH"] = text.matches(patternLength)
-        if(mValidationHash["PW_LENGTH"]!!) {
+        if (mValidationHash["PW_LENGTH"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)
@@ -48,7 +50,7 @@ class SignUpValidationManager(private var context: Context) {
     fun checkPwCombination(text: String, view: TextView) {
         val patternCombination = Regex("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W))\$")
         mValidationHash["PW_COMBINATION"] = text.matches(patternCombination)
-        if(mValidationHash["PW_COMBINATION"]!!) {
+        if (mValidationHash["PW_COMBINATION"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)
@@ -59,25 +61,46 @@ class SignUpValidationManager(private var context: Context) {
     fun checkPwSameNumber(text: String, view: TextView) {
         val patternCombination = Regex("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W))\$")
         mValidationHash["PW_COMBINATION"] = text.matches(patternCombination)
-        if(mValidationHash["PW_COMBINATION"]!!) {
+        if (mValidationHash["PW_COMBINATION"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)
         }
     }
 
-    fun checkPwSame(text: String, password:String ,view: TextView) {
+    fun checkPwSame(text: String, password: String, view: TextView) {
         mValidationHash["PW_COMBINATION"] = password == text
-        if(mValidationHash["PW_COMBINATION"]!!) {
+        if (mValidationHash["PW_COMBINATION"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)
         }
     }
 
-    fun checkIdValidationBIRTH(text: String) {
+    fun checkYearValidation(text: String): Boolean {
+        val year = text.toInt()
+        val currentYear: Int = Calendar.getInstance().get(Calendar.YEAR)
 
+        mValidationHash["BIRTH_YEAR"] = (year >= 1900) && (year <= currentYear)
+
+        return mValidationHash["BIRTH_YEAR"]!!
     }
+
+    fun checkMonthValidation(text: String): Boolean {
+        val month = text.toInt()
+        mValidationHash["BIRTH_MONTH"] = (month >= 1) && (month <= 12)
+
+        return mValidationHash["BIRTH_MONTH"]!!
+    }
+
+    fun checkDayValidation(text: String): Boolean {
+        val day = text.toInt()
+        mValidationHash["BIRTH_DAY"] = (day >= 1) && (day <= 31)
+
+        return mValidationHash["BIRTH_DAY"]!!
+    }
+
+
 
     fun isAllPropertyValidate(): String {
         val unValidationList: ArrayList<String> = arrayListOf()
