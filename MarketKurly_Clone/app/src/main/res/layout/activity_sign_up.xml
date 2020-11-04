@@ -10,9 +10,11 @@
     <!-- Action Bar -->
     <include layout="@layout/actionbar_inner_page_top" />
 
+    <!-- 전체 레이아웃 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- BackGround -->
@@ -650,9 +652,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:visibility="gone"
                         android:background="@drawable/selector_edittext"
-                        android:hint="추천인 아이디를 입력해주세요" />
+                        android:hint="추천인 아이디를 입력해주세요"
+                        android:visibility="gone" />
 
                     <RadioButton
                         android:id="@+id/signup_additional_event_radiobutton"
@@ -674,9 +676,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:visibility="gone"
                         android:background="@drawable/selector_edittext"
-                        android:hint="참여 이벤트명을 입력해주세요" />
+                        android:hint="참여 이벤트명을 입력해주세요"
+                        android:visibility="gone" />
                 </RadioGroup><!-- 추가 입력사항 -->
 
             </LinearLayout><!-- 유저정보 기입 섹션 -->
@@ -905,6 +907,7 @@
         </LinearLayout> <!-- Backround -->
     </ScrollView>
 
+    <!-- 주소지 API 파트 -->
     <LinearLayout
         android:id="@+id/signup_address_layout"
         android:layout_width="match_parent"
@@ -912,7 +915,92 @@
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/layout_signup_adress"/>
+        <include layout="@layout/layout_signup_adress" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/signup_morning_shipping_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/shape_dialog"
+            android:backgroundTint="#fff"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="0.02"
+                android:text="샛별배송 지역입니다."
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/image_morning_shipping" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center"
+                android:letterSpacing="0.01"
+                android:text="오늘 밤 11시 전까지 주문 시\n다음날 아침 7시 이전 도착합니다!"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp"
+                android:drawablePadding="6dp"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="0.03"
+                android:text="샛별배송은 휴무 없이 매일 배송합니다"
+                android:textColor="@color/default_gray"
+                android:textSize="12sp"
+                app:drawableLeftCompat="@drawable/ic_alert_circle"
+                app:drawableTint="@color/default_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="54dp"
+                android:background="@color/fragment_background"
+                android:paddingLeft="16dp"
+                android:paddingTop="12dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="12dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_rounded_button"
+                    android:backgroundTint="@color/kurly_purple" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -16,19 +16,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+       initAdapters()
+
+    }
+
+
+    fun initAdapters() {
         home_tab_viewPager.adapter = TabViewPagerAdapter(this)
         TabLayoutMediator(home_tablayout, home_tab_viewPager,
-            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                when (position) {
-                    0 ->  tab.text = "컬리추천"
-                    1 ->  tab.text = "신상품"
-                    2 ->  tab.text = "베스트"
-                    3 ->  tab.text = "알뜰쇼핑"
-                    4 ->  tab.text = "이벤트"
+                TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                    when (position) {
+                        0 ->  tab.text = "컬리추천"
+                        1 ->  tab.text = "신상품"
+                        2 ->  tab.text = "베스트"
+                        3 ->  tab.text = "알뜰쇼핑"
+                        4 ->  tab.text = "이벤트"
+                    }
                 }
-            }
         ).attach()
-
     }
 
 }

@@ -60,7 +60,7 @@
                 android:gravity="center"
                 android:letterSpacing="-0.02"
                 android:text="로그인/회원가입"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout> <!-- [Non-Member] 로그인 섹션 (로그인이 안된상태에 표시됨) -->
 
         <!-- [Member] 회원정보 섹션 (최상단 회원등급, 등급보기 등) -->

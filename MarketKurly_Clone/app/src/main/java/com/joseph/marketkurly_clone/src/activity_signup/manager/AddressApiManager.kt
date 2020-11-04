@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.os.Build
 import android.os.Handler
+import android.os.Message
 import android.util.Log
 import android.webkit.*
 import com.joseph.marketkurly_clone.Constants.TAG
@@ -24,10 +25,10 @@ class AddressApiManager(private var webView: WebView,
 
     inner class AndroidBridge() {
         @JavascriptInterface
-        fun setAddress(addressNum: String, address: String) {
-            Log.d(TAG, "[AndroidBridge] - setAddress() : $addressNum / $address")
+        fun setAddress(arg1: String, arg2: String) {
+            Log.d(TAG, "[AndroidBridge] - setAddress() : $arg1 / $arg2")
             handler?.post(Runnable {
-                addressApiListener.onAddressSelected(addressNum, address)
+                addressApiListener.onAddressSelected(arg1, arg2)
 
                 // WebView를 초기화 하지않으면 재사용할 수 없음
                 initWebView()
@@ -40,12 +41,14 @@ class AddressApiManager(private var webView: WebView,
 
         webView.apply {
             this.settings.javaScriptEnabled = true
+            this.settings.setSupportMultipleWindows(true)
             this.settings.javaScriptCanOpenWindowsAutomatically = true
             webViewClient = client
             addJavascriptInterface(AndroidBridge(), "KurlyApp")
             webChromeClient = WebChromeClient()
         }
-        webView.loadUrl("https://naver.com")
+        webView.loadUrl("http://daum.marketkulry.shop/index.php")
+
 
     }
 
