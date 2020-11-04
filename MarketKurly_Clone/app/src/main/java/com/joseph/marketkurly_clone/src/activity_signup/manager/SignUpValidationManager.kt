@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.src.activity_signup
+package com.joseph.marketkurly_clone.src.activity_signup.manager
 
 import android.content.Context
 import android.widget.TextView
@@ -59,9 +59,9 @@ class SignUpValidationManager(private var context: Context) {
 
 
     fun checkPwSameNumber(text: String, view: TextView) {
-        val patternCombination = Regex("^(?=.*[a-zA-Z])((?=.*\\d)|(?=.*\\W))\$")
-        mValidationHash["PW_COMBINATION"] = text.matches(patternCombination)
-        if (mValidationHash["PW_COMBINATION"]!!) {
+        val patternCombination = Regex("(\\d)\\1\\1")
+        mValidationHash["PW_SAME_NUMBER"] = !text.matches(patternCombination)
+        if (mValidationHash["PW_SAME_NUMBER"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)
@@ -69,8 +69,8 @@ class SignUpValidationManager(private var context: Context) {
     }
 
     fun checkPwSame(text: String, password: String, view: TextView) {
-        mValidationHash["PW_COMBINATION"] = password == text
-        if (mValidationHash["PW_COMBINATION"]!!) {
+        mValidationHash["PW_CHECK"] = password == text
+        if (mValidationHash["PW_CHECK"]!!) {
             setTextViewSuccess(view)
         } else {
             setTextViewNotSuccess(view)

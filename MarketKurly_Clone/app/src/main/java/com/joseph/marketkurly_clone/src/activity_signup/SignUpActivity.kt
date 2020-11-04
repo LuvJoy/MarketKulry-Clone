@@ -3,13 +3,15 @@ package com.joseph.marketkurly_clone.src.activity_signup
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.webkit.WebView
 import androidx.core.widget.addTextChangedListener
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.NetworkConstants.KURLY_URL
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.RetrofitClient
+import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddressApiEvent
+import com.joseph.marketkurly_clone.src.activity_signup.manager.AddressApiManager
+import com.joseph.marketkurly_clone.src.activity_signup.manager.SignUpValidationManager
 import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpAPI
 import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
@@ -20,13 +22,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
+class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEvent {
 
     val TAG = "[ 로그 ]"
     private lateinit var mSignUpValidationManager: SignUpValidationManager
     private var mRetrofitClient = RetrofitClient.getClient(KURLY_URL).create(SignUpAPI::class.java)
 
-    private var webView: WebView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +38,11 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
         initManager()
         settingsActionBar()
         settingsEditTextListener()
+        settingsRadioButtonListener()
+        settingsCheckBox()
 
     }
+
 
     fun initAcitivty() {
         signup_play_signup_button.setOnClickListener(this)
@@ -133,7 +138,41 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
 
     }
 
+    fun settingsRadioButtonListener() {
+        signup_additional_id_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                signup_additional_id_edittext.setVisible()
+            } else {
+                signup_additional_id_edittext.setGone()
+            }
+        }
 
+        signup_additional_event_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                signup_additional_event_edittext.setVisible()
+            } else {
+                signup_additional_event_edittext.setGone()
+            }
+        }
+    }
+
+    fun settingsCheckBox() {
+        // 전체동의 체크박스
+        signup_consent_all_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                signup_consent_al1_radiobutton.isChecked = true
+                signup_consent_al2_radiobutton.isChecked = true
+                signup_consent_al3_radiobutton.isChecked = true
+                signup_consent_al4_radiobutton.isChecked = true
+            } else {
+                signup_consent_al1_radiobutton.isChecked = false
+                signup_consent_al2_radiobutton.isChecked = false
+                signup_consent_al3_radiobutton.isChecked = false
+                signup_consent_al4_radiobutton.isChecked = false
+            }
+        }
+
+    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -150,6 +189,8 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
 
             R.id.signup_adress_textview -> {
                 signup_address_layout.setVisible()
+                val addressLayout= AddressApiManager(address_layout_webview, this)
+                addressLayout.initWebView()
             }
 
             R.id.address_layout_drop_button -> {
@@ -234,6 +275,15 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
             }
 
         })
+    }
+
+    override fun onAddressSelected(addressNum: String, address: String) {
+        address_layout_webview.setGone()
+        address_layout_address_textview.text = address
+        address_layout_addnumber_textview.text = addressNum
+
+        address_layout_input_detail_layout.setVisible()
+
     }
 
 

@@ -5,19 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/address_layout_webview"
+    <LinearLayout
+        android:id="@+id/address_layout_webview_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
-        android:visibility="visible" />
+        android:background="#cc000000"
+        android:visibility="visible">
+
+        <WebView
+            android:id="@+id/address_layout_webview"
+            android:layout_width="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/shape_rounded_button"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/address_layout_input_detail_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <include
             android:id="@+id/include"
@@ -150,6 +163,8 @@
         android:id="@+id/address_layout_drop_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
         android:padding="12dp"
         android:src="@drawable/ic_cross"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,9 +10,6 @@
     <!-- Action Bar -->
     <include layout="@layout/actionbar_inner_page_top" />
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -647,6 +644,16 @@
                         android:textColor="@color/title_gray"
                         android:textSize="16sp" />
 
+                    <EditText
+                        android:id="@+id/signup_additional_id_edittext"
+                        style="@style/kurly_edittext_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@drawable/selector_edittext"
+                        android:hint="추천인 아이디를 입력해주세요" />
+
                     <RadioButton
                         android:id="@+id/signup_additional_event_radiobutton"
                         android:layout_width="wrap_content"
@@ -660,6 +667,16 @@
                         android:text="참여 이벤트명"
                         android:textColor="@color/title_gray"
                         android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/signup_additional_event_edittext"
+                        style="@style/kurly_edittext_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@drawable/selector_edittext"
+                        android:hint="참여 이벤트명을 입력해주세요" />
                 </RadioGroup><!-- 추가 입력사항 -->
 
             </LinearLayout><!-- 유저정보 기입 섹션 -->
@@ -741,7 +758,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/signup_consent_al_radiobutton"
+                        android:id="@+id/signup_consent_al1_radiobutton"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_weight="1"
@@ -893,8 +910,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="#000">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include layout="@layout/layout_signup_adress"/>
     </LinearLayout>
