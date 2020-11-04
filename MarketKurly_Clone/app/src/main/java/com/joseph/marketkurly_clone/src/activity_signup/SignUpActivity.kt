@@ -3,6 +3,7 @@ package com.joseph.marketkurly_clone.src.activity_signup
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.WebView
 import androidx.core.widget.addTextChangedListener
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.BaseActivity
@@ -14,6 +15,7 @@ import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.layout_signup_adress.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +25,8 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
     val TAG = "[ 로그 ]"
     private lateinit var mSignUpValidationManager: SignUpValidationManager
     private var mRetrofitClient = RetrofitClient.getClient(KURLY_URL).create(SignUpAPI::class.java)
+
+    private var webView: WebView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,8 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
     fun initAcitivty() {
         signup_play_signup_button.setOnClickListener(this)
         signup_id_check_button.setOnClickListener(this)
+        signup_adress_textview.setOnClickListener(this)
+        address_layout_drop_button.setOnClickListener(this)
 
         signup_id_edittext.onFocusChangeListener = this
         signup_pw_edittext.onFocusChangeListener = this
@@ -45,7 +51,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
         signup_name_edittext.onFocusChangeListener = this
         signup_email_edittext.onFocusChangeListener = this
         signup_phone_num_edittext.onFocusChangeListener = this
-        signup_adress_edittext.onFocusChangeListener = this
+        signup_adress_textview.onFocusChangeListener = this
         signup_birth_year_edittext.onFocusChangeListener = this
         signup_birth_month_edittext.onFocusChangeListener = this
         signup_birth_day_edittext.onFocusChangeListener = this
@@ -128,6 +134,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
     }
 
 
+
     override fun onClick(v: View?) {
         when (v?.id) {
 
@@ -139,6 +146,14 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
             // ID 중복체크 버튼
             R.id.signup_id_check_button -> {
                 checkDuplicateID()
+            }
+
+            R.id.signup_adress_textview -> {
+                signup_address_layout.setVisible()
+            }
+
+            R.id.address_layout_drop_button -> {
+                signup_address_layout.setGone()
             }
 
         }
@@ -175,7 +190,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener {
                     Log.d(TAG, "[SignUpActivity] - onFocusChange() : signup_phone_num_edittext")
                 }
 
-                R.id.signup_adress_edittext -> {
+                R.id.signup_adress_textview -> {
                     Log.d(TAG, "[SignUpActivity] - onFocusChange() : signup_adress_edittext")
                 }
 

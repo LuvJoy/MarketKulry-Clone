@@ -10,13 +10,9 @@
     <!-- Action Bar -->
     <include layout="@layout/actionbar_inner_page_top" />
 
-    <Linear
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -441,15 +437,15 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
-                    android:id="@+id/signup_adress_edittext"
+                <TextView
+                    android:id="@+id/signup_adress_textview"
                     style="@style/kurly_edittext_style"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/selector_edittext"
-                    android:drawableRight="@drawable/ic_search"
-                    android:hint="도로명, 지번, 건물명 검색" />
+                    android:background="@drawable/shape_strokebox_edittext_unclicked"
+                    android:hint="도로명, 지번, 건물명 검색"
+                    app:drawableRightCompat="@drawable/ic_search" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -891,5 +887,16 @@
 
         </LinearLayout> <!-- Backround -->
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/signup_address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="#000">
+
+        <include layout="@layout/layout_signup_adress"/>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
