@@ -16,6 +16,9 @@ import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpAPI
 import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
+import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.layout_signup_adress.*
 import retrofit2.Call
@@ -48,6 +51,8 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         signup_id_check_button.setOnClickListener(this)
         signup_adress_textview.setOnClickListener(this)
         address_layout_drop_button.setOnClickListener(this)
+        address_layout_input_button.setOnClickListener(this)
+
 
         signup_id_edittext.onFocusChangeListener = this
         signup_pw_edittext.onFocusChangeListener = this
@@ -67,6 +72,13 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     fun settingsActionBar() {
         ab_inner_toolbar.title = "회원가입"
         ab_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
+
+        // 주소 팝업쪽 툴
+        include.ab_inner_toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
+        include.ab_inner_toolbar.setNavigationOnClickListener {
+            address_layout_input_detail_layout.setGone()
+            address_layout_webview.setVisible()
+        }
     }
 
     fun settingsEditTextListener() {
@@ -90,7 +102,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             val password = signup_pw_edittext.text.toString()
             mSignUpValidationManager.checkPwSame(text, password, signup_pw_check_validation_same)
         }
-
 
         signup_birth_year_edittext.addTextChangedListener {
             val text = it.toString()
@@ -187,12 +198,20 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             R.id.signup_adress_textview -> {
                 signup_address_layout.setVisible()
+                address_layout_webview.setVisible()
                 val addressLayout = AddressApiManager(address_layout_webview, this)
                 addressLayout.initWebView()
             }
 
             R.id.address_layout_drop_button -> {
                 signup_address_layout.setGone()
+            }
+
+            R.id.address_layout_input_button -> {
+                signup_address_layout.setGone()
+                val detailAddress = address_layout_details_edittext.text.toString()
+                // 1. 주소 밑에 EditText 만들기
+                // 2.
             }
 
         }
@@ -289,14 +308,12 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         })
     }
 
-    override fun onAddressSelected(addressNum: String, address: String) {
+    override fun onAddressSelected(address: String, addressNum: String) {
         address_layout_webview.setGone()
         address_layout_address_textview.text = address
         address_layout_addnumber_textview.text = addressNum
+        include.ab_inner_toolbar.title = "주소 재검색"
 
         address_layout_input_detail_layout.setVisible()
-
     }
-
-
 }

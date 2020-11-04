@@ -49,7 +49,6 @@ class AddressApiManager(private var webView: WebView,
         }
         webView.loadUrl("http://daum.marketkulry.shop/index.php")
 
-
     }
 
 

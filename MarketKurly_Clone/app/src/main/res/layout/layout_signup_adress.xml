@@ -2,170 +2,172 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/address_layout_webview_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#99000000"
+    android:paddingLeft="8dp"
+    android:paddingTop="12dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="12dp"
+    android:visibility="visible">
 
     <LinearLayout
-        android:id="@+id/address_layout_webview_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#bb000000"
-        android:visibility="visible">
+        android:background="@drawable/shape_rounded_button"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="32dp">
 
         <WebView
             android:id="@+id/address_layout_webview"
             android:layout_width="match_parent"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/shape_rounded_button"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_height="match_parent"
+            android:paddingTop="18dp"
+            android:visibility="gone" />
 
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/address_layout_input_detail_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:visibility="gone">
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/actionbar_inner_page_top"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="-16dp" />
-
-        <TextView
-            android:id="@+id/address_layout_addnumber_textview"
-            android:layout_width="84dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/shape_rounded_button_stroke_disable"
-            android:fontFamily="@font/sandol_regular"
-            android:gravity="center"
-            android:text="21675"
-            android:textColor="@color/title_gray"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
-
-        <TextView
-            android:id="@+id/address_layout_address_textview"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/address_layout_input_detail_layout"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/shape_rounded_button_stroke_disable"
-            android:fontFamily="@font/sandol_regular"
-            android:gravity="center_vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="인천광역시 XX동 XX로"
-            android:textColor="@color/title_gray"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/address_layout_addnumber_textview"
-            tools:layout_editor_absoluteX="16dp" />
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:visibility="gone">
 
-        <EditText
-            android:id="@+id/address_layout_details_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/selector_edittext"
-            android:fontFamily="@font/sandol_regular"
-            android:gravity="center_vertical"
-            android:hint="나머지 주소를 입력해 주세요."
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textColor="@color/title_gray"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/address_layout_address_textview"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <Button
-            android:id="@+id/address_layout_input_button"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/shape_rounded_button"
-            android:fontFamily="@font/sandol_regular"
-            android:letterSpacing="0.01"
-            android:text="주소입력"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/address_layout_details_edittext"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/fragment_background"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/address_layout_input_button"
-            tools:layout_editor_absoluteX="0dp">
+            <include
+                android:id="@+id/include"
+                layout="@layout/actionbar_inner_page_top"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-16dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="28dp"
-                android:drawableLeft="@drawable/ic_alert_circle"
-                android:drawablePadding="6dp"
-                android:fontFamily="@font/sandol_medium"
-                android:letterSpacing="0.015"
-                android:text="샛별배송 지역 중 배송 불가 장소 안내"
-                android:textColor="#CD251D"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/sandol_medium"
-                android:gravity="center"
-                android:letterSpacing="0.01"
-                android:text="관공서/ 학교/ 병원/ 시장/ 공단 지역/ 산간 지역/ 백화점 등"
-                android:textColor="#737373"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/address_layout_addnumber_textview"
+                android:layout_width="84dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:drawableRight="@drawable/ic_chevron_down"
-                android:drawablePadding="4dp"
-                android:fontFamily="@font/sandol_medium"
-                android:text="자세히 보기"
-                android:textColor="@color/text_whitegray_deep"
-                android:textSize="12sp" />
+                android:background="@drawable/shape_rounded_button_stroke_disable"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center"
+                android:text="21675"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include" />
+
+            <TextView
+                android:id="@+id/address_layout_address_textview"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/shape_rounded_button_stroke_disable"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="인천광역시 XX동 XX로"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/address_layout_addnumber_textview"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/address_layout_details_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/selector_edittext"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center_vertical"
+                android:hint="나머지 주소를 입력해 주세요."
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/address_layout_address_textview"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <Button
+                android:id="@+id/address_layout_input_button"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/shape_rounded_button"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="0.01"
+                android:text="주소입력"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/address_layout_details_edittext"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/fragment_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/address_layout_input_button"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="28dp"
+                    android:drawableLeft="@drawable/ic_alert_circle"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/sandol_medium"
+                    android:letterSpacing="0.015"
+                    android:text="샛별배송 지역 중 배송 불가 장소 안내"
+                    android:textColor="#CD251D"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/sandol_medium"
+                    android:gravity="center"
+                    android:letterSpacing="0.01"
+                    android:text="관공서/ 학교/ 병원/ 시장/ 공단 지역/ 산간 지역/ 백화점 등"
+                    android:textColor="#737373"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:drawableRight="@drawable/ic_chevron_down"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/sandol_medium"
+                    android:text="자세히 보기"
+                    android:textColor="@color/text_whitegray_deep"
+                    android:textSize="12sp" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/address_layout_drop_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="4dp"
         android:padding="12dp"
         android:src="@drawable/ic_cross"
         app:layout_constraintEnd_toEndOf="parent"
