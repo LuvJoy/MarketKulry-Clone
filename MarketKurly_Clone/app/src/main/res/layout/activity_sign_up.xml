@@ -80,7 +80,9 @@
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/selector_edittext"
-                        android:hint="예: marketkurly12" />
+                        android:hint="예: marketkurly12"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp" />
 
                     <Button
                         android:id="@+id/signup_id_check_button"
@@ -164,7 +166,9 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="비밀번호를 입력해주세요" />  <!-- 비밀번호 파트 -->
+                    android:hint="비밀번호를 입력해주세요"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" />  <!-- 비밀번호 파트 -->
 
                 <LinearLayout
                     android:id="@+id/signup_pw_validation_layout"
@@ -246,7 +250,9 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="비밀번호를 입력해주세요" />
+                    android:hint="비밀번호를 입력해주세요"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" />
 
                 <LinearLayout
                     android:id="@+id/signup_pw_check_validation_layout"
@@ -305,7 +311,9 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="이름을 입력해주세요" /> <!-- 이름 파트 -->
+                    android:hint="이름을 입력해주세요"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" /> <!-- 이름 파트 -->
 
                 <!-- 이메일 파트 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -343,7 +351,9 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
-                    android:hint="예: marketkurly@kurly.com" /> <!-- 이메일 파트 -->
+                    android:hint="예: marketkurly@kurly.com"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" /> <!-- 이메일 파트 -->
 
                 <!-- 휴대폰 파트 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -437,14 +447,32 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/signup_adress_textview"
+                    android:id="@+id/signup_address_textview"
                     style="@style/kurly_edittext_style"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/shape_strokebox_edittext_unclicked"
+                    android:drawablePadding="24dp"
                     android:hint="도로명, 지번, 건물명 검색"
+                    android:lineSpacingExtra="8sp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
                     app:drawableRightCompat="@drawable/ic_search" />
+
+                <EditText
+                    android:id="@+id/signup_address_detail_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:paddingLeft="16dp"
+                    android:visibility="gone"
+                    style="@style/kurly_edittext_style"
+                    android:layout_marginTop="12dp"
+                    android:hint="나머지 주소를 입력해주세요"
+                    android:paddingRight="16dp"
+                    android:background="@drawable/selector_edittext"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -919,7 +947,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/signup_morning_shipping_layout"
+        android:id="@+id/signup_shipping_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#99000000"
@@ -929,7 +957,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="520dp"
+            android:layout_height="480dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/shape_dialog"
@@ -938,23 +966,25 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/signup_shipping_type_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:fontFamily="@font/sandol_regular"
                 android:letterSpacing="0.02"
                 android:text="샛별배송 지역입니다."
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/title_gray"
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/image_morning_shipping" />
 
             <TextView
+                android:id="@+id/signup_shipping_explain_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sandol_regular"
@@ -962,10 +992,11 @@
                 android:letterSpacing="0.01"
                 android:text="오늘 밤 11시 전까지 주문 시\n다음날 아침 7시 이전 도착합니다!"
                 android:textColor="@color/title_gray"
-                android:textSize="18sp"/>
+                android:textSize="16sp" />
 
 
             <TextView
+                android:id="@+id/signup_shipping_notice_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -983,7 +1014,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:layout_gravity="end"
-                android:layout_marginTop="54dp"
+                android:layout_marginTop="32dp"
                 android:background="@color/fragment_background"
                 android:paddingLeft="16dp"
                 android:paddingTop="12dp"
@@ -991,10 +1022,14 @@
                 android:paddingBottom="12dp">
 
                 <Button
+                    android:id="@+id/signup_shipping_check_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_rounded_button"
-                    android:backgroundTint="@color/kurly_purple" />
+                    android:backgroundTint="@color/kurly_purple"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="확인"
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </LinearLayout>

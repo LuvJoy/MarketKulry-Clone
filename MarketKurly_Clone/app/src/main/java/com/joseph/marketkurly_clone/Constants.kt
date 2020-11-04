@@ -26,3 +26,7 @@ object NetworkConstants {
     val KURLY_URL = "https://marketKulry.shop/"
 }
 
+object KurlyConstants {
+    val STAR_SHIPPING = "샛별배송"
+    val POST_SHIPPING = "택배배송"
+}

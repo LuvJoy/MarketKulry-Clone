@@ -34,31 +34,60 @@
             android:background="#fff"
             android:visibility="gone">
 
-            <include
-                android:id="@+id/include"
-                layout="@layout/actionbar_inner_page_top"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="-16dp" />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/address_layout_back_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_chevron_left"
+                    app:tint="@color/title_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/sandol_regular"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="주소 재검색"
+                    android:textColor="@color/title_gray"
+                    android:textSize="17sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/text_whitegray"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                tools:layout_editor_absoluteX="0dp" />
 
             <TextView
                 android:id="@+id/address_layout_addnumber_textview"
                 android:layout_width="84dp"
-                android:layout_height="52dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/shape_rounded_button_stroke_disable"
                 android:fontFamily="@font/sandol_regular"
                 android:gravity="center"
                 android:text="21675"
                 android:textColor="@color/title_gray"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <TextView
                 android:id="@+id/address_layout_address_textview"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="48dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="16dp"
@@ -69,14 +98,14 @@
                 android:paddingRight="16dp"
                 android:text="인천광역시 XX동 XX로"
                 android:textColor="@color/title_gray"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 app:layout_constraintTop_toBottomOf="@+id/address_layout_addnumber_textview"
                 tools:layout_editor_absoluteX="16dp" />
 
             <EditText
                 android:id="@+id/address_layout_details_edittext"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="48dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="16dp"
@@ -87,14 +116,14 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textColor="@color/title_gray"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 app:layout_constraintTop_toBottomOf="@+id/address_layout_address_textview"
                 tools:layout_editor_absoluteX="0dp" />
 
             <Button
                 android:id="@+id/address_layout_input_button"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="48dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="16dp"
@@ -166,7 +195,7 @@
         android:id="@+id/address_layout_drop_button"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="2dp"
         android:layout_marginRight="4dp"
         android:padding="12dp"
         android:src="@drawable/ic_cross"

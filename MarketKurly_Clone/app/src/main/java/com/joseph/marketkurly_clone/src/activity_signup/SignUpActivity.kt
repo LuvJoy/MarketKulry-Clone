@@ -1,11 +1,18 @@
 package com.joseph.marketkurly_clone.src.activity_signup
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.KurlyConstants.POST_SHIPPING
+import com.joseph.marketkurly_clone.KurlyConstants.STAR_SHIPPING
 import com.joseph.marketkurly_clone.NetworkConstants.KURLY_URL
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.RetrofitClient
@@ -13,12 +20,10 @@ import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddressApiEve
 import com.joseph.marketkurly_clone.src.activity_signup.manager.AddressApiManager
 import com.joseph.marketkurly_clone.src.activity_signup.manager.SignUpValidationManager
 import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpAPI
+import com.joseph.marketkurly_clone.src.util.getShippingType
 import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
-import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.layout_signup_adress.*
 import retrofit2.Call
@@ -30,7 +35,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     val TAG = "[ 로그 ]"
     private lateinit var mSignUpValidationManager: SignUpValidationManager
     private var mRetrofitClient = RetrofitClient.getClient(KURLY_URL).create(SignUpAPI::class.java)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +53,11 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     fun initAcitivty() {
         signup_play_signup_button.setOnClickListener(this)
         signup_id_check_button.setOnClickListener(this)
-        signup_adress_textview.setOnClickListener(this)
+        signup_address_textview.setOnClickListener(this)
         address_layout_drop_button.setOnClickListener(this)
         address_layout_input_button.setOnClickListener(this)
-
+        address_layout_back_button.setOnClickListener(this)
+        signup_shipping_check_button.setOnClickListener(this)
 
         signup_id_edittext.onFocusChangeListener = this
         signup_pw_edittext.onFocusChangeListener = this
@@ -73,12 +78,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         ab_inner_toolbar.title = "회원가입"
         ab_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        // 주소 팝업쪽 툴
-        include.ab_inner_toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
-        include.ab_inner_toolbar.setNavigationOnClickListener {
-            address_layout_input_detail_layout.setGone()
-            address_layout_webview.setVisible()
-        }
     }
 
     fun settingsEditTextListener() {
@@ -145,6 +144,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             }
         }
 
+
     }
 
     fun settingsRadioButtonListener() {
@@ -196,7 +196,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                 checkDuplicateID()
             }
 
-            R.id.signup_adress_textview -> {
+            R.id.signup_address_textview -> {
                 signup_address_layout.setVisible()
                 address_layout_webview.setVisible()
                 val addressLayout = AddressApiManager(address_layout_webview, this)
@@ -209,9 +209,31 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             R.id.address_layout_input_button -> {
                 signup_address_layout.setGone()
-                val detailAddress = address_layout_details_edittext.text.toString()
-                // 1. 주소 밑에 EditText 만들기
-                // 2.
+                val addressNum = address_layout_addnumber_textview.text.toString()
+                var address = address_layout_address_textview.text.toString()
+                var detailAddress = address_layout_details_edittext.text.toString()
+
+                // 샛별배송인지 택배배송인지 정한다.
+                val shippingType = address.getShippingType()!!
+                address += "\n$shippingType"
+                signup_address_textview.text = address
+                setAddressTextView(signup_address_textview)
+
+                signup_address_detail_edittext.setText(detailAddress)
+                signup_address_detail_edittext.setVisible()
+
+                // 샛별배송인지 택배배송인지 구분한다.
+                setShippingLayout(shippingType)
+                signup_shipping_layout.setVisible()
+            }
+
+            R.id.address_layout_back_button -> {
+                address_layout_input_detail_layout.setGone()
+                address_layout_webview.setVisible()
+            }
+
+            R.id.signup_shipping_check_button -> {
+                signup_shipping_layout.setGone()
             }
 
         }
@@ -263,7 +285,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             }
         }
 
-        if (hasFocus == false) {
+        if (!hasFocus) {
             when (v?.id) {
                 R.id.signup_pw_edittext -> {
                     if ((mSignUpValidationManager.mValidationHash["PW_LENGTH"] == false)
@@ -273,7 +295,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                 }
 
                 R.id.signup_pw_check_edittext -> {
-                    if(mSignUpValidationManager.mValidationHash["PW_CHECK"] == false) {
+                    if (mSignUpValidationManager.mValidationHash["PW_CHECK"] == false) {
                         signup_pw_check_edittext.background.setTint(mSignUpValidationManager.COLOR_NOT_SUCCESS_RED)
                     }
                 }
@@ -308,11 +330,49 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         })
     }
 
+    fun setAddressTextView(view: TextView) {
+
+        var addressText = view.text
+        Log.d(TAG, "[SignUpActivity] - editAddressTextView() : start: $addressText")
+        val spanString = SpannableString(addressText)
+
+        if (addressText.contains(STAR_SHIPPING)) {
+            val startPoint = addressText.indexOf(STAR_SHIPPING)
+            val endPoint = startPoint + STAR_SHIPPING.length
+
+            Log.d(TAG, "[SignUpActivity] - editAddressTextView() : start: $startPoint, end: $endPoint")
+            spanString.apply {
+                setSpan(ForegroundColorSpan(resources.getColor(R.color.kurly_purple)), startPoint, endPoint, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(RelativeSizeSpan(0.7f), startPoint, endPoint, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+        } else {
+            val startPoint = addressText.indexOf(POST_SHIPPING)
+            val endPoint = startPoint + POST_SHIPPING.length
+            spanString.apply {
+                setSpan(ForegroundColorSpan(resources.getColor(R.color.default_gray)), startPoint, endPoint, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(RelativeSizeSpan(0.7f), startPoint, endPoint, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+        }
+
+        view.text = spanString
+    }
+
+    fun setShippingLayout(type: String) {
+        if (type == STAR_SHIPPING) {
+            signup_shipping_type_textview.text = "샛별배송 지역입니다."
+            signup_shipping_explain_textview.text = "오늘 밤 11시 전까지 주문 시\n다음날 아침 7시 이전 도착합니다!"
+            signup_shipping_notice_textview.text = "샛별배송은 휴무 없이 매일 배송합니다"
+        } else {
+            signup_shipping_type_textview.text = "택배배송 지역입니다."
+            signup_shipping_explain_textview.text = "밤 8시 전까지 주문 시\n다음날 도착합니다!"
+            signup_shipping_notice_textview.text = "일요일은 배송  휴무로 토요일에는 주문 불가"
+        }
+    }
+
     override fun onAddressSelected(address: String, addressNum: String) {
         address_layout_webview.setGone()
         address_layout_address_textview.text = address
         address_layout_addnumber_textview.text = addressNum
-        include.ab_inner_toolbar.title = "주소 재검색"
 
         address_layout_input_detail_layout.setVisible()
     }
