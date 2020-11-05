@@ -1,7 +1,9 @@
 package com.joseph.marketkurly_clone
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -40,9 +42,11 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun hiddenKeyboard() {
-        val mInputManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        mInputManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    fun showAlertDialog(text: String) {
+        AlertDialog.Builder(this)
+                .setTitle(text)
+                .setPositiveButton("확인") { dialog, which -> dialog?.cancel() }.create()
+                .show()
     }
 
     override fun onClick(v: View?) {}

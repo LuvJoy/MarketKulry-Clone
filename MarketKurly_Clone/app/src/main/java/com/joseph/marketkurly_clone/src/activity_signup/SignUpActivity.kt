@@ -1,54 +1,54 @@
 package com.joseph.marketkurly_clone.src.activity_signup
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.KurlyConstants.POST_SHIPPING
 import com.joseph.marketkurly_clone.KurlyConstants.STAR_SHIPPING
-import com.joseph.marketkurly_clone.NetworkConstants.KURLY_URL
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.RetrofitClient
 import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddressApiEvent
+import com.joseph.marketkurly_clone.src.activity_signup.interfaces.SignUpValidationEvent
 import com.joseph.marketkurly_clone.src.activity_signup.manager.AddressApiManager
 import com.joseph.marketkurly_clone.src.activity_signup.manager.SignUpValidationManager
-import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpAPI
+import com.joseph.marketkurly_clone.src.activity_signup.models.UserInfo
 import com.joseph.marketkurly_clone.src.util.getShippingType
+import com.joseph.marketkurly_clone.src.util.isAgree
 import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.layout_signup_adress.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEvent {
+class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEvent, SignUpValidationEvent {
 
     val TAG = "[ 로그 ]"
     private lateinit var mSignUpValidationManager: SignUpValidationManager
-    private var mRetrofitClient = RetrofitClient.getClient(KURLY_URL).create(SignUpAPI::class.java)
+    private lateinit var mSignUpService: SignUpService
+
+    private lateinit var user: UserInfo
+    private lateinit var postCode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
         initAcitivty()
-        initManager()
-        settingsActionBar()
+        initObject()
+        initActionBar()
+
         settingsEditTextListener()
-        settingsRadioButtonListener()
-        settingsCheckBox()
+        settingsCheckBoxes()
 
     }
 
@@ -73,11 +73,12 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         signup_birth_day_edittext.onFocusChangeListener = this
     }
 
-    fun initManager() {
+    fun initObject() {
         mSignUpValidationManager = SignUpValidationManager(this)
+        mSignUpService = SignUpService(this)
     }
 
-    fun settingsActionBar() {
+    fun initActionBar() {
         ab_inner_toolbar.title = "회원가입"
         ab_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
 
@@ -94,6 +95,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         signup_pw_edittext.addTextChangedListener {
             val text = it.toString()
 
+            mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
             mSignUpValidationManager.checkPwLength(text, signup_pw_validation_length)
             mSignUpValidationManager.checkPwCombination(text, signup_pw_validation_combination)
             mSignUpValidationManager.checkPwSameNumber(text, signup_pw_validation_same_number)
@@ -111,12 +113,12 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = false
             val isValidaton = mSignUpValidationManager.mValidationHash["PHONE_NUMBER"]
-            if(isValidaton!!) {
-                signup_phone_auth_button.background.setTint(ContextCompat.getColor(this,R.color.kurly_purple))
-                signup_phone_auth_button.setTextColor(ContextCompat.getColor(this,R.color.kurly_purple))
+            if (isValidaton!!) {
+                signup_phone_auth_button.background.setColorFilter(ContextCompat.getColor(this, R.color.kurly_purple), PorterDuff.Mode.SRC_ATOP)
+                signup_phone_auth_button.setTextColor(ContextCompat.getColor(this, R.color.kurly_purple))
             } else {
-                signup_phone_auth_button.background.setTint(ContextCompat.getColor(this,R.color.text_whitegray))
-                signup_phone_auth_button.setTextColor(ContextCompat.getColor(this,R.color.text_whitegray))
+                signup_phone_auth_button.background.setColorFilter(ContextCompat.getColor(this, R.color.text_whitegray), PorterDuff.Mode.SRC_ATOP)
+                signup_phone_auth_button.setTextColor(ContextCompat.getColor(this, R.color.text_whitegray))
             }
         }
 
@@ -126,8 +128,10 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             if (text != "") {
                 val isValidation = mSignUpValidationManager.checkYearValidation(text)
                 if (isValidation) {
+                    mSignUpValidationManager.mValidationHash["BIRTH_YEAR"] = true
                     signup_birth_validation_layout.setGone()
                 } else {
+                    mSignUpValidationManager.mValidationHash["BIRTH_YEAR"] = false
                     signup_birth_validation_layout.setVisible()
                     mSignUpValidationManager.setTextViewNotSuccess(signup_birth_validation, "생년월일을 다시 확인해 주세요")
                 }
@@ -140,8 +144,10 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             if (text != "") {
                 val isValidation = mSignUpValidationManager.checkMonthValidation(text)
                 if (isValidation) {
+                    mSignUpValidationManager.mValidationHash["BIRTH_MONTH"] = true
                     signup_birth_validation_layout.setGone()
                 } else {
+                    mSignUpValidationManager.mValidationHash["BIRTH_MONTH"] = false
                     signup_birth_validation_layout.setVisible()
                     mSignUpValidationManager.setTextViewNotSuccess(signup_birth_validation, "태어난 월을 정확하게 입력해주세요")
                 }
@@ -154,8 +160,10 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             if (text != "") {
                 val isValidation = mSignUpValidationManager.checkDayValidation(text)
                 if (isValidation) {
+                    mSignUpValidationManager.mValidationHash["BIRTH_DAY"] = true
                     signup_birth_validation_layout.setGone()
                 } else {
+                    mSignUpValidationManager.mValidationHash["BIRTH_DAY"] = false
                     signup_birth_validation_layout.setVisible()
                     mSignUpValidationManager.setTextViewNotSuccess(signup_birth_validation, "태어난 일을 정확하게 입력해주세요")
                 }
@@ -171,7 +179,8 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
     }
 
-    fun settingsRadioButtonListener() {
+    fun settingsCheckBoxes() {
+
         signup_additional_id_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 signup_additional_id_edittext.setVisible()
@@ -187,23 +196,42 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                 signup_additional_event_edittext.setGone()
             }
         }
-    }
 
-    fun settingsCheckBox() {
         // 전체동의 체크박스
         signup_consent_all_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                signup_consent_al1_radiobutton.isChecked = true
-                signup_consent_al2_radiobutton.isChecked = true
-                signup_consent_al3_radiobutton.isChecked = true
-                signup_consent_al4_radiobutton.isChecked = true
+                mSignUpValidationManager.mValidationHash["TERM_OF_USE"] = true
+                signup_consent_use_radiobutton.isChecked = true
+                signup_consent_info_radiobutton.isChecked = true
+                signup_consent_info_s_radiobutton.isChecked = true
+                signup_consent_sms_radiobutton.isChecked = true
+                signup_consent_age_radiobutton.isChecked = true
             } else {
-                signup_consent_al1_radiobutton.isChecked = false
-                signup_consent_al2_radiobutton.isChecked = false
-                signup_consent_al3_radiobutton.isChecked = false
-                signup_consent_al4_radiobutton.isChecked = false
+                mSignUpValidationManager.mValidationHash["TERM_OF_USE"] = false
+                signup_consent_use_radiobutton.isChecked = false
+                signup_consent_info_radiobutton.isChecked = false
+                signup_consent_info_s_radiobutton.isChecked = false
+                signup_consent_sms_radiobutton.isChecked = false
+                signup_consent_age_radiobutton.isChecked = false
+            }
+
+        }
+        signup_consent_sms_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(!isChecked) {
+                if (signup_consent_all_radiobutton.isChecked) {
+                    signup_consent_all_radiobutton.isChecked = false
+                }
             }
         }
+
+       signup_consent_info_s_radiobutton.setOnCheckedChangeListener { buttonView, isChecked ->
+
+           if(!isChecked) {
+               if (signup_consent_all_radiobutton.isChecked) {
+                   signup_consent_all_radiobutton.isChecked = false
+               }
+           }
+       }
 
     }
 
@@ -213,13 +241,66 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             // 회원가입하는 버튼
             R.id.signup_play_signup_button -> {
-                Log.d(TAG, "[SignUpActivity] - onClick() : ${mSignUpValidationManager.mValidationHash.toString()}")
+                Log.d(TAG, "[SignUpActivity] - onClick() : ${mSignUpValidationManager.mValidationHash}")
 
+                // 주소가 비어있는지를 확인
+                mSignUpValidationManager.mValidationHash["ADDRESS"] = !(signup_address_textview.text.isEmpty() || signup_address_detail_edittext.text.isEmpty())
+                mSignUpValidationManager.mValidationHash["NAME"] = !(signup_name_edittext.text.isEmpty())
+
+                // 필수 이용약관이 잘 체크 되었는지 확인
+                val consentUserInfo = signup_consent_info_radiobutton.isChecked
+                val consentUseAgree = signup_consent_use_radiobutton.isChecked
+
+                mSignUpValidationManager.mValidationHash["TERM_OF_USE"] = consentUseAgree && consentUserInfo
+
+                val resultValidation = mSignUpValidationManager.checkAllPropertyValidate()
+
+                if (resultValidation == null) {
+                    user = UserInfo(
+                            address = address_layout_address_textview.text.toString(),
+                            addressDetail = signup_address_detail_edittext.text.toString(),
+                            birth = signup_birth_year_edittext.text.toString() + "-" +
+                                    signup_birth_month_edittext.text.toString() + "-" +
+                                    signup_birth_day_edittext.text.toString(),
+                            email = signup_email_edittext.text.toString(),
+                            emailAgree = signup_consent_sms_radiobutton.isChecked.isAgree(),
+                            event = signup_additional_event_edittext.text.toString() ?: null,
+                            gender = when(signup_sex_radiogroup.checkedRadioButtonId){
+                                R.id.signup_sex_none_radiobutton -> "N"
+                                    R.id.signup_sex_female_radiobutton -> "F"
+                                    R.id.signup_sex_male_radiobutton -> "M"
+                                else -> null
+                            },
+                            id = signup_id_edittext.text.toString(),
+                            name = signup_name_edittext.text.toString(),
+                            password = signup_pw_edittext.text.toString(),
+                            passwordCheck = signup_pw_check_edittext.text.toString(),
+                            personalAgree = signup_consent_info_s_radiobutton.isChecked.isAgree(),
+                            phoneNumber = signup_phone_num_edittext.text.toString(),
+                            postCode = address_layout_addnumber_textview.text.toString(),
+                            recommendUserId = signup_additional_id_edittext.text.toString(),
+                            smsAgree = signup_consent_sms_radiobutton.isChecked.isAgree(),
+                    )
+
+                    Log.d(TAG, "[SignUpActivity] - User : ${user.toString()}")
+
+                    mSignUpService.signUp(user)
+
+                } else {
+                    showAlertDialog(resultValidation)
+                    Log.d(TAG, "[SignUpActivity] - onClick() :  ${mSignUpValidationManager.mValidationHash.toString()}")
+                }
             }
 
             // ID 중복체크 버튼
             R.id.signup_id_check_button -> {
-                checkDuplicateID()
+                if (mSignUpValidationManager.mValidationHash["ID_COMBINATION"]!!) {
+                    val id = signup_id_edittext.text.toString()
+                    mSignUpService.checkDuplicateID(id)
+                } else {
+                    showAlertDialog("6자 이상의 영문 혹은 영문과 숫자를 조합으로 입력해주세요")
+                }
+
             }
 
             R.id.signup_address_textview -> {
@@ -235,7 +316,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             R.id.address_layout_input_button -> {
                 signup_address_layout.setGone()
-                val addressNum = address_layout_addnumber_textview.text.toString()
+                var postCode = address_layout_addnumber_textview.text.toString()
                 var address = address_layout_address_textview.text.toString()
                 var detailAddress = address_layout_details_edittext.text.toString()
 
@@ -264,15 +345,19 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             }
 
             R.id.signup_phone_auth_button -> {
-                if(mSignUpValidationManager.mValidationHash["PHONE_NUMBER"]!!) {
-                    checkPhoneNumber()
+
+                if (mSignUpValidationManager.mValidationHash["PHONE_NUMBER"]!!) {
+                    val phoneNum = signup_phone_num_edittext.text.toString()
+                    mSignUpService.checkPhoneNumber(phoneNum)
+                } else {
+                    showAlertDialog("잘못된 휴대폰 번호입니다. 확인 후 다시 시도 해 주세요")
                 }
             }
 
         }
     }
 
-    // EditText가 클릭됐는지 안됐는지를 감지한다.
+    // [EditText가 클릭됐는지 안됐는지를 감지한다.]
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
         if (hasFocus) {
             when (v?.id) {
@@ -324,12 +409,16 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                     if ((mSignUpValidationManager.mValidationHash["PW_LENGTH"] == false)
                             && (mSignUpValidationManager.mValidationHash["PW_COMBINATION"] == false)) {
                         signup_pw_edittext.background.setTint(mSignUpValidationManager.COLOR_NOT_SUCCESS_RED)
+                    } else {
+                        signup_pw_edittext.background.setTint(ContextCompat.getColor(this, R.color.text_whitegray))
                     }
                 }
 
                 R.id.signup_pw_check_edittext -> {
                     if (mSignUpValidationManager.mValidationHash["PW_CHECK"] == false) {
                         signup_pw_check_edittext.background.setTint(mSignUpValidationManager.COLOR_NOT_SUCCESS_RED)
+                    } else {
+                        signup_pw_check_edittext.background.setTint(ContextCompat.getColor(this, R.color.text_whitegray))
                     }
                 }
 
@@ -337,53 +426,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         }
     }
 
-    // 아이디 중복체크
-    fun checkDuplicateID() {
-        val id = signup_id_edittext.text.toString()
-        mRetrofitClient.checkDuplicateID(id).enqueue(object : Callback<JsonObject> {
-            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                val isExist = response.body()?.get("is_exist")?.asString!!
-                if (isExist == "Y") {
-                    showCustomToast("아이디가 이미 존재합니다.")
-                    mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
-                    mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
-                } else {
-                    showCustomToast("사용가능한 아이디입니다.")
-                    mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = true
-                    mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
-                }
-            }
-
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
-
-    fun checkPhoneNumber() {
-        val phoneNumber = signup_phone_num_edittext.text.toString()
-        mRetrofitClient.checkPhoneNumber(phoneNumber).enqueue(object : Callback<JsonObject>{
-            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                val isExist = response.body()?.get("is_exist")?.asString!!
-                if (isExist == "Y") {
-                    showCustomToast("휴대폰 번호 이미 존재합니다.")
-                    mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = false
-                    mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
-                } else {
-                    showCustomToast("사용가능한 휴대폰 번호입니다.")
-                    mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = true
-                    mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
-                }
-            }
-
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
-
+    // [AddressTextView에 배송종류를 처리해준다.]
     fun setAddressTextView(view: TextView) {
 
         var addressText = view.text
@@ -411,6 +454,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         view.text = spanString
     }
 
+    // [배송종류를 나타내는 레이아웃을 배송 종류에 따라 설정해준다.]
     fun setShippingLayout(type: String) {
         if (type == STAR_SHIPPING) {
             signup_shipping_type_textview.text = "샛별배송 지역입니다."
@@ -423,11 +467,49 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         }
     }
 
+
+    // [주소검색 API에서 주소를 선택 완료했을때]
     override fun onAddressSelected(address: String, addressNum: String) {
         address_layout_webview.setGone()
         address_layout_address_textview.text = address
         address_layout_addnumber_textview.text = addressNum
 
         address_layout_input_detail_layout.setVisible()
+    }
+
+
+    // [아이디 중복확인, 핸드폰 인증시 콜백]
+    override fun onCheckIdSuccess(result: String) {
+        if (result == "Y") {
+            showCustomToast("아이디가 이미 존재합니다.")
+            mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
+            mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
+        } else {
+            showCustomToast("사용가능한 아이디입니다.")
+            mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = true
+            mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
+        }
+    }
+
+    override fun onCheckIdFail(message: String) {
+        showAlertDialog("에러가 발생했습니다 잠시후 다시 시도해 보세요")
+        Log.d(TAG, "[SignUpActivity] - onCheckPhoneNumFail() : $message")
+    }
+
+    override fun onCheckPhoneNumSuccess(result: String) {
+        if (result == "Y") {
+            mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = false
+            mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
+            showAlertDialog("이미 회원가입된 번호입니다. 입력한 번호를 확인해 주세요.\n회원가입을 하신 적이 없다면 고객센터로 문의 해 주세요")
+        } else {
+            showCustomToast("휴대폰 인증이 완료되었습니다.")
+            mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = true
+            mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
+        }
+    }
+
+    override fun onCheckPhoneNumFail(message: String) {
+        showAlertDialog("에러가 발생했습니다 잠시후 다시 시도해 보세요")
+        Log.d(TAG, "[SignUpActivity] - onCheckPhoneNumFail() : $message")
     }
 }

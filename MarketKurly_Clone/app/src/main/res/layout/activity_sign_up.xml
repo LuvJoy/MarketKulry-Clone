@@ -167,6 +167,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
                     android:hint="비밀번호를 입력해주세요"
+                    android:inputType="textPassword"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp" />  <!-- 비밀번호 파트 -->
 
@@ -251,6 +252,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/selector_edittext"
                     android:hint="비밀번호를 입력해주세요"
+                    android:inputType="textPassword"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp" />
 
@@ -789,7 +791,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/signup_consent_al1_radiobutton"
+                        android:id="@+id/signup_consent_use_radiobutton"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_weight="1"
@@ -823,7 +825,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/signup_consent_al2_radiobutton"
+                        android:id="@+id/signup_consent_info_radiobutton"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_weight="1"
@@ -857,7 +859,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/signup_consent_al3_radiobutton"
+                        android:id="@+id/signup_consent_info_s_radiobutton"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_weight="1"
@@ -882,7 +884,7 @@
 
                 </LinearLayout> <!-- 개인정보 처리방침 동의 -->
 
-                <!-- 개인정보 처리방침 동의 -->
+                <!-- 나이가 14세 이상인지 동의 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -891,7 +893,41 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/signup_consent_al4_radiobutton"
+                        android:id="@+id/signup_consent_sms_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_consent_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="무료배송, 할인쿠폰 등 혜택/정보 수신 동의"
+                        android:textColor="@color/title_gray"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:src="@drawable/ic_rihgt_sign"
+                        app:tint="@color/text_whitegray_deep" />
+
+                </LinearLayout> <!-- 개인정보 처리-->
+
+                <!-- 나이가 14세 이상인지 동의 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/signup_consent_age_radiobutton"
                         android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_weight="1"

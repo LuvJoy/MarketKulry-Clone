@@ -1,8 +1,10 @@
 package com.joseph.marketkurly_clone.src.activity_signup.manager
 
 import android.content.Context
+import android.util.Log
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.joseph.marketkurly_clone.Constants.TAG
 import com.joseph.marketkurly_clone.R
 import java.util.*
 import kotlin.collections.ArrayList
@@ -10,8 +12,8 @@ import kotlin.collections.HashMap
 
 class SignUpValidationManager(private var context: Context) {
 
-     val COLOR_NOT_SUCCESS_RED = ContextCompat.getColor(context, R.color.not_success_red)
-     val COLOR_SUCCESS_GREEN = ContextCompat.getColor(context, R.color.success_green)
+    val COLOR_NOT_SUCCESS_RED = ContextCompat.getColor(context, R.color.not_success_red)
+    val COLOR_SUCCESS_GREEN = ContextCompat.getColor(context, R.color.success_green)
     private val ICON_SUCCESS = ContextCompat.getDrawable(context, R.drawable.ic_check)
     private val ICON_NOT_SUCCESS = ContextCompat.getDrawable(context, R.drawable.ic_cross)
 
@@ -22,12 +24,31 @@ class SignUpValidationManager(private var context: Context) {
             Pair("PW_COMBINATION", false),
             Pair("PW_SAME_NUMBER", false),
             Pair("PW_CHECK", false),
-            Pair("BIRTH_YEAR", false),
-            Pair("BIRTH_MONTH", false),
-            Pair("BIRTH_DAY", false),
+            Pair("NAME", false),
+            Pair("BIRTH_YEAR", true),
+            Pair("BIRTH_MONTH", true),
+            Pair("BIRTH_DAY", true),
             Pair("PHONE_NUMBER", false),
             Pair("PHONE_DUPLICATE", false),
-            Pair("EMAIL", false)
+            Pair("ADDRESS", false),
+            Pair("EMAIL", false),
+            Pair("TERM_OF_USE", false),
+            Pair("CONSENT",false)
+    )
+    val VALIDATION_SEQUENCE = listOf<String>("ID_COMBINATION",
+            "ID_DUPLICATE",
+            "PW_LENGTH",
+            "PW_COMBINATION",
+            "PW_SAME_NUMBER",
+            "PW_CHECK",
+            "NAME",
+            "EMAIL",
+            "PHONE_DUPLICATE",
+            "ADDRESS",
+            "BIRTH_YEAR",
+            "BIRTH_MONTH",
+            "BIRTH_DAY",
+            "TERM_OF_USE",
     )
 
     // 아이디 조합 & 길이 체크  -> [6자 이상 16자 미만의 길이로 영문과 숫자 조합]
@@ -126,25 +147,60 @@ class SignUpValidationManager(private var context: Context) {
         mValidationHash["EMAIL"] = text.matches(pattern)
     }
 
-
-
-
     // 모든 조건들이 부합하는지 체크
-    fun isAllPropertyValidate(): String {
-        val unValidationList: ArrayList<String> = arrayListOf()
-        var isValidationAll = true
+    fun checkAllPropertyValidate(): String? {
+        var unValidationProperty: String? = null
 
-        mValidationHash.keys.forEach {
+        VALIDATION_SEQUENCE.forEach {
             if (mValidationHash[it] == false) {
-                unValidationList.add(it)
-                isValidationAll = false
+                when (it) {
+                    "ID_DUPLICATE" -> {
+                        Log.d(TAG, "[SignUpValidationManager] - checkAllPropertyValidate() : df")
+                        unValidationProperty = "아이디 중복확인을 확인해 주세요"
+                    }
+                    "PW_LENGTH" -> {
+                        Log.d(TAG, "[SignUpValidationManager] - checkAllPropertyValidate() : df2")
+                        unValidationProperty = "비밀번호를 입력해 주세요"
+                    }
+                    "PW_COMBINATION" -> {
+                        unValidationProperty = "비밀번호를 입력해 주세요"
+                    }
+                    "PW_SAME_NUMBER" -> {
+                        unValidationProperty = "비밀번호를 입력해 주세요"
+                    }
+                    "PW_CHECK" -> {
+                        unValidationProperty = "비밀번호를 입력해 주세요"
+                    }
+                    "NAME" -> {
+                        unValidationProperty = "이름을 입력해주세요"
+                    }
+                    "EMAIL" -> {
+                        unValidationProperty = "이메일 형식을 확인해 주세요"
+                    }
+                    "PHONE_DUPLICATE" -> {
+                        unValidationProperty = "휴대폰 인증을 완료해 주세요"
+                    }
+                    "ADDRESS" -> {
+                        unValidationProperty = "주소를 입력해 주세요"
+                    }
+                    "BIRTH_YEAR" -> {
+                        unValidationProperty = "생년월일을 입력해 주세요"
+                    }
+                    "BIRTH_MONTH" -> {
+                        unValidationProperty = "생년월일을 입력해 주세요"
+                    }
+                    "BIRTH_DAY" -> {
+                        unValidationProperty = "생년월일을 입력해 주세요"
+                    }
+                    "TERM_OF_USE" -> {
+                        unValidationProperty = "이용약관에 동의해 주세요"
+                    }
+                }
+                if(unValidationProperty != null) return unValidationProperty
             }
         }
-        if (!isValidationAll) {
-            return unValidationList.first()
-        }
 
-        return "Validation Success"
+        return unValidationProperty
     }
 
     fun setTextViewSuccess(view: TextView, text: String = "") {

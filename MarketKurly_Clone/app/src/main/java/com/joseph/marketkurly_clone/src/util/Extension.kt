@@ -63,3 +63,8 @@ fun String.getShippingType(): String? {
 
     return if (isStarShipping) KurlyConstants.STAR_SHIPPING else KurlyConstants.POST_SHIPPING
 }
+
+// 문자열이 동의인지 아닌지로 변환해준다.
+fun Boolean.isAgree(): String {
+    return if (this) "Y" else "N"
+}
