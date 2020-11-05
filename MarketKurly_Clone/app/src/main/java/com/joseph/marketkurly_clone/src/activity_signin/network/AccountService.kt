@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.src.activity_login.network
+package com.joseph.marketkurly_clone.src.activity_signin.network
 
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -11,11 +11,6 @@ interface AccountService {
     fun signIn(
             @Body user: JsonObject,
             @Header("Content-Type") Content_Type: String = "application/json"
-    ): Call<JsonObject>
-
-    @GET("products/{productId}/description")
-    fun getProduct(
-            @Path("productId") productID: Int
     ): Call<JsonObject>
 
 }

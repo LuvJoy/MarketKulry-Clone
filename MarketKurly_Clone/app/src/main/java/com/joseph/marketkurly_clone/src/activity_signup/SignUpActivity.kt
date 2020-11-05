@@ -512,4 +512,18 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         showAlertDialog("에러가 발생했습니다 잠시후 다시 시도해 보세요")
         Log.d(TAG, "[SignUpActivity] - onCheckPhoneNumFail() : $message")
     }
+
+    override fun onSignUpSuccess() {
+        super.onSignUpSuccess()
+        Log.d(TAG, "[SignUpActivity] - onSignUpSuccess() : 성공")
+        showCustomToast("회원가입에 성공했습니다!")
+        onBackPressed()
+    }
+
+    override fun onSignUpFail() {
+        super.onSignUpFail()
+        Log.d(TAG, "[SignUpActivity] - onSignUpFail() : 실패")
+
+        showAlertDialog("통신에 실패했습니다 다시 시도해 주세요")
+    }
 }

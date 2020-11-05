@@ -23,7 +23,7 @@
 
         </activity>
         <activity
-            android:name=".src.activity_login.LoginActivity"
+            android:name=".src.activity_signin.SignInActivity"
             android:theme="@style/InnerActivityTheme">
 
         </activity>

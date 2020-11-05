@@ -51,7 +51,6 @@ class SignUpService(private var validationListener: SignUpValidationEvent) {
     }
 
     fun signUp(user: UserInfo) {
-
         val jsonObject = JsonObject()
 
         jsonObject.apply {
@@ -73,16 +72,16 @@ class SignUpService(private var validationListener: SignUpValidationEvent) {
             addProperty("sms_agree", user.smsAgree)
         }
 
-
         mRetrofitClient.signUp(jsonObject).enqueue(object: Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 Log.d(TAG, "[SignUpService] - onResponse() : 성공")
+                validationListener.onSignUpSuccess()
 
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Log.d(TAG, "[SignUpService] - onFailure() : 실패")
-
+                validationListener.onSignUpFail()
             }
 
         })

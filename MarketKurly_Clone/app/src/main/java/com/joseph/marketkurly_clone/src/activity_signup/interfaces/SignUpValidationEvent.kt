@@ -2,19 +2,16 @@ package com.joseph.marketkurly_clone.src.activity_signup.interfaces
 
 interface SignUpValidationEvent {
 
-    fun onCheckIdSuccess(result: String) {
+    fun onCheckIdSuccess(result: String) {}
 
-    }
-    fun onCheckIdFail(message: String) {
+    fun onCheckIdFail(message: String) {}
 
-    }
+    fun onCheckPhoneNumSuccess(result: String) {}
 
-    fun onCheckPhoneNumSuccess(result: String) {
+    fun onCheckPhoneNumFail(message: String) {}
 
-    }
+    fun onSignUpSuccess() {}
 
-    fun onCheckPhoneNumFail(message: String) {
-
-    }
+    fun onSignUpFail() {}
 
 }
