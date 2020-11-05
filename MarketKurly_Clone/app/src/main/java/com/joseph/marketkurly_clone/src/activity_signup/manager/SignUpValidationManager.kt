@@ -25,6 +25,9 @@ class SignUpValidationManager(private var context: Context) {
             Pair("BIRTH_YEAR", false),
             Pair("BIRTH_MONTH", false),
             Pair("BIRTH_DAY", false),
+            Pair("PHONE_NUMBER", false),
+            Pair("PHONE_DUPLICATE", false),
+            Pair("EMAIL", false)
     )
 
     // 아이디 조합 & 길이 체크  -> [6자 이상 16자 미만의 길이로 영문과 숫자 조합]
@@ -73,7 +76,12 @@ class SignUpValidationManager(private var context: Context) {
 
     // 비밀번호 확인
     fun checkPwSame(text: String, password: String, view: TextView) {
-        mValidationHash["PW_CHECK"] = password == text
+        if (password == "") {
+            mValidationHash["PW_CHECK"] = false
+        } else {
+            mValidationHash["PW_CHECK"] = password == text
+        }
+
         if (mValidationHash["PW_CHECK"]!!) {
             setTextViewSuccess(view)
         } else {
@@ -83,10 +91,11 @@ class SignUpValidationManager(private var context: Context) {
 
     // 생년월일 년도가 올바른지
     fun checkYearValidation(text: String): Boolean {
+        val AGE_LIMIT = 14
         val year = text.toInt()
         val currentYear: Int = Calendar.getInstance().get(Calendar.YEAR)
 
-        mValidationHash["BIRTH_YEAR"] = (year >= 1900) && (year <= currentYear)
+        mValidationHash["BIRTH_YEAR"] = (year >= 1920) && (year <= currentYear - AGE_LIMIT)
 
         return mValidationHash["BIRTH_YEAR"]!!
     }
@@ -106,6 +115,19 @@ class SignUpValidationManager(private var context: Context) {
 
         return mValidationHash["BIRTH_DAY"]!!
     }
+
+    fun checkPhoneNumber(text: String) {
+        val pattern = Regex("^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})\$")
+        mValidationHash["PHONE_NUMBER"] = text.matches(pattern)
+    }
+
+    fun checkEmailAddress(text: String) {
+        val pattern = Regex("^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}\$")
+        mValidationHash["EMAIL"] = text.matches(pattern)
+    }
+
+
+
 
     // 모든 조건들이 부합하는지 체크
     fun isAllPropertyValidate(): String {

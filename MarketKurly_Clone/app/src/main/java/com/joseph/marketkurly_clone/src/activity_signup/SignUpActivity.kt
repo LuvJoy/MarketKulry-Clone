@@ -6,8 +6,11 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.BaseActivity
@@ -49,7 +52,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
     }
 
-
     fun initAcitivty() {
         signup_play_signup_button.setOnClickListener(this)
         signup_id_check_button.setOnClickListener(this)
@@ -58,6 +60,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
         address_layout_input_button.setOnClickListener(this)
         address_layout_back_button.setOnClickListener(this)
         signup_shipping_check_button.setOnClickListener(this)
+        signup_phone_auth_button.setOnClickListener(this)
 
         signup_id_edittext.onFocusChangeListener = this
         signup_pw_edittext.onFocusChangeListener = this
@@ -102,6 +105,21 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             mSignUpValidationManager.checkPwSame(text, password, signup_pw_check_validation_same)
         }
 
+        signup_phone_num_edittext.addTextChangedListener {
+            val text = it.toString()
+            mSignUpValidationManager.checkPhoneNumber(text)
+
+            mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = false
+            val isValidaton = mSignUpValidationManager.mValidationHash["PHONE_NUMBER"]
+            if(isValidaton!!) {
+                signup_phone_auth_button.background.setTint(ContextCompat.getColor(this,R.color.kurly_purple))
+                signup_phone_auth_button.setTextColor(ContextCompat.getColor(this,R.color.kurly_purple))
+            } else {
+                signup_phone_auth_button.background.setTint(ContextCompat.getColor(this,R.color.text_whitegray))
+                signup_phone_auth_button.setTextColor(ContextCompat.getColor(this,R.color.text_whitegray))
+            }
+        }
+
         signup_birth_year_edittext.addTextChangedListener {
             val text = it.toString()
 
@@ -144,6 +162,12 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             }
         }
 
+        signup_email_edittext.addTextChangedListener {
+            val text = it.toString()
+
+            mSignUpValidationManager.checkEmailAddress(text)
+        }
+
 
     }
 
@@ -184,10 +208,12 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     }
 
     override fun onClick(v: View?) {
+
         when (v?.id) {
 
             // 회원가입하는 버튼
             R.id.signup_play_signup_button -> {
+                Log.d(TAG, "[SignUpActivity] - onClick() : ${mSignUpValidationManager.mValidationHash.toString()}")
 
             }
 
@@ -228,12 +254,19 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             }
 
             R.id.address_layout_back_button -> {
+                address_layout_details_edittext.setText("")
                 address_layout_input_detail_layout.setGone()
                 address_layout_webview.setVisible()
             }
 
             R.id.signup_shipping_check_button -> {
                 signup_shipping_layout.setGone()
+            }
+
+            R.id.signup_phone_auth_button -> {
+                if(mSignUpValidationManager.mValidationHash["PHONE_NUMBER"]!!) {
+                    checkPhoneNumber()
+                }
             }
 
         }
@@ -307,9 +340,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     // 아이디 중복체크
     fun checkDuplicateID() {
         val id = signup_id_edittext.text.toString()
-        val json: JsonObject = JsonObject()
-        json.addProperty("id", id)
-        mRetrofitClient.checkDuplicateID(json).enqueue(object : Callback<JsonObject> {
+        mRetrofitClient.checkDuplicateID(id).enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 val isExist = response.body()?.get("is_exist")?.asString!!
                 if (isExist == "Y") {
@@ -319,6 +350,29 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                 } else {
                     showCustomToast("사용가능한 아이디입니다.")
                     mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = true
+                    mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
+                }
+            }
+
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun checkPhoneNumber() {
+        val phoneNumber = signup_phone_num_edittext.text.toString()
+        mRetrofitClient.checkPhoneNumber(phoneNumber).enqueue(object : Callback<JsonObject>{
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                val isExist = response.body()?.get("is_exist")?.asString!!
+                if (isExist == "Y") {
+                    showCustomToast("휴대폰 번호 이미 존재합니다.")
+                    mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = false
+                    mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
+                } else {
+                    showCustomToast("사용가능한 휴대폰 번호입니다.")
+                    mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = true
                     mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
                 }
             }
