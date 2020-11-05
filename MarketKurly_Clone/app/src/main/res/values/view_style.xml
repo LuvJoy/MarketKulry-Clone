@@ -15,4 +15,10 @@
         <item name="android:paddingRight">16dp</item>
     </style>
 
+    <style name="alert_dialog_custom" parent="Widget.AppCompat.ButtonBar.AlertDialog">
+
+        <item name="fontFamily">@font/sandol_regular</item>
+        <item name="android:textColor">@color/kurly_purple</item>
+    </style>
+
 </resources>

@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -81,7 +82,6 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     fun initActionBar() {
         ab_inner_toolbar.title = "회원가입"
         ab_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
-
     }
 
     fun settingsEditTextListener() {
@@ -89,13 +89,13 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
             val text = it.toString()
             Log.d(TAG, "[SignUpActivity] - TextChangedListener() : ${text}")
 
+            mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
             mSignUpValidationManager.checkIdCombination(text, signup_id_validation_combination)
         }
 
         signup_pw_edittext.addTextChangedListener {
             val text = it.toString()
 
-            mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
             mSignUpValidationManager.checkPwLength(text, signup_pw_validation_length)
             mSignUpValidationManager.checkPwCombination(text, signup_pw_validation_combination)
             mSignUpValidationManager.checkPwSameNumber(text, signup_pw_validation_same_number)
@@ -305,6 +305,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
 
             R.id.signup_address_textview -> {
                 signup_address_layout.setVisible()
+                signup_address_layout.animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
                 address_layout_webview.setVisible()
                 val addressLayout = AddressApiManager(address_layout_webview, this)
                 addressLayout.initWebView()
@@ -481,11 +482,11 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     // [아이디 중복확인, 핸드폰 인증시 콜백]
     override fun onCheckIdSuccess(result: String) {
         if (result == "Y") {
-            showCustomToast("아이디가 이미 존재합니다.")
+            showAlertDialog("동일한 아이디가 이미 등록되어 있습니다.")
             mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = false
             mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
         } else {
-            showCustomToast("사용가능한 아이디입니다.")
+            showAlertDialog("사용하실 수 있는 아이디 입니다.!")
             mSignUpValidationManager.mValidationHash["ID_DUPLICATE"] = true
             mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
         }
@@ -499,12 +500,10 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     override fun onCheckPhoneNumSuccess(result: String) {
         if (result == "Y") {
             mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = false
-            mSignUpValidationManager.setTextViewNotSuccess(signup_id_validation_duplicate)
             showAlertDialog("이미 회원가입된 번호입니다. 입력한 번호를 확인해 주세요.\n회원가입을 하신 적이 없다면 고객센터로 문의 해 주세요")
         } else {
             showCustomToast("휴대폰 인증이 완료되었습니다.")
             mSignUpValidationManager.mValidationHash["PHONE_DUPLICATE"] = true
-            mSignUpValidationManager.setTextViewSuccess(signup_id_validation_duplicate)
         }
     }
 

@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
 
-interface AccountService {
+interface SignInApi {
 
     // 로그인 체크
     @POST("signIn")

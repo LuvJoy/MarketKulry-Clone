@@ -29,7 +29,7 @@ fun TextView.setStrikeThru() {
 }
 
 // SharedPreferences 에 JWT 토큰 저장, 불러오기
-fun SharedPreferences.setToken(token: String) {
+fun SharedPreferences.setToken(token: String?) {
     this.edit().apply {
         putString("X-ACCESS-TOKEN", token)
         apply()

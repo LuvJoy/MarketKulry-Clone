@@ -57,8 +57,8 @@ class TabRecKurlyFragment : Fragment(R.layout.fragment_tab_rec_kurly) {
         mEventViewPagerAdapter = EventViewPagerAdapter(fragContext)
         mEventViewPagerAdapter.submitList(imageList)
 
-        reckurly_event_viewpager.adapter = mEventViewPagerAdapter
-        reckurly_event_viewpager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        this.reckurly_event_viewpager.adapter = mEventViewPagerAdapter
+        this.reckurly_event_viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
     }
 }

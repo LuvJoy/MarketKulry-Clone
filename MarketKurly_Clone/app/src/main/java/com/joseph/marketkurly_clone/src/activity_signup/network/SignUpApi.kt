@@ -5,7 +5,7 @@ import com.joseph.marketkurly_clone.src.activity_signup.models.UserInfo
 import retrofit2.Call
 import retrofit2.http.*
 
-interface SignUpAPI {
+interface SignUpApi {
 
     @GET("checkID?")
     fun checkDuplicateID(

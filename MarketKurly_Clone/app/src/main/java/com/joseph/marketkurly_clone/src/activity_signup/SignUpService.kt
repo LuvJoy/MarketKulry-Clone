@@ -1,25 +1,20 @@
 package com.joseph.marketkurly_clone.src.activity_signup
 
 import android.util.Log
-import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.Constants.TAG
 import com.joseph.marketkurly_clone.NetworkConstants
 import com.joseph.marketkurly_clone.RetrofitClient
 import com.joseph.marketkurly_clone.src.activity_signup.interfaces.SignUpValidationEvent
 import com.joseph.marketkurly_clone.src.activity_signup.models.UserInfo
-import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpAPI
-import com.joseph.marketkurly_clone.src.util.isJsonObject
-import kotlinx.android.synthetic.main.activity_sign_up.*
-import org.json.JSONObject
+import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SignUpService(private var validationListener: SignUpValidationEvent) {
 
-    private var mRetrofitClient = RetrofitClient.getClient(NetworkConstants.KURLY_URL).create(SignUpAPI::class.java)
+    private var mRetrofitClient = RetrofitClient.getClient(NetworkConstants.KURLY_URL).create(SignUpApi::class.java)
 
     // 아이디 중복체크
     fun checkDuplicateID(id: String) {

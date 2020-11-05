@@ -45,8 +45,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     fun showAlertDialog(text: String) {
         AlertDialog.Builder(this)
                 .setTitle(text)
-                .setPositiveButton("확인") { dialog, which -> dialog?.cancel() }.create()
-                .show()
+                .setPositiveButton("확인") { dialog, which -> dialog?.cancel() }.create().show()
     }
 
     override fun onClick(v: View?) {}

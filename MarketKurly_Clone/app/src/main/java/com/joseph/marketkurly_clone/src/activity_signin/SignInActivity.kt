@@ -8,14 +8,14 @@ import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.src.activity_signin.interfaces.SignInResponse
+import com.joseph.marketkurly_clone.src.activity_signin.interfaces.SignInApiEvent
 import com.joseph.marketkurly_clone.src.activity_signup.SignUpActivity
 import com.joseph.marketkurly_clone.src.models.Login
 import com.joseph.marketkurly_clone.src.util.setToken
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
 import kotlinx.android.synthetic.main.activity_login.*
 
-class SignInActivity : BaseActivity(), SignInResponse {
+class SignInActivity : BaseActivity(), SignInApiEvent {
 
     private lateinit var mSignInService: SignInService
 
@@ -35,7 +35,7 @@ class SignInActivity : BaseActivity(), SignInResponse {
     }
 
     fun initObject() {
-        mSignInService = SignInService()
+        mSignInService = SignInService(this)
     }
 
     fun settingsActionBar() {
@@ -63,14 +63,16 @@ class SignInActivity : BaseActivity(), SignInResponse {
         }
     }
 
-    override fun onSignInSuccess(token: String) {
+    override fun onSignInSuccess(token: String?) {
         if(token != null) {
             sSharedPreferences?.setToken(token)
             LOGIN_STATUS = Login.LOGGED
+
+            onBackPressed()
         }
     }
 
     override fun onSignInFail(message: String) {
-        showAlertDialog("로그인에 문제가 발생했습니다 다시 시도해 주세요")
+        showAlertDialog(message)
     }
 }

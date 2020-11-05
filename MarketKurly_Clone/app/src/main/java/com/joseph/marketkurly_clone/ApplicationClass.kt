@@ -27,6 +27,9 @@ class ApplicationClass: Application() {
             )
             Log.d(TAG, "[ApplicationClass] - onCreate() : $sSharedPreferences")
         }
+        if(sSharedPreferences?.getToken() == null) {
+            LOGIN_STATUS = Login.NOT_LOGGED
+        }
 
     }
 }
