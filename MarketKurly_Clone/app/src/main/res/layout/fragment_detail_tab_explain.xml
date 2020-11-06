@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".src.activity_detail_product.fragments.frag_explain.ExplainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/detail_explain_product_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 섹션 1 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/detail_explain_name_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sandol_regular"
+                android:text="[비비드키친] 소불고기"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="18dp" />
+
+            <TextView
+                android:id="@+id/detail_explain_overview_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sandol_regular"
+                android:text="호주산 소고기로 만든 달콤한 반찬"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/default_gray_morewhite"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/detail_explain_name_textview"
+                tools:layout_editor_absoluteX="18dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
