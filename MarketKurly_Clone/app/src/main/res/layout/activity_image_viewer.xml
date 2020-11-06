@@ -7,7 +7,7 @@
     android:background="#000"
     tools:context=".src.activity_image_viewer.ImageViewerActivity">
 
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/imageviewer_scale_imageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
