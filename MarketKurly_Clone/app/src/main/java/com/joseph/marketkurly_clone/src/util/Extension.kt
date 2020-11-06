@@ -1,12 +1,15 @@
 package com.joseph.marketkurly_clone.src.util
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Paint
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.joseph.marketkurly_clone.KurlyConstants
+import com.joseph.marketkurly_clone.R
 import java.text.DecimalFormat
 
 // 문자열이 JSON 형태인지, JSON 배열 형태인지
@@ -55,6 +58,16 @@ fun View.setGone() {
     this.visibility = View.GONE
 }
 
+// 뷰에 페이드 아웃, 페이드 인 애니메이션 추가
+fun View.setFadeInAnimation(context: Context) {
+    this.animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+}
+
+fun View.setFadeOutAnimation(context: Context) {
+    this.animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+}
+
+
 
 // 주소가 샛별배송인지 아닌지를 리턴해준다.
 fun String.getShippingType(): String? {
@@ -65,6 +78,8 @@ fun String.getShippingType(): String? {
 
     return if (isStarShipping) KurlyConstants.STAR_SHIPPING else KurlyConstants.POST_SHIPPING
 }
+
+
 
 // 문자열이 동의인지 아닌지로 변환해준다.
 fun Boolean.isAgree(): String {

@@ -20,7 +20,7 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.NestedScrollableHost
+            <com.joseph.marketkurly_clone.src.util.NestedScrollableHost
                 android:id="@+id/reckurly_event_viewpager_frame"
                 android:layout_width="match_parent"
                 android:layout_height="368dp">
@@ -33,7 +33,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.NestedScrollableHost>
+            </com.joseph.marketkurly_clone.src.util.NestedScrollableHost>
 
 
             <TextView

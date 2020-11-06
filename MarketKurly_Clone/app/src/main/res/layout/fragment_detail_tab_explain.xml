@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fragment_background"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="64dp">
 
         <ImageView
             android:id="@+id/detail_explain_product_imageview"
@@ -447,22 +448,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="18dp"
                 android:background="@drawable/shape_rounded_button_stroke"
                 android:backgroundTint="#99D6D6D6"
-                android:orientation="vertical"
-                android:padding="18dp">
+                android:orientation="vertical">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
                     android:fontFamily="@font/sandol_regular"
                     android:text="배송안내"
                     android:textColor="@color/text_black"
@@ -551,6 +553,7 @@
                     android:layout_height="36dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
                     android:background="@drawable/shape_edge_oval_button_stroke"
                     android:fontFamily="@font/sandol_regular"
                     android:letterSpacing="0.05"
@@ -562,7 +565,7 @@
 
             </LinearLayout>
 
-            <ImageView
+            <com.joseph.marketkurly_clone.src.util.FitYCropXImageView
                 android:id="@+id/detail_explain_product_explain_imageview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

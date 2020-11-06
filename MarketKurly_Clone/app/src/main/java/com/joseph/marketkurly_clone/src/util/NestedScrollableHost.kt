@@ -1,4 +1,4 @@
-package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters
+package com.joseph.marketkurly_clone.src.util
 
 /*
  * Copyright 2019 The Android Open Source Project
