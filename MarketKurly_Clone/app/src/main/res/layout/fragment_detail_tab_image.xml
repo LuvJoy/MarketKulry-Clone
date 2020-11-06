@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="18dp"
     tools:context=".src.activity_detail_product.fragments.frag_image.ImageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="48dp"
+        android:text="아래 이미지를 터치하면 확대해서 볼 수 있습니다."
+        android:fontFamily="@font/sandol_bold"
+        android:textSize="12sp"
+        android:textColor="@color/title_gray"
+        android:gravity="center"
+        android:background="@drawable/shape_edge_oval_button"
+        android:backgroundTint="#F2EFF3"
+        />
+    <ImageView
+        android:id="@+id/detail_image_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+
+</LinearLayout>
