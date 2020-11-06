@@ -19,7 +19,6 @@ class ImageViewerActivity : BaseActivity() {
         Glide.with(this)
             .load(url)
             .into(imageviewer_scale_imageview)
-        // .setImage(ImageSource.resource(R.drawable.dummy_image2))
     }
 
     override fun onClick(v: View?) {

@@ -19,11 +19,18 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
-    fun showProgressDialog() {
+    fun showProgressDialog(message: String? = null) {
         if (mProgressDialog == null) {
-            mProgressDialog = ProgressDialog(this).apply {
-                setMessage(getString(R.string.loading))
-                isIndeterminate = true
+            if (message != null) {
+                mProgressDialog = ProgressDialog(this, R.style.BaseProgressDialog).apply {
+                    setMessage(message)
+                    isIndeterminate = true
+                }
+            } else {
+                mProgressDialog = ProgressDialog(this, R.style.BaseProgressDialog).apply {
+                    setMessage(getString(R.string.loading))
+                    isIndeterminate = true
+                }
             }
         }
         mProgressDialog?.show()

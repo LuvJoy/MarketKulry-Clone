@@ -16,9 +16,12 @@
     </style>
 
     <style name="alert_dialog_custom" parent="Widget.AppCompat.ButtonBar.AlertDialog">
-
         <item name="fontFamily">@font/sandol_regular</item>
         <item name="android:textColor">@color/kurly_purple</item>
+    </style>
+
+    <style name="BaseProgressDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/kurly_purple</item>
     </style>
 
 </resources>

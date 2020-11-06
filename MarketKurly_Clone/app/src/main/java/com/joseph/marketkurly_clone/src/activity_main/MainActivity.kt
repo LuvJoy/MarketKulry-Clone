@@ -7,17 +7,19 @@ import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
 import kotlinx.android.synthetic.main.actionbar_main_top.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),
+class MainActivity : BaseActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initActivity()
+        showProgressDialog()
     }
 
     fun initActivity () {
