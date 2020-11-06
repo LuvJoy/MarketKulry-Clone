@@ -18,15 +18,14 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
+            android:name=".src.activity_detail_product.DetailProductActivity"
+            android:theme="@style/InnerActivityTheme" />
+        <activity
             android:name=".src.activity_signup.SignUpActivity"
-            android:theme="@style/InnerActivityTheme">
-
-        </activity>
+            android:theme="@style/InnerActivityTheme" />
         <activity
             android:name=".src.activity_signin.SignInActivity"
-            android:theme="@style/InnerActivityTheme">
-
-        </activity>
+            android:theme="@style/InnerActivityTheme" />
         <activity
             android:name=".src.activity_splash.SplashActivity"
             android:theme="@style/SplashActivityTheme">
