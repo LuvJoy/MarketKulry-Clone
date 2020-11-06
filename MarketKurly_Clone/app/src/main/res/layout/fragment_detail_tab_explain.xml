@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/fragment_background"
         android:orientation="vertical">
 
         <ImageView
@@ -21,16 +22,29 @@
         <!-- 섹션 1 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
             android:padding="18dp">
+
+            <ImageView
+                android:id="@+id/detail_explain_share_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_share_button"
+                android:padding="10dp"
+                android:src="@drawable/ic_share"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/detail_explain_name_textview" />
 
             <TextView
                 android:id="@+id/detail_explain_name_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sandol_regular"
+                android:maxLines="1"
+                android:paddingRight="54dp"
                 android:text="[비비드키친] 소불고기"
-                android:textColor="@color/title_gray"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="18dp" />
@@ -39,16 +53,522 @@
                 android:id="@+id/detail_explain_overview_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sandol_regular"
-                android:text="호주산 소고기로 만든 달콤한 반찬"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/sandol_regular"
+                android:paddingRight="64dp"
+                android:text="호주산 소고기로 만든 달콤한 반찬sdfdsfsddsdfsdffsdfs"
                 android:textColor="@color/default_gray_morewhite"
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@+id/detail_explain_name_textview"
                 tools:layout_editor_absoluteX="18dp" />
 
+            <TextView
+                android:id="@+id/detail_explain_price_dummy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:letterSpacing="0.01"
+                android:text="회원할인가"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@+id/detail_explain_overview_textview" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/detail_explain_price_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/sandol_bold"
+                android:text="2,975"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                app:layout_constraintStart_toStartOf="@+id/detail_explain_price_dummy"
+                app:layout_constraintTop_toTopOf="@+id/detail_explain_price_dummy" />
+
+            <TextView
+                android:id="@+id/detail_explain_price_dummy2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="원"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_explain_price_textview"
+                app:layout_constraintStart_toEndOf="@+id/detail_explain_price_textview" />
+
+
+            <TextView
+                android:id="@+id/detail_explain_sale_percent_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="@font/sandol_bold"
+                android:text="50%"
+                android:textColor="@color/sale_percent_orange"
+                android:textSize="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_explain_price_textview"
+                app:layout_constraintStart_toEndOf="@+id/detail_explain_price_dummy2"
+                app:layout_constraintTop_toTopOf="@+id/detail_explain_price_textview" />
+
+            <TextView
+                android:id="@+id/detail_explain_sale_price_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="5,950원"
+                android:textColor="@color/text_whitegray"
+                android:textSize="16sp"
+                app:drawableRightCompat="@drawable/ic_help_circle"
+                app:layout_constraintStart_toStartOf="@+id/detail_explain_price_textview"
+                app:layout_constraintTop_toBottomOf="@+id/detail_explain_price_textview" />
+
+            <TextView
+                android:id="@+id/detail_explain_member_benefit_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/sandol_regular"
+                android:letterSpacing="-0.01"
+                android:text="로그인 후, 회원할인가와 적립 혜택이 제공됩니다."
+                android:textColor="@color/kurly_purple"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/detail_explain_sale_price_textview"
+                tools:layout_editor_absoluteX="18dp" />
+
+            <!-- 회원인 경우 등급하고 적립금 떠야 한다. -->
+            <LinearLayout
+                android:id="@+id/detail_explain_member_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/detail_explain_sale_price_textview"
+                tools:layout_editor_absoluteX="18dp">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="웰컴 5%"
+                    android:textAppearance="@style/chipText"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="4sp"
+                    app:chipBackgroundColor="@android:color/transparent"
+                    app:chipMinHeight="20dp"
+                    app:chipStrokeColor="@color/text_whitegray"
+                    app:chipStrokeWidth="1dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="개당"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_member_added_cash_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:fontFamily="@font/sandol_bold"
+                    android:letterSpacing="0.01"
+                    android:text="149원 적립"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/ab_inner_div_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/text_whitegray"
+                app:layout_constraintTop_toBottomOf="@+id/detail_explain_member_info_layout"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <GridLayout
+                android:id="@+id/detail_explain_product_property_gridlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:columnCount="2"
+                app:layout_constraintTop_toBottomOf="@+id/ab_inner_div_line"
+                tools:layout_editor_absoluteX="18dp">
+
+                <TextView
+                    android:id="@+id/detail_explain_unit_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="판매단위"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_unit_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="1봉"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_weight_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="중량/용량"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_weight_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="4~5입 850g 내외"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_delivery_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="배송구분"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_delivery_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="샛별배송/택배배송"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/detail_explain_origin_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="원산지"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_origin_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="국내산"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_package_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="4"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="포장타입"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_package_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="4"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="냉장/종이포장"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_alllergy_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="5"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="알레르기정보"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_alllergy_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="5"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="스파이스치킨 : 우유, 대두, 밀, 돼지고기, 토마토, 닭고기 함"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_sweet_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="6"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="당도"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_sweet_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="6"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="11.1 brix 이상"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_expiration_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="7"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="유통기한"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_expiration_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="7"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="수령일 포함 최소 3일 남은 제품을 보내 드립니다."
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_guide_title_textview"
+                    android:layout_width="86dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="8"
+                    android:layout_column="0"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="안내사항"
+                    android:textColor="@color/default_gray_littleWhite"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_explain_guide_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="8"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.03"
+                    android:text="- 11./2~11/9 기간 동안 최소 구매수량 2개 인점 안내드립니다."
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout> <!-- Section1 -->
+
+        <!-- 배송안내, 제품안내 사진 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rounded_button_stroke"
+                android:backgroundTint="#99D6D6D6"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="배송안내"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <GridLayout
+                    android:layout_width="284dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="샛별배송"
+                        android:textColor="@color/kurly_purple"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="밤 11시까지 주문하면, 다음날 아침 7시 이전 도착"
+                        android:textColor="@color/text_black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="택배배송"
+                        android:textColor="@color/kurly_purple"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="밤 8시까지 주문하면, 다음날 도착"
+                        android:textColor="@color/text_black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="배송휴무"
+                        android:textColor="@color/default_gray_littleWhite"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="샛별배송 - 휴무없음 / 택배배송 - 일요일 \n택배배송의 경우 지역에 따라\n토요일 배송이 불가할 수 있습니다."
+                        android:textColor="@color/default_gray_littleWhite"
+                        android:textSize="12sp" />
+
+                </GridLayout>
+
+                <Button
+                    android:layout_width="160dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/shape_edge_oval_button_stroke"
+                    android:fontFamily="@font/sandol_regular"
+                    android:letterSpacing="0.05"
+                    android:text="자세히 보기"
+                    android:textColor="@color/title_gray"
+                    android:textSize="14sp"
+                    app:backgroundTint="@color/text_whitegray" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/detail_explain_product_explain_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
 
 
     </LinearLayout>

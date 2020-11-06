@@ -21,11 +21,14 @@
 
     <color name="text_gray_bottomnav">#434343</color>
     <color name="text_gray_tablayout">#6b6b6b</color>
+
+    <color name="default_gray_littleWhite">#6b6b6b</color>
     <color name="default_gray">#7b7b7b</color>
     <color name="default_gray_morewhite">#808080</color>
 
     <color name="not_success_red">#b42922</color>
     <color name="success_green">#1b8626</color>
+    <color name="sale_percent_orange">#fa622f</color>
 
     <!-- 백그라운드 색상 -->
     <color name="fragment_background">#f5f5f5</color>

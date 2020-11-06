@@ -19,6 +19,10 @@ class ExplainFragment : Fragment(R.layout.fragment_detail_tab_explain) {
             .load(R.drawable.dummy_image2)
             .into(detail_explain_product_imageview)
 
+
+        Glide.with(this)
+            .load("https://sub.marketkulry.shop/img/product1_description.png")
+            .into(detail_explain_product_explain_imageview)
     }
 
 
