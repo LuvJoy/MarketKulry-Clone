@@ -11,7 +11,7 @@
         android:id="@+id/splash_background_imageview"
         android:visibility="invisible"
         android:scaleType="centerCrop"
-        android:src="@drawable/image_kurly_splash"
+        android:src="@drawable/image_splash_background1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ImageView>
@@ -21,7 +21,6 @@
         android:layout_width="240dp"
         android:layout_height="150dp"
         android:layout_marginTop="256dp"
-
         android:src="@drawable/image_kurly_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

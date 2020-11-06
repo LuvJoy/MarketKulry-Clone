@@ -18,10 +18,20 @@
         android:background="@drawable/shape_edge_oval_button"
         android:backgroundTint="#F2EFF3"
         />
-    <ImageView
-        android:id="@+id/detail_image_imageview"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/detail_image_imageview"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
+
+
 
 
 </LinearLayout>
