@@ -3,16 +3,15 @@ package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragm
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.EventViewPagerAdapter
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.NestedScrollableHost
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.ProductRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.model.ProductCompact
+import com.joseph.marketkurly_clone.src.util.reduceDragSensitivity
 import kotlinx.android.synthetic.main.fragment_tab_rec_kurly.*
 
 class TabRecKurlyFragment : Fragment(R.layout.fragment_tab_rec_kurly) {
@@ -52,13 +51,17 @@ class TabRecKurlyFragment : Fragment(R.layout.fragment_tab_rec_kurly) {
             adapter = mSuggestRecyclerViewAdapter
         }
 
+
         // Event ViewPager 초기화 부분
         val imageList = arrayListOf<Int>(R.drawable.image_dummy_viewpager1, R.drawable.image_dummy_viewpager2, R.drawable.image_dummy_viewpager3)
-        mEventViewPagerAdapter = EventViewPagerAdapter(fragContext)
+        mEventViewPagerAdapter = EventViewPagerAdapter(activity?.applicationContext!!)
         mEventViewPagerAdapter.submitList(imageList)
 
-        this.reckurly_event_viewpager.adapter = mEventViewPagerAdapter
-        this.reckurly_event_viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        val nh = NestedScrollableHost(fragContext)
+        reckurly_event_viewpager.isUserInputEnabled = true
+        reckurly_event_viewpager.adapter = mEventViewPagerAdapter
+        reckurly_event_viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        reckurly_event_viewpager.reduceDragSensitivity()
 
     }
 }

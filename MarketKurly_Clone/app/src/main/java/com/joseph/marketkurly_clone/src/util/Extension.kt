@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import android.graphics.Paint
 import android.view.View
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.joseph.marketkurly_clone.KurlyConstants
 import java.text.DecimalFormat
 
@@ -67,4 +69,15 @@ fun String.getShippingType(): String? {
 // 문자열이 동의인지 아닌지로 변환해준다.
 fun Boolean.isAgree(): String {
     return if (this) "Y" else "N"
+}
+
+fun ViewPager2.reduceDragSensitivity() {
+    val recyclerViewField = ViewPager2::class.java.getDeclaredField("mRecyclerView")
+    recyclerViewField.isAccessible = true
+    val recyclerView = recyclerViewField.get(this) as RecyclerView
+
+    val touchSlopField = RecyclerView::class.java.getDeclaredField("mTouchSlop")
+    touchSlopField.isAccessible = true
+    val touchSlop = touchSlopField.get(recyclerView) as Int
+    touchSlopField.set(recyclerView, touchSlop*8)       // "8" was obtained experimentally
 }

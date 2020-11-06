@@ -2,15 +2,17 @@ package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragm
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.EventViewpagerViewHolder
 
 class EventViewPagerAdapter(var context: Context) :
     RecyclerView.Adapter<EventViewpagerViewHolder>() {
 
-    private var eventList =  ArrayList<Int>()
+    private var eventList = ArrayList<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewpagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event_viewpager, parent, false)
@@ -27,5 +29,7 @@ class EventViewPagerAdapter(var context: Context) :
 
     fun submitList(list: ArrayList<Int>) {
         this.eventList = list
+        notifyDataSetChanged()
     }
+
 }

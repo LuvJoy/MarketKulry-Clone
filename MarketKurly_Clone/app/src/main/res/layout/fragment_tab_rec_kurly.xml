@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/fragment_background"
     tools:context=".src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.TabRecKurlyFragment">
 
@@ -18,11 +20,20 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/reckurly_event_viewpager"
+            <com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.NestedScrollableHost
+                android:id="@+id/reckurly_event_viewpager_frame"
                 android:layout_width="match_parent"
-                android:layout_height="368dp" />
+                android:layout_height="368dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/reckurly_event_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="368dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.NestedScrollableHost>
 
 
             <TextView

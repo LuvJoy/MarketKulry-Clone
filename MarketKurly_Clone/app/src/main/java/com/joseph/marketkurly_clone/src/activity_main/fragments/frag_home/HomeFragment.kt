@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.joseph.marketkurly_clone.R
@@ -23,6 +24,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     fun initAdapters() {
         home_tab_viewPager.adapter = TabViewPagerAdapter(this)
+        home_tab_viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        home_tab_viewPager.requestDisallowInterceptTouchEvent(true)
         TabLayoutMediator(home_tablayout, home_tab_viewPager,
                 TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                     when (position) {
@@ -34,6 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     }
                 }
         ).attach()
+
     }
 
 }
