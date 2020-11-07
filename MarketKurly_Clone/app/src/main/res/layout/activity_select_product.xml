@@ -92,7 +92,7 @@
                 android:layout_marginRight="2dp"
                 android:fontFamily="@font/sandol_regular"
                 android:text="구매 시"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/product_select_mileage_textview"
                 app:layout_constraintEnd_toStartOf="@+id/product_select_mileage_textview"
                 app:layout_constraintTop_toTopOf="@+id/product_select_mileage_textview" />
@@ -101,7 +101,8 @@
             <TextView
                 android:id="@+id/product_select_save_mileage_badge"
                 android:layout_width="wrap_content"
-                android:layout_height="22dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_save_icon"
                 android:fontFamily="@font/sandol_bold"
@@ -111,10 +112,8 @@
                 android:text="적립"
                 android:textColor="@color/white"
                 android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/product_select_dummy2"
                 app:layout_constraintEnd_toStartOf="@+id/product_select_dummy2"
-                app:layout_constraintTop_toTopOf="@+id/product_select_dummy2"
-                app:layout_constraintVertical_bias="0.25" />
+                app:layout_constraintTop_toTopOf="@+id/product_select_price_textview" />
 
             <TextView
                 android:id="@+id/product_select_mileage_textview"
@@ -122,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sandol_bold"
                 android:text="0원 적립"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/default_gray"
                 app:layout_constraintEnd_toEndOf="@+id/product_select_price_textview"
                 app:layout_constraintTop_toBottomOf="@+id/product_select_price_textview" />

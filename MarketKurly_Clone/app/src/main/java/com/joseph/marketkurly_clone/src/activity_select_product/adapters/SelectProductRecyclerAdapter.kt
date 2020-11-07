@@ -6,15 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
+import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.PlusMinusButtonListener
 
-class SelectProductRecyclerAdapter(var context: Context) :
+class SelectProductRecyclerAdapter(var context: Context, private var listener: PlusMinusButtonListener) :
     RecyclerView.Adapter<SelectProductRecyclerViewHolder>() {
 
     private var productList = ArrayList<ProductDetail>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectProductRecyclerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product_select, parent, false)
-        return SelectProductRecyclerViewHolder(view, context)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): SelectProductRecyclerViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_product_select, parent, false)
+        return SelectProductRecyclerViewHolder(view, listener)
     }
 
     override fun onBindViewHolder(holder: SelectProductRecyclerViewHolder, position: Int) {
@@ -22,7 +27,7 @@ class SelectProductRecyclerAdapter(var context: Context) :
     }
 
     override fun getItemCount(): Int {
-      return productList.size
+        return productList.size
     }
 
     fun submitList(list: ArrayList<ProductDetail>) {

@@ -36,7 +36,7 @@ data class ProductDetail(
     @SerializedName("package")
     var packageX: String,
     @SerializedName("point")
-    var point: String,
+    var point: Int,
     @SerializedName("product_id")
     var productId: Int,
     @SerializedName("review_count")

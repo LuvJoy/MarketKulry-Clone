@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingTop="6dp"
     android:paddingLeft="12dp"
+    android:paddingTop="6dp"
     android:paddingRight="12dp"
     android:paddingBottom="6dp">
 
@@ -25,7 +25,7 @@
         android:id="@+id/item_select_sale_price_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="18dp"
         android:fontFamily="@font/sandol_extrabold"
         android:text="5,950원"
         android:textColor="@color/text_whitegray_deep"
@@ -38,22 +38,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+
         android:fontFamily="@font/sandol_extrabold"
         android:text="5,950원"
         android:textColor="@color/text_black"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/item_select_sale_price_textview"
-        app:layout_constraintTop_toBottomOf="@+id/item_select_title_textview" />
+        app:layout_constraintTop_toTopOf="@+id/item_select_sale_price_textview" />
 
     <LinearLayout
-        android:layout_width="100dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="110dp"
         android:layout_height="32dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/shape_rounded_button_stroke"
         android:backgroundTint="@color/text_whitegray"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_select_title_textview">
 
@@ -62,7 +63,8 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:padding="6dp"
-            android:src="@drawable/ic_minus" />
+            android:src="@drawable/ic_minus"
+            app:tint="@color/kurly_purple" />
 
         <TextView
             android:id="@+id/item_select_count_textview"
@@ -72,26 +74,26 @@
             android:fontFamily="@font/sandol_regular"
             android:gravity="center"
             android:text="0"
-            android:textSize="18sp" />
+            android:textColor="@color/text_black"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/item_select_plus_button"
             android:layout_width="32dp"
             android:layout_height="match_parent"
             android:padding="6dp"
-            android:src="@drawable/ic_plus" />
+            android:src="@drawable/ic_plus"
+            app:tint="@color/kurly_purple" />
     </LinearLayout>
 
     <View
         android:id="@+id/div_line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="8dp"
         android:background="@color/text_whitegray"
-        app:layout_constraintTop_toBottomOf="@+id/item_select_sale_price_textview"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:layout_editor_absoluteX="12dp" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
