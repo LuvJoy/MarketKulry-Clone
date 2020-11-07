@@ -14,12 +14,14 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.joseph.marketkurly_clone.src.util.setVisible
 
 
 open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     var mProgressDialog: ProgressDialog? = null
     var mProgressBar: ProgressBarHandler? = null
+    var mSnackBar: Snackbar? = null
 
     fun showCustomToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
@@ -45,6 +47,15 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     fun hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog!!.isShowing) {
             mProgressDialog!!.dismiss()
+        }
+    }
+
+    fun showSnackBar(message: String?) {
+        if (null != this && null != message) {
+            Snackbar.make(
+                this.findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 
