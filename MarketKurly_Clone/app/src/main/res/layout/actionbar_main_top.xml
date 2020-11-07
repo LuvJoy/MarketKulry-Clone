@@ -25,7 +25,7 @@
         <ImageView
             android:id="@+id/ab_main_cart_imageview"
             android:layout_width="48dp"
-            android:padding="11dp"
+            android:padding="11.5dp"
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_cart"

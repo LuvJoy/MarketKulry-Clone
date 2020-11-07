@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/ab_inner_toolbar"
+            android:id="@+id/ab_thin_inner_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="0dp"
@@ -24,7 +24,7 @@
             app:titleTextAppearance="@style/text_actionbar_title" />
 
         <View
-            android:id="@+id/ab_inner_div_line"
+            android:id="@+id/div_line"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/text_whitegray"

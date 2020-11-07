@@ -9,15 +9,10 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.util.setStrikeThru
 import kotlinx.android.synthetic.main.fragment_detail_tab_explain.*
 
 class ExplainFragment : BaseFragment(R.layout.fragment_detail_tab_explain) {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +25,8 @@ class ExplainFragment : BaseFragment(R.layout.fragment_detail_tab_explain) {
         Glide.with(this)
             .load("https://sub.marketkulry.shop/img/product1_description.png")
             .into(detail_explain_product_explain_imageview)
+
+        detail_explain_sale_price_textview.setStrikeThru()
     }
 
 

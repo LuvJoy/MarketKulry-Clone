@@ -188,7 +188,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/ab_inner_div_line"
+                android:id="@+id/div_line"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="6dp"
@@ -202,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:columnCount="2"
-                app:layout_constraintTop_toBottomOf="@+id/ab_inner_div_line"
+                app:layout_constraintTop_toBottomOf="@+id/div_line"
                 tools:layout_editor_absoluteX="18dp">
 
                 <TextView

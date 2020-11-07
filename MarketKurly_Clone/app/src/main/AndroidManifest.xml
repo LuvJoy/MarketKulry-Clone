@@ -17,7 +17,12 @@
         android:theme="@style/Theme.MarketKurly_Clone"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.activity_image_viewer.ImageViewerActivity"></activity>
+        <activity
+            android:name=".src.activity_select_product.SelectProductActivity"
+            android:theme="@style/InnerActivityTheme"></activity>
+        <activity
+            android:name=".src.activity_image_viewer.ImageViewerActivity"
+            android:theme="@style/InnerActivityTheme" />
         <activity
             android:name=".src.activity_detail_product.DetailProductActivity"
             android:theme="@style/InnerActivityTheme" />

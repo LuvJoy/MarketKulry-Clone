@@ -1,23 +1,26 @@
 package com.joseph.marketkurly_clone.src.activity_detail_product
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.viewpager2.widget.ViewPager2
+import android.view.View
 import com.google.android.material.tabs.TabLayoutMediator
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.adapters.DetailTabLayoutAdapter
 import com.joseph.marketkurly_clone.src.activity_detail_product.interfaces.LoadProductDetailEvent
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
-import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.adapters.TabViewPagerAdapter
+import com.joseph.marketkurly_clone.src.activity_select_product.SelectProductActivity
 import com.joseph.marketkurly_clone.src.util.setGone
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
+import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.ab_inner_toolbar
+import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.div_line
+import kotlinx.android.synthetic.main.actionbar_inner_page_top_thin.view.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
 
     private var mDetailProductService = DetailProductService(this)
+    private lateinit var mProductDetail: ProductDetail
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +29,19 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         val productId = intent.extras?.getInt("productId")
 
         initActionBar()
+        initView()
         showProgressBar()
         mDetailProductService.loadProductDetail(1)
 
     }
 
     fun initActionBar() {
-        detail_actionbar.ab_inner_div_line.setGone()
-        detail_actionbar.ab_inner_toolbar.title = "제품 상세설명"
-        detail_actionbar.ab_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
+        detail_actionbar.div_line.setGone()
+        detail_actionbar.ab_thin_inner_toolbar.title = "제품 상세설명"
+        detail_actionbar.ab_thin_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     fun initViewPager(reviewCount: String) {
-        val fm = this.supportFragmentManager
         detail_viewpager.adapter = DetailTabLayoutAdapter(this)
 
         TabLayoutMediator(detail_tablayout, detail_viewpager,
@@ -54,8 +57,25 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         ).attach()
     }
 
+    fun initView() {
+        detail_buy_button.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.detail_buy_button -> {
+                val bundle = Bundle()
+                val intent = Intent(this, SelectProductActivity::class.java)
+                bundle.putSerializable("productDetail", mProductDetail)
+                intent.putExtra("bundleData", bundle)
+                startActivity(intent)
+            }
+        }
+    }
+
     override fun onLoadDetailSuccess(detailData: ProductDetail) {
         hideProgressBar()
+        mProductDetail = detailData
         initViewPager(detailData.reviewCount)
     }
 
@@ -63,4 +83,5 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         hideProgressBar()
         showAlertDialog(message)
     }
+
 }

@@ -47,7 +47,7 @@ class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly) {
 
         reckurly_suggest_recyclerview.apply {
             setHasFixedSize(true)
-            setLayoutManager(horizontalLayoutManager)
+            layoutManager = horizontalLayoutManager
             adapter = mSuggestRecyclerViewAdapter
         }
 
@@ -57,11 +57,8 @@ class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly) {
         mEventViewPagerAdapter = EventViewPagerAdapter(activity?.applicationContext!!)
         mEventViewPagerAdapter.submitList(imageList)
 
-        val nh = NestedScrollableHost(fragContext!!)
         reckurly_event_viewpager.isUserInputEnabled = true
         reckurly_event_viewpager.adapter = mEventViewPagerAdapter
         reckurly_event_viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        reckurly_event_viewpager.reduceDragSensitivity()
-
     }
 }
