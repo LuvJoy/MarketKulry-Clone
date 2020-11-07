@@ -18,6 +18,7 @@
     <color name="text_whitegray">#d6d6d6</color>
     <color name="text_whitegray_deep">#999999</color>
     <color name="title_gray">#3c3c3c</color>
+    <color name="dusty_black">#333333</color>
 
     <color name="text_gray_bottomnav">#434343</color>
     <color name="text_gray_tablayout">#6b6b6b</color>

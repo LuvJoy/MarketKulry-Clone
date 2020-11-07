@@ -7,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
+import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_signin.SignInActivity
 import com.joseph.marketkurly_clone.src.models.Login
@@ -15,11 +16,7 @@ import com.joseph.marketkurly_clone.src.util.setToken
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.fragment_mykurly.*
 
-class MyKurlyFragment : Fragment(R.layout.fragment_mykurly), View.OnClickListener {
-
-    private lateinit var fragContext: Context
-
-
+class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,7 +62,7 @@ class MyKurlyFragment : Fragment(R.layout.fragment_mykurly), View.OnClickListene
         when(v?.id) {
             R.id.mykurly_login_button -> {
                 val intent = Intent(fragContext, SignInActivity::class.java)
-                fragContext.startActivity(intent)
+                fragContext?.startActivity(intent)
             }
             R.id.mykurly_member_logout_section -> {
                 sSharedPreferences?.setToken(null)

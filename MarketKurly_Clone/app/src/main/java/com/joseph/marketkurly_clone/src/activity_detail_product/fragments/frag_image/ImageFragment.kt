@@ -8,13 +8,14 @@ import android.view.View
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_image_viewer.ImageViewerActivity
 import kotlinx.android.synthetic.main.fragment_detail_tab_image.*
 import java.io.ByteArrayOutputStream
 
 
-class ImageFragment : Fragment(R.layout.fragment_detail_tab_image), View.OnClickListener {
+class ImageFragment : BaseFragment(R.layout.fragment_detail_tab_image) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

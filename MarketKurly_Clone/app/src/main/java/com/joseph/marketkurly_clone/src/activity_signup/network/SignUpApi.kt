@@ -12,7 +12,6 @@ interface SignUpApi {
             @Query("id") id: String
     ): Call<JsonObject>
 
-    
     @GET("checkPhoneNumber?")
     fun checkPhoneNumber(
             @Query("phoneNumber") phoneNumber: String
