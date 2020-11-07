@@ -14,6 +14,7 @@ object Constants {
     val MEDIA_TYPE_JSON: MediaType = "application/json; charset=uft-8".toMediaTypeOrNull()!!
     val MEDIA_TYPE_JPEG: MediaType = "image/jpeg".toMediaTypeOrNull()!!
 
+    val REQUEST_CODE_LOGIN = 1001
 }
 
 object NetworkConstants {

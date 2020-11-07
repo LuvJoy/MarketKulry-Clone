@@ -11,10 +11,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_LOGIN
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.interfaces.LoadUserInfoEvent
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
 import com.joseph.marketkurly_clone.src.models.Login
+import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_main_top.*
 import kotlinx.android.synthetic.main.actionbar_main_top.view.*
@@ -32,6 +34,7 @@ class MainActivity : BaseActivity(),
 
         mUserInforService.loadUserInfo()
         initActivity()
+        initActionbar()
     }
 
     fun initActivity() {
@@ -83,13 +86,40 @@ class MainActivity : BaseActivity(),
     override fun onLoadUserInfoSuccess(user: UserInfo) {
         CURRENT_USER = user
         LOGIN_STATUS = Login.LOGGED
-        main_actionbar.ab_main_cart_badge.setVisible()
-        main_actionbar.ab_main_cart_badge.text = user.cartCount.toString()
+
+        setCart(user.cartCount)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     override fun onLoadUserInfoFail(message: String) {
         CURRENT_USER = null
         LOGIN_STATUS = Login.NOT_LOGGED
+    }
+
+    fun setCart(count: Int) {
+        if(count != 0) {
+            main_actionbar.ab_main_cart_badge.text = count.toString()
+            main_actionbar.ab_main_cart_badge.setVisible()
+        } else {
+            main_actionbar.ab_main_cart_badge.setInVisible()
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode) {
+            REQUEST_CODE_LOGIN -> {
+                if(resultCode == RESULT_OK) {
+                    showSnackBar("로그인에 성공하였습니다.")
+                }
+            }
+        }
     }
 
 }

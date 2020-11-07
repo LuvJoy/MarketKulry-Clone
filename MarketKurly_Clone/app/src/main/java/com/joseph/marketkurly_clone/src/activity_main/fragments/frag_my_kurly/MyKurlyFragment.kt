@@ -10,6 +10,7 @@ import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.BaseFragment
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_LOGIN
 
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_signin.SignInActivity
@@ -66,8 +67,8 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
 
         when(v?.id) {
             R.id.mykurly_login_button -> {
-                val intent = Intent(fragContext, SignInActivity::class.java)
-                fragContext?.startActivity(intent)
+                val intent = Intent(activity, SignInActivity::class.java)
+                activity?.startActivityForResult(intent,REQUEST_CODE_LOGIN)
             }
             R.id.mykurly_member_logout_section -> {
                 sSharedPreferences?.setToken(null)

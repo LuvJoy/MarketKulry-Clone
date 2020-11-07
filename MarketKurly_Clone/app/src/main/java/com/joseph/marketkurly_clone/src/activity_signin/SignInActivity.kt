@@ -8,6 +8,7 @@ import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_LOGIN
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
 import com.joseph.marketkurly_clone.src.activity_signin.interfaces.SignInApiEvent
@@ -70,7 +71,11 @@ class SignInActivity : BaseActivity(), SignInApiEvent {
         LOGIN_STATUS = Login.LOGGED
         CURRENT_USER = userInfo
         hideProgressDialog()
-        onBackPressed()
+
+        val intent = Intent()
+        setResult(RESULT_OK, intent)
+
+        finish()
     }
 
     override fun onSignInFail(message: String) {
