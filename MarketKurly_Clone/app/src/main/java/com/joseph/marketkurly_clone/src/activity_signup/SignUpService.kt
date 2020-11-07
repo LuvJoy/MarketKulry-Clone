@@ -6,7 +6,7 @@ import com.joseph.marketkurly_clone.Constants.TAG
 import com.joseph.marketkurly_clone.NetworkConstants
 import com.joseph.marketkurly_clone.RetrofitClient
 import com.joseph.marketkurly_clone.src.activity_signup.interfaces.SignUpValidationEvent
-import com.joseph.marketkurly_clone.src.activity_signup.models.UserInfo
+import com.joseph.marketkurly_clone.src.activity_signup.models.PersonalData
 import com.joseph.marketkurly_clone.src.activity_signup.network.SignUpApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,7 +45,7 @@ class SignUpService(private var validationListener: SignUpValidationEvent) {
         })
     }
 
-    fun signUp(user: UserInfo) {
+    fun signUp(user: PersonalData) {
         val jsonObject = JsonObject()
 
         jsonObject.apply {

@@ -13,6 +13,7 @@ object Constants {
     var DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
     val MEDIA_TYPE_JSON: MediaType = "application/json; charset=uft-8".toMediaTypeOrNull()!!
     val MEDIA_TYPE_JPEG: MediaType = "image/jpeg".toMediaTypeOrNull()!!
+
 }
 
 object NetworkConstants {

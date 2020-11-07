@@ -12,8 +12,6 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.KurlyConstants.POST_SHIPPING
 import com.joseph.marketkurly_clone.KurlyConstants.STAR_SHIPPING
@@ -22,7 +20,7 @@ import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddressApiEve
 import com.joseph.marketkurly_clone.src.activity_signup.interfaces.SignUpValidationEvent
 import com.joseph.marketkurly_clone.src.activity_signup.manager.AddressApiManager
 import com.joseph.marketkurly_clone.src.activity_signup.manager.SignUpValidationManager
-import com.joseph.marketkurly_clone.src.activity_signup.models.UserInfo
+import com.joseph.marketkurly_clone.src.activity_signup.models.PersonalData
 import com.joseph.marketkurly_clone.src.util.getShippingType
 import com.joseph.marketkurly_clone.src.util.isAgree
 import com.joseph.marketkurly_clone.src.util.setGone
@@ -37,7 +35,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
     private lateinit var mSignUpValidationManager: SignUpValidationManager
     private lateinit var mSignUpService: SignUpService
 
-    private lateinit var user: UserInfo
+    private lateinit var user: PersonalData
     private lateinit var postCode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -256,7 +254,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEve
                 val resultValidation = mSignUpValidationManager.checkAllPropertyValidate()
 
                 if (resultValidation == null) {
-                    user = UserInfo(
+                    user = PersonalData(
                             address = address_layout_address_textview.text.toString(),
                             addressDetail = signup_address_detail_edittext.text.toString(),
                             birth = signup_birth_year_edittext.text.toString() + "-" +

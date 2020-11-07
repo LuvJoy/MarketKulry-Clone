@@ -1,47 +1,81 @@
 package com.joseph.marketkurly_clone.src.activity_signin
 
 import android.util.Log
+import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.joseph.marketkurly_clone.ApplicationClass
 import com.joseph.marketkurly_clone.Constants
 import com.joseph.marketkurly_clone.NetworkConstants
+import com.joseph.marketkurly_clone.NetworkConstants.KURLY_URL
 import com.joseph.marketkurly_clone.RetrofitClient
+import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
+import com.joseph.marketkurly_clone.src.activity_main.network.UserInfoApi
 import com.joseph.marketkurly_clone.src.activity_signin.interfaces.SignInApiEvent
 import com.joseph.marketkurly_clone.src.activity_signin.network.SignInApi
+import com.joseph.marketkurly_clone.src.util.setToken
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SignInService(var listener: SignInApiEvent) {
 
-    private var client = RetrofitClient.getClient(NetworkConstants.KURLY_URL).create(SignInApi::class.java)
+    private var mSignInClient = RetrofitClient.getClient(KURLY_URL).create(SignInApi::class.java)
+    private var mLoadUserInfoClient = RetrofitClient.getClient(KURLY_URL).create(UserInfoApi::class.java)
+
+    private var job = SupervisorJob()
+    private var coroutineScope = CoroutineScope(Dispatchers.Main + job)
 
     fun signIn(userAccount: JsonObject) {
-        client.signIn(userAccount).enqueue(object : Callback<JsonObject> {
-            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+        coroutineScope.launch {
+            var message: String? = null
+            var userInfo: UserInfo? = null
 
-                val resultCode: Int = response.body()?.get("code")?.asInt!!
-                var jwt: String? = null
+            var jwt = withContext(Dispatchers.IO) {
+                var signInResponse = mSignInClient.signIn(userAccount).execute()
+                val body = signInResponse.body()
+                var token: String? = null
 
-                when (resultCode) {
-                    200 -> {
-                        jwt = response.body()?.get("result")?.asJsonObject?.get("jwt")?.asString
-                        listener.onSignInSuccess(jwt)
-                    }
+                val isSuccess = body?.get("is_success")?.asBoolean
 
-                    310 -> {
-                        listener.onSignInFail("사용자정보가 일치하지 않습니다.")
-                    }
+                if (isSuccess!!) {
+                    token = body.get("result").asJsonObject.get("jwt").asString
+                    ApplicationClass.sSharedPreferences?.setToken(token)
+                } else {
+                    message = body.get("message").asString
                 }
 
-                Log.d(Constants.TAG, "[LoginActivity] - onResponse() : $jwt ")
+                token
             }
 
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.d(Constants.TAG, "[LoginActivity] - onFailure() : ${t.message} ")
+            if (jwt != null) {
+                userInfo = withContext(Dispatchers.IO) {
+                    val loadUserResponse = mLoadUserInfoClient.loadUserInfo().execute()
+                    val body = loadUserResponse.body()
+                    val isSuccess = body?.get("is_success")?.asBoolean
+                    var data: UserInfo? = null
+
+                    if (isSuccess!!) {
+                        data = Gson().fromJson(body.get("result"), UserInfo::class.java)
+
+                    } else {
+                        val message = body.get("message").asString
+                    }
+
+                    data
+                }
             }
 
-        })
+            if (jwt != null && userInfo != null) {
+                listener.onSignInSuccess(jwt, userInfo)
+            } else {
+                listener.onSignInFail(message!!)
+            }
+
+        }
+
+
     }
 
-
 }
+

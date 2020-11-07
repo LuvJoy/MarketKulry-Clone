@@ -54,8 +54,6 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         ).attach()
     }
 
-
-
     override fun onLoadDetailSuccess(detailData: ProductDetail) {
         hideProgressBar()
         initViewPager(detailData.reviewCount)

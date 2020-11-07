@@ -5,12 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.BaseFragment
+
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_signin.SignInActivity
 import com.joseph.marketkurly_clone.src.models.Login
+import com.joseph.marketkurly_clone.src.util.getToken
 import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setToken
 import com.joseph.marketkurly_clone.src.util.setVisible
@@ -20,20 +23,14 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragContext = requireContext()
-        initButton()
-    }
 
-    override fun onResume() {
-        super.onResume()
         initView()
+        initButton()
     }
 
     fun initView() {
 
         if(LOGIN_STATUS == Login.LOGGED) {
-            mykurly_member_info_section.setVisible()
-
             mykurly_member_info_section.setVisible()
             mykurly_member_order_section.setVisible()
             mykurly_member_logout_section.setVisible()
@@ -41,8 +38,14 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
             mykurly_member_user_edit_layout.setVisible()
             mykurly_non_member_section.setGone()
             mykurly_login_section.setGone()
+            CURRENT_USER.apply {
+                mykurly_member_grade_textview.text = this?.level
+                mykurly_member_name_textview.text = this?.name
+                mykurly_member_grade_benefit_textview.text = this?.pointPercentage.toString()
+                mykurly_member_coupon_textview.text = this?.coupon.toString()
+                mykurly_member_mileage_textview.text = this?.points.toString()
+            }
         } else {
-            mykurly_member_info_section.setGone()
             mykurly_member_info_section.setGone()
             mykurly_member_order_section.setGone()
             mykurly_member_logout_section.setGone()
@@ -57,6 +60,10 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
         mykurly_member_logout_section.setOnClickListener(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        initView()
+    }
     override fun onClick(v: View?) {
 
         when(v?.id) {
@@ -67,6 +74,7 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
             R.id.mykurly_member_logout_section -> {
                 sSharedPreferences?.setToken(null)
                 LOGIN_STATUS = Login.NOT_LOGGED
+                CURRENT_USER = null
                 initView()
             }
         }

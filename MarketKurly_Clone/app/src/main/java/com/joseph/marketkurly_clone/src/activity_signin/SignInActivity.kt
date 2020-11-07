@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.google.gson.JsonObject
+import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
 import com.joseph.marketkurly_clone.src.activity_signin.interfaces.SignInApiEvent
 import com.joseph.marketkurly_clone.src.activity_signup.SignUpActivity
 import com.joseph.marketkurly_clone.src.models.Login
@@ -63,16 +65,17 @@ class SignInActivity : BaseActivity(), SignInApiEvent {
         }
     }
 
-    override fun onSignInSuccess(token: String?) {
-        if(token != null) {
-            sSharedPreferences?.setToken(token)
-            LOGIN_STATUS = Login.LOGGED
-            hideProgressDialog()
-            onBackPressed()
-        }
+    override fun onSignInSuccess(token: String, userInfo: UserInfo) {
+
+        sSharedPreferences?.setToken(token)
+        LOGIN_STATUS = Login.LOGGED
+        CURRENT_USER = userInfo
+        hideProgressDialog()
+        onBackPressed()
     }
 
     override fun onSignInFail(message: String) {
         showAlertDialog(message)
+        hideProgressDialog()
     }
 }

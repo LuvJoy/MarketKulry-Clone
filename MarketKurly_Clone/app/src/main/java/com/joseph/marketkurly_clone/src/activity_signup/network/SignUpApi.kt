@@ -1,7 +1,6 @@
 package com.joseph.marketkurly_clone.src.activity_signup.network
 
 import com.google.gson.JsonObject
-import com.joseph.marketkurly_clone.src.activity_signup.models.UserInfo
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -4,7 +4,7 @@ package com.joseph.marketkurly_clone.src.activity_signup.models
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class UserInfo(
+data class PersonalData(
     @SerializedName("address")
     var address: String,
     @SerializedName("address_detail")
