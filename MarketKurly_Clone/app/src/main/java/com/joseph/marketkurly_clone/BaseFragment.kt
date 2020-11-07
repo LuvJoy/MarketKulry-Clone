@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -13,27 +14,32 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.joseph.marketkurly_clone.src.util.setVisible
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 
+open class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), View.OnClickListener {
 
-open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     var mProgressDialog: ProgressDialog? = null
     var mProgressBar: ProgressBarHandler? = null
+    var fragContext: Context? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        fragContext = requireContext()
+        super.onCreate(savedInstanceState)
+    }
     fun showCustomToast(message: String) {
-        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(fragContext, message, Toast.LENGTH_LONG).show()
     }
 
     fun showProgressDialog(message: String? = null) {
         if (mProgressDialog == null) {
             if (message != null) {
-                mProgressDialog = ProgressDialog(this, R.style.BaseProgressDialog).apply {
+                mProgressDialog = ProgressDialog(fragContext, R.style.BaseProgressDialog).apply {
                     setMessage(message)
                     isIndeterminate = true
                 }
             } else {
-                mProgressDialog = ProgressDialog(this, R.style.BaseProgressDialog).apply {
+                mProgressDialog = ProgressDialog(fragContext, R.style.BaseProgressDialog).apply {
                     setMessage(getString(R.string.loading))
                     isIndeterminate = true
                 }
@@ -48,10 +54,9 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
     fun showProgressBar() {
         if (mProgressBar == null) {
-            mProgressBar = ProgressBarHandler(this)
+            mProgressBar = ProgressBarHandler(fragContext!!)
         }
         mProgressBar!!.show()
     }
@@ -68,26 +73,12 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun showAlertDialog(text: String) {
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(fragContext)
                 .setTitle(text)
                 .setPositiveButton("확인") { dialog, which -> dialog?.cancel() }.create().show()
     }
 
     override fun onClick(v: View?) {}
-
-    // 키보드를 다른곳 터치 시 내려주는 메소드
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        val view = currentFocus
-        if (view != null && (ev!!.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE) && view is EditText && !view.javaClass.name.startsWith("android.webkit.")) {
-            val scrcoords = IntArray(2)
-            view.getLocationOnScreen(scrcoords)
-            val x = ev.rawX + view.getLeft() - scrcoords[0]
-            val y = ev.rawY + view.getTop() - scrcoords[1]
-            if (x < view.getLeft() || x > view.getRight() || y < view.getTop() || y > view.getBottom()) (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(this.window.decorView.applicationWindowToken, 0)
-        }
-
-        return super.dispatchTouchEvent(ev)
-    }
 
     inner class ProgressBarHandler(private val mContext: Context) {
         private val mProgressBar: ProgressBar

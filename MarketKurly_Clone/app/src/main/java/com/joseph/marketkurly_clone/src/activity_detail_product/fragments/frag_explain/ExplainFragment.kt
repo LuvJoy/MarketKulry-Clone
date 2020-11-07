@@ -7,10 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
 import kotlinx.android.synthetic.main.fragment_detail_tab_explain.*
 
-class ExplainFragment : Fragment(R.layout.fragment_detail_tab_explain) {
+class ExplainFragment : BaseFragment(R.layout.fragment_detail_tab_explain) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

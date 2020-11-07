@@ -19,6 +19,7 @@ class ImageViewerActivity : BaseActivity() {
         Glide.with(this)
             .load(url)
             .into(imageviewer_scale_imageview)
+        
     }
 
     override fun onClick(v: View?) {

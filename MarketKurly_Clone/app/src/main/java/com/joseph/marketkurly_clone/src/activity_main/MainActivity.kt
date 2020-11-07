@@ -19,7 +19,6 @@ class MainActivity : BaseActivity(),
         setContentView(R.layout.activity_main)
 
         initActivity()
-        showProgressDialog()
     }
 
     fun initActivity () {

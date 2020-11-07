@@ -58,7 +58,7 @@ class SignInActivity : BaseActivity(), SignInApiEvent {
                     addProperty("password", login_pw_edittext.text.toString())
                 }
                 mSignInService.signIn(user)
-
+                showProgressDialog()
             }
         }
     }
@@ -67,7 +67,7 @@ class SignInActivity : BaseActivity(), SignInApiEvent {
         if(token != null) {
             sSharedPreferences?.setToken(token)
             LOGIN_STATUS = Login.LOGGED
-
+            hideProgressDialog()
             onBackPressed()
         }
     }

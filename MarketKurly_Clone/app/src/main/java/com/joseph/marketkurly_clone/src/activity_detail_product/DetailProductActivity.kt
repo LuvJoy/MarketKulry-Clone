@@ -18,6 +18,7 @@ class DetailProductActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_product)
 
+
         initActionBar()
         initViewPager()
     }
