@@ -1,25 +1,27 @@
 package com.joseph.marketkurly_clone.src.activity_select_product
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
-import com.joseph.marketkurly_clone.src.activity_select_product.adapters.SelectProductRecyclerAdapter
+import com.joseph.marketkurly_clone.src.activity_select_product.adapters.ProductOptionRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.PlusMinusButtonListener
+import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.ProductOptionApiEvent
+import com.joseph.marketkurly_clone.src.activity_select_product.models.ProductOption
 import com.joseph.marketkurly_clone.src.util.setVisible
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
-import kotlinx.android.synthetic.main.activity_detail_product.*
 import kotlinx.android.synthetic.main.activity_select_product.*
 
-class SelectProductActivity : BaseActivity(), PlusMinusButtonListener {
+class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOptionApiEvent {
 
+    private lateinit var mProductOptionRecyclerViewAdapter: ProductOptionRecyclerAdapter
     private lateinit var mProductDetail: ProductDetail
-    private var mProductCost: Int = 0
-    private var mProductPoint: Int = 0
+    private var mSelectProductService = SelectProductService(this)
+    private var mTotalCost: Int = 0
+    private var mTotalPoint: Int = 0
 
     val TAG = "[ 로그 ]"
 
@@ -29,17 +31,17 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener {
 
         getIntentData()
         initActionbar()
-        settingView()
         initRecyclerView()
+
+        mSelectProductService.loadProductOption(mProductDetail.productId)
+
         Log.d(TAG, "[SelectProductActivity] - onCreate() : $mProductDetail")
 
     }
 
     fun getIntentData() {
-        val bundle = intent.extras?.getBundle("bundleData")
+        val bundle = intent.extras?.getBundle("productBundle")
         mProductDetail = bundle?.getSerializable("productDetail") as ProductDetail
-        mProductCost = mProductDetail.cost
-       // mProductPoint = mProductDetail.point.toInt()
     }
 
     fun initActionbar() {
@@ -49,13 +51,10 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener {
 
     fun initRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val adapter = SelectProductRecyclerAdapter(this, this)
-
-        val productTypeList: ArrayList<ProductDetail> = arrayListOf(mProductDetail)
-        adapter.submitList(productTypeList)
+        mProductOptionRecyclerViewAdapter = ProductOptionRecyclerAdapter(this, this)
 
         product_select_added_recyclerview.apply {
-            this.adapter = adapter
+            this.adapter = mProductOptionRecyclerViewAdapter
             layoutManager = linearLayoutManager
             setHasFixedSize(true)
         }
@@ -65,25 +64,44 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener {
     fun settingView() {
         product_select_title_textview.text = mProductDetail.name
         product_select_mileage_textview.text =
-            String.format((mProductDetail.point).toDecimalFormat() + "원 적립")
+            String.format(mTotalPoint.toString() + "원 적립")
 
         product_select_price_textview.text =
-            String.format(mProductDetail.cost.toDecimalFormat() + "원")
+            String.format(mTotalPoint.toString() + "원")
+
         product_select_save_mileage_badge.setVisible()
     }
 
-    override fun onPlusClicked(count: Int) {
+    override fun onPlusClicked(count: Int, totalCost: Int, totalPoint: Int) {
+        mTotalPoint += totalPoint
+        mTotalCost += totalCost
         product_select_mileage_textview.text =
-            String.format((mProductDetail.point * count).toDecimalFormat() + "원 적립")
+            String.format(mTotalPoint.toDecimalFormat() + "원 적립")
+
         product_select_price_textview.text =
-            String.format((mProductDetail.cost * count).toDecimalFormat() + "원")
+            String.format(mTotalCost.toDecimalFormat() + "원")
+
     }
 
-    override fun onMinusClicked(count: Int) {
+    override fun onMinusClicked(count: Int, totalCost: Int, totalPoint: Int) {
+        mTotalPoint -= totalPoint
+        mTotalCost -= totalCost
         product_select_mileage_textview.text =
-            String.format((mProductDetail.point * count).toDecimalFormat() + "원 적립")
+            String.format(mTotalPoint.toDecimalFormat() + "원 적립")
+
         product_select_price_textview.text =
-            String.format((mProductDetail.cost * count).toDecimalFormat() + "원")
+            String.format(mTotalCost.toDecimalFormat() + "원")
+
+    }
+
+    override fun onLoadSuccess(optionList: ArrayList<ProductOption>) {
+        Log.d(TAG, "[SelectProductActivity] - onLoadSuccess() : Called")
+        mProductOptionRecyclerViewAdapter.submitList(optionList)
+        settingView()
+    }
+
+    override fun onLoadFail(message: String) {
+        showAlertDialog(message)
     }
 
 }

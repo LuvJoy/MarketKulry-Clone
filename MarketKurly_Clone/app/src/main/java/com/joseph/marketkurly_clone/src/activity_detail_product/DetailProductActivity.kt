@@ -67,7 +67,7 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
                 val bundle = Bundle()
                 val intent = Intent(this, SelectProductActivity::class.java)
                 bundle.putSerializable("productDetail", mProductDetail)
-                intent.putExtra("bundleData", bundle)
+                intent.putExtra("productBundle", bundle)
                 startActivity(intent)
             }
         }

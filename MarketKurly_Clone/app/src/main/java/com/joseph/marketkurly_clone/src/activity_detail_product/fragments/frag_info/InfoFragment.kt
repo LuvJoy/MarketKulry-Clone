@@ -27,6 +27,7 @@ class InfoFragment : BaseFragment(R.layout.fragment_detail_tab_info) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         ICON_CHEVRON_UP = ContextCompat.getDrawable(fragContext!!, R.drawable.ic_chevron_up)
         ICON_CHEVRON_DOWN = ContextCompat.getDrawable(fragContext!!, R.drawable.ic_chevron_down)
         detail_info_see_order_info_button.setOnClickListener(this)

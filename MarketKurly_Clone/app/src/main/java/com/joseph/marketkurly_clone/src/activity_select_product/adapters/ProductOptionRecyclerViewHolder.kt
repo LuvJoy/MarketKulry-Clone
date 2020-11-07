@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
 import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.PlusMinusButtonListener
+import com.joseph.marketkurly_clone.src.activity_select_product.models.ProductOption
 import com.joseph.marketkurly_clone.src.util.setStrikeThru
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 
-class SelectProductRecyclerViewHolder(
+class ProductOptionRecyclerViewHolder(
     private var itemView: View,
     private var listener: PlusMinusButtonListener
 ) :
@@ -24,14 +25,17 @@ class SelectProductRecyclerViewHolder(
     private var tvSalePrice = itemView.findViewById<TextView>(R.id.item_select_sale_price_textview)
     private var tvTitle = itemView.findViewById<TextView>(R.id.item_select_title_textview)
 
-    private var productCount = 1
+    private lateinit var mProductOption: ProductOption
+    private var mProductCount = 0
 
-    fun onBind(itemData: ProductDetail) {
+    fun onBind(itemData: ProductOption) {
+        mProductOption = itemData
+
         tvTitle.text = itemData.name
         tvSalePrice.text = String.format(itemData.discountCost.toDecimalFormat()+"원")
         tvSalePrice.setStrikeThru()
         tvPrice.text = String.format(itemData.cost.toDecimalFormat()+"원")
-        tvCount.text = productCount.toString()
+        tvCount.text = mProductCount.toString()
         btnMinus.setOnClickListener(this)
         btnPlus.setOnClickListener(this)
     }
@@ -39,19 +43,23 @@ class SelectProductRecyclerViewHolder(
     override fun onClick(view: View?) {
         when (view) {
             btnMinus -> {
-                if (productCount >= 1) {
-                    productCount -= 1
-                    listener.onMinusClicked(productCount)
+                if (mProductCount >= 0) {
+                    mProductCount -= 1
+                    val totalPrice = mProductOption.cost * mProductCount
+                    val totalPoint = (totalPrice * 0.05).toInt()
+                    listener.onMinusClicked(mProductCount, totalPrice, totalPoint)
                 }
-                tvCount.text = productCount.toString()
+                tvCount.text = mProductCount.toString()
             }
 
             btnPlus -> {
-                if (productCount < 10) {
-                    productCount += 1
-                    listener.onPlusClicked(productCount)
+                if (mProductCount < 99) {
+                    mProductCount += 1
+                    val totalPrice = mProductOption.cost * mProductCount
+                    val totalPoint = (totalPrice * 0.05).toInt()
+                    listener.onPlusClicked(mProductCount, totalPrice, totalPoint)
                 }
-                tvCount.text = productCount.toString()
+                tvCount.text = mProductCount.toString()
             }
         }
     }
