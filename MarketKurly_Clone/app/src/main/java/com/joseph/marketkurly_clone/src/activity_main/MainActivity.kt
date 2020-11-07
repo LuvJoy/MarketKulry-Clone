@@ -15,7 +15,9 @@ import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.interfaces.LoadUserInfoEvent
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
 import com.joseph.marketkurly_clone.src.models.Login
+import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_main_top.*
+import kotlinx.android.synthetic.main.actionbar_main_top.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(),
@@ -35,6 +37,10 @@ class MainActivity : BaseActivity(),
     fun initActivity() {
         main_menu_bottomnav.setupWithNavController(findNavController(R.id.nav_host_fragment_container))
         main_menu_bottomnav.setOnNavigationItemSelectedListener(this)
+    }
+
+    fun initActionbar() {
+        ab_main_cart_imageview.setOnClickListener{ showAlertDialog("굿")}
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -77,6 +83,8 @@ class MainActivity : BaseActivity(),
     override fun onLoadUserInfoSuccess(user: UserInfo) {
         CURRENT_USER = user
         LOGIN_STATUS = Login.LOGGED
+        main_actionbar.ab_main_cart_badge.setVisible()
+        main_actionbar.ab_main_cart_badge.text = user.cartCount.toString()
     }
 
     override fun onLoadUserInfoFail(message: String) {

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
@@ -13,10 +14,7 @@ import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_signin.SignInActivity
 import com.joseph.marketkurly_clone.src.models.Login
-import com.joseph.marketkurly_clone.src.util.getToken
-import com.joseph.marketkurly_clone.src.util.setGone
-import com.joseph.marketkurly_clone.src.util.setToken
-import com.joseph.marketkurly_clone.src.util.setVisible
+import com.joseph.marketkurly_clone.src.util.*
 import kotlinx.android.synthetic.main.fragment_mykurly.*
 
 class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
@@ -40,10 +38,10 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly) {
             mykurly_login_section.setGone()
             CURRENT_USER.apply {
                 mykurly_member_grade_textview.text = this?.level
-                mykurly_member_name_textview.text = this?.name
+                mykurly_member_name_textview.text = String.format(this?.name + "님")
                 mykurly_member_grade_benefit_textview.text = this?.pointPercentage.toString()
-                mykurly_member_coupon_textview.text = this?.coupon.toString()
-                mykurly_member_mileage_textview.text = this?.points.toString()
+                mykurly_member_coupon_textview.text = String.format(this?.coupon.toString() + " 장")
+                mykurly_member_mileage_textview.text = String.format(this?.points?.toDecimalFormat() + " 원")
             }
         } else {
             mykurly_member_info_section.setGone()

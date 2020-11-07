@@ -66,7 +66,6 @@ class SignInActivity : BaseActivity(), SignInApiEvent {
     }
 
     override fun onSignInSuccess(token: String, userInfo: UserInfo) {
-
         sSharedPreferences?.setToken(token)
         LOGIN_STATUS = Login.LOGGED
         CURRENT_USER = userInfo
@@ -77,5 +76,11 @@ class SignInActivity : BaseActivity(), SignInApiEvent {
     override fun onSignInFail(message: String) {
         showAlertDialog(message)
         hideProgressDialog()
+    }
+
+    override fun onDestroy() {
+        // 코루틴 Job Cancle
+        mSignInService.onCleared()
+        super.onDestroy()
     }
 }

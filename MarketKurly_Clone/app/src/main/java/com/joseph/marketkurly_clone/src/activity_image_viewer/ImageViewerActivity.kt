@@ -4,7 +4,6 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
-import com.davemorrissey.labs.subscaleview.ImageSource
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
 import kotlinx.android.synthetic.main.activity_image_viewer.*

@@ -1,6 +1,7 @@
 package com.joseph.marketkurly_clone.src.activity_signin
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.ApplicationClass
@@ -31,6 +32,7 @@ class SignInService(var listener: SignInApiEvent) {
             var message: String? = null
             var userInfo: UserInfo? = null
 
+            // JWT 토큰을 가져온다.
             var jwt = withContext(Dispatchers.IO) {
                 var signInResponse = mSignInClient.signIn(userAccount).execute()
                 val body = signInResponse.body()
@@ -48,6 +50,7 @@ class SignInService(var listener: SignInApiEvent) {
                 token
             }
 
+            // JWT 토큰 가져오는데 성공했으면 유저 정보를 가져온다.
             if (jwt != null) {
                 userInfo = withContext(Dispatchers.IO) {
                     val loadUserResponse = mLoadUserInfoClient.loadUserInfo().execute()
@@ -73,8 +76,10 @@ class SignInService(var listener: SignInApiEvent) {
             }
 
         }
+    }
 
-
+    fun onCleared() {
+        job.cancel()
     }
 
 }

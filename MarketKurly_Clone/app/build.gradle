@@ -65,7 +65,8 @@ dependencies {
     // CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
-
+    // 이미지 확대, 축소할 수 있는 라이브러리
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    implementation 'com.github.nikartm:image-support:1.0.5'
 }

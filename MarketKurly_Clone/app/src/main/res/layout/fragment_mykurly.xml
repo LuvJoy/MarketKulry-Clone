@@ -255,7 +255,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/sandol_regular"
-                    android:text="쿠폰" />
+                    android:text="친구초대" />
 
                 <TextView
                     android:id="@+id/mykurly_member_invite_textview"
