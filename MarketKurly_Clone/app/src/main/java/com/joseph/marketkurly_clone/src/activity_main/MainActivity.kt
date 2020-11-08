@@ -3,6 +3,7 @@ package com.joseph.marketkurly_clone.src.activity_main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.navigation.findNavController
@@ -13,14 +14,20 @@ import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_LOGIN
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_cart.CartActivity
 import com.joseph.marketkurly_clone.src.activity_main.interfaces.LoadUserInfoEvent
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
+import com.joseph.marketkurly_clone.src.db.Cart
+import com.joseph.marketkurly_clone.src.db.CartDatabase
 import com.joseph.marketkurly_clone.src.models.Login
 import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_main_top.*
 import kotlinx.android.synthetic.main.actionbar_main_top.view.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity(),
         BottomNavigationView.OnNavigationItemSelectedListener,
@@ -43,7 +50,10 @@ class MainActivity : BaseActivity(),
     }
 
     fun initActionbar() {
-        ab_main_cart_imageview.setOnClickListener{ showAlertDialog("굿")}
+        ab_main_cart_imageview.setOnClickListener{
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

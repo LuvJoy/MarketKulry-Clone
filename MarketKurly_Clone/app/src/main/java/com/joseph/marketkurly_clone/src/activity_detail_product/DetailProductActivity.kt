@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.material.tabs.TabLayoutMediator
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_CART
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.adapters.DetailTabLayoutAdapter
 import com.joseph.marketkurly_clone.src.activity_detail_product.interfaces.LoadProductDetailEvent
@@ -68,7 +69,7 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
                 val intent = Intent(this, SelectProductActivity::class.java)
                 bundle.putSerializable("productDetail", mProductDetail)
                 intent.putExtra("productBundle", bundle)
-                startActivity(intent)
+                startActivityForResult(intent, REQUEST_CODE_CART)
             }
         }
     }
@@ -84,4 +85,15 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         showAlertDialog(message)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode) {
+            REQUEST_CODE_CART -> {
+                if(resultCode == RESULT_OK) {
+                    showSnackBar("장바구니에 추가되었습니다!")
+                }
+            }
+        }
+    }
 }

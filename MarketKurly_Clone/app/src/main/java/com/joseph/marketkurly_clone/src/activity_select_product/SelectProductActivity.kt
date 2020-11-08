@@ -1,17 +1,20 @@
 package com.joseph.marketkurly_clone.src.activity_select_product
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_CART
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
 import com.joseph.marketkurly_clone.src.activity_select_product.adapters.ProductOptionRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.PlusMinusButtonListener
 import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.ProductOptionApiEvent
 import com.joseph.marketkurly_clone.src.activity_select_product.models.ProductOption
-import com.joseph.marketkurly_clone.src.models.Cart
+import com.joseph.marketkurly_clone.src.db.Cart
+import com.joseph.marketkurly_clone.src.db.CartRepository
 import com.joseph.marketkurly_clone.src.util.setVisible
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
@@ -82,8 +85,10 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
 
         when(v?.id) {
             R.id.product_select_add_cart_button -> {
+                val addedList = ArrayList<Cart>()
+
                 mIdxCounterHash.keys.forEach {
-                    if(mIdxCounterHash[it] !=0) {
+                    if(mIdxCounterHash[it] != 0) {
                         var addedItem = Cart(
                             cost = it.cost,
                             count = mIdxCounterHash[it]!!,
@@ -93,9 +98,21 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
                             productName = mProductDetail.name,
                             thumbnailUrl = mProductDetail.thumbnailUrl
                         )
-
+                        addedList.add(addedItem)
                     }
                 }
+
+                if(addedList.size == 0) {
+                    showSnackBar("수량은 반드시 1이여야 합니다.")
+                } else {
+                    addedList.forEach {
+                        CartRepository.addCartItem(it)
+                    }
+                    val intent = Intent()
+                    setResult(REQUEST_CODE_CART, intent)
+                    finish()
+                }
+
             }
 
 
