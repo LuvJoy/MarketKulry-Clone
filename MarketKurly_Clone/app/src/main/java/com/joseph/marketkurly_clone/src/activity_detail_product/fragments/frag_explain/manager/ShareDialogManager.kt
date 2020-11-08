@@ -1,6 +1,7 @@
 package com.joseph.marketkurly_clone.src.activity_detail_product.fragments.frag_explain.manager
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -29,15 +30,19 @@ class ShareDialogManager (private var context: Context, private var fragment: Ba
             R.layout.dialog_share, fragment.bottomSheetContainer)
         bottomDialogView.findViewById<LinearLayout>(R.id.share_dialog_kakao_button).setOnClickListener {
             fragment.showCustomToast("kakao")
+            shareIntent(product.name)
         }
         bottomDialogView.findViewById<LinearLayout>(R.id.share_dialog_facebook_button).setOnClickListener {
             fragment.showCustomToast("facebook")
+            shareIntent(product.name)
         }
         bottomDialogView.findViewById<LinearLayout>(R.id.share_dialog_line_button).setOnClickListener {
             fragment.showCustomToast("line")
+            shareIntent(product.name)
         }
         bottomDialogView.findViewById<LinearLayout>(R.id.share_dialog_twitter_button).setOnClickListener {
             fragment.showCustomToast("twitter")
+            shareIntent(product.name)
         }
 
         Glide.with(fragment)
@@ -49,5 +54,14 @@ class ShareDialogManager (private var context: Context, private var fragment: Ba
 
         bottomDialog.setContentView(bottomDialogView)
         bottomDialog.show()
+    }
+
+    fun shareIntent(text: String) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, text) // text는 공유하고 싶은 글자
+
+        val chooser = Intent.createChooser(intent, "공유하기")
+        context.startActivity(chooser)
     }
 }

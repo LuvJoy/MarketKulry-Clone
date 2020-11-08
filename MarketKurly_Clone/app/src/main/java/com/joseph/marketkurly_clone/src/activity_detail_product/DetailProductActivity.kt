@@ -36,7 +36,7 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
 
     fun initActionBar() {
         detail_actionbar.div_line.setGone()
-        detail_actionbar.ab_thin_inner_toolbar.title = "제품 상세설명"
+
         detail_actionbar.ab_thin_inner_toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
@@ -77,6 +77,8 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         mProductDetail = detailData
         ProductObject.data = detailData
         initViewPager(detailData.reviewCount) // 후기 개수때문에 여기서 초기화 해준다.
+
+        detail_actionbar.ab_thin_inner_toolbar.title = detailData.name
     }
 
     override fun onLoadDetailFail(message: String) {

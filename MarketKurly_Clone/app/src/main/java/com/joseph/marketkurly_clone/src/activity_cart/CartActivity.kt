@@ -30,6 +30,7 @@ class CartActivity : BaseActivity(), CartEvent {
 
         mCartService.loadAllCart()
 
+        sticky_scrollview
 
     }
 

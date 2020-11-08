@@ -83,4 +83,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     implementation 'com.github.nikartm:image-support:1.0.5'
+
+    //Sticky ScrollVieew
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
 }

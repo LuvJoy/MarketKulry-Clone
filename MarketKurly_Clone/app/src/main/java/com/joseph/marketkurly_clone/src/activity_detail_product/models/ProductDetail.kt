@@ -7,8 +7,8 @@ import java.io.Serializable
 data class ProductDetail(
     @SerializedName("allergy")
     var allergy: String,
-    @SerializedName("bascket_count")
-    var bascketCount: Int,
+    @SerializedName("cart_count")
+    var cartCount: Int,
     @SerializedName("cost")
     var cost: Int,
     @SerializedName("delivery")
