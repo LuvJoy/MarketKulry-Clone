@@ -16,8 +16,7 @@
         android:id="@+id/sticky_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
-        app:stickyHeader="cart_fridge_layout"
+        app:stickyHeader="@+id/cart_fridge_layout"
         app:stickyFooter="@+id/cart_select_control_layout"
         app:layout_constraintTop_toBottomOf="@+id/cart_actionbar"
         >
@@ -105,6 +104,7 @@
                 android:id="@+id/cart_select_control_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -143,13 +143,14 @@
                 android:id="@+id/cart_fridge_layout"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:background="@color/white"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/cart_fridge"
-                    android:text="냉장보관"
+                    android:text="냉장 상품"
                     android:textSize="18sp"
                     android:paddingLeft="6dp"
                     android:fontFamily="@font/sandol_bold"
@@ -167,19 +168,19 @@
 
             </LinearLayout> <!-- Cart Fridge Section-->
 
-
             <!-- Cart Freezer Section-->
             <LinearLayout
                 android:id="@+id/cart_freezer_layout"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:background="@color/white"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/cart_freezer_textview"
-                    android:text="냉동보관"
+                    android:text="냉동 상품"
                     android:textSize="18sp"
                     android:paddingLeft="6dp"
                     android:fontFamily="@font/sandol_bold"
@@ -197,10 +198,11 @@
 
             </LinearLayout> <!-- Cart Freezer Section-->
 
-            <!-- Cart Freezer Section-->
+            <!-- Cart Room Section-->
             <LinearLayout
                 android:id="@+id/cart_room_layout"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:background="@color/white"
@@ -208,12 +210,12 @@
 
                 <TextView
                     android:id="@+id/cart_room_textview"
-                    android:text="상온보관"
+                    android:text="상온 상품"
                     android:textSize="18sp"
                     android:paddingLeft="6dp"
                     android:fontFamily="@font/sandol_bold"
                     android:textColor="@color/text_black"
-                    android:drawableLeft="@drawable/ic_freezer"
+                    android:drawableLeft="@drawable/ic_room"
                     android:gravity="center_vertical"
                     android:drawablePadding="4dp"
                     android:layout_width="match_parent"
@@ -224,7 +226,181 @@
                     android:padding="16dp"
                     android:layout_height="wrap_content"/>
 
-            </LinearLayout> <!-- Cart Freezer Section-->
+            </LinearLayout> <!-- Cart Room Section-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="68dp"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/cart_cost_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="상품금액"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cart_cost_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/sandol_medium"
+                    android:text="98,900 원"
+                    android:textColor="@color/text_black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_cost_dummy"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cart_cost_dummy"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/cart_discount_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="상품할인금액"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/cart_cost_dummy"
+                    app:layout_constraintTop_toBottomOf="@+id/cart_cost_dummy" />
+
+                <TextView
+                    android:id="@+id/cart_discount_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_medium"
+                    android:text="0 원"
+                    android:textColor="@color/text_black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_discount_dummy"
+                    app:layout_constraintEnd_toEndOf="@+id/cart_cost_textview"
+                    app:layout_constraintTop_toTopOf="@+id/cart_discount_dummy" />
+
+
+                <TextView
+                    android:id="@+id/cart_non_memeber_login_benefit_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="로그인 후 할인금액 적용"
+                    android:textColor="@color/title_gray"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cart_discount_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/cart_discount_textview" />
+
+                <TextView
+                    android:id="@+id/cart_shipping_cost_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_regular"
+                    android:layout_marginTop="32dp"
+                    android:text="배송비"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/cart_discount_dummy"
+                    app:layout_constraintTop_toBottomOf="@+id/cart_discount_dummy" />
+
+                <TextView
+                    android:id="@+id/cart_shipping_cost_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_medium"
+                    android:text="0 원"
+                    android:textColor="@color/text_black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_shipping_cost_dummy"
+                    app:layout_constraintEnd_toEndOf="@+id/cart_non_memeber_login_benefit_textview"
+                    app:layout_constraintTop_toTopOf="@+id/cart_shipping_cost_dummy" />
+
+                <View
+                    android:id="@+id/cart_div_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#E1E1E1"
+                    app:layout_constraintTop_toBottomOf="@+id/cart_shipping_cost_dummy"
+                    />
+
+                <TextView
+                    android:id="@+id/cart_total_cost_dummy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="결제예정금액"
+                    android:layout_marginTop="18dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/cart_shipping_cost_dummy"
+                    app:layout_constraintTop_toBottomOf="@+id/cart_div_line" />
+
+                <TextView
+                    android:id="@+id/cart_total_cost_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_extrabold"
+                    android:text="98,900"
+                    android:layout_marginRight="4dp"
+                    android:textColor="@color/text_black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_total_cost_dummy_textview"
+                    app:layout_constraintEnd_toStartOf="@+id/cart_total_cost_dummy_textview"
+                    app:layout_constraintTop_toTopOf="@+id/cart_total_cost_dummy_textview" />
+
+                <TextView
+                    android:id="@+id/cart_total_cost_dummy_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_medium"
+                    android:text="원"
+                    android:textColor="@color/text_black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_total_cost_dummy"
+                    app:layout_constraintEnd_toEndOf="@+id/cart_shipping_cost_textview"
+                    app:layout_constraintTop_toTopOf="@+id/cart_total_cost_dummy" />
+
+                <TextView
+                    android:id="@+id/cart_non_memeber_login_benefit2_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="로그인 후 할인금액 적용"
+                    android:textColor="@color/title_gray"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cart_total_cost_dummy_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/cart_total_cost_dummy_textview" />
+
+                <TextView
+                    android:id="@+id/cart_save_mileage_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/shape_save_icon"
+                    android:fontFamily="@font/sandol_bold"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="적립"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_non_memeber_login_benefit2_textview"
+                    app:layout_constraintEnd_toStartOf="@+id/cart_non_memeber_login_benefit2_textview"
+                    app:layout_constraintTop_toTopOf="@+id/cart_non_memeber_login_benefit2_textview" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout> <!-- Background -->
