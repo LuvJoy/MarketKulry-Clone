@@ -143,7 +143,7 @@
                 android:id="@+id/cart_fridge_layout"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:background="@color/white"
                 android:layout_height="wrap_content">
@@ -163,7 +163,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:padding="16dp"
+                    tools:listitem="@layout/item_cart"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout> <!-- Cart Fridge Section-->
@@ -173,7 +173,7 @@
                 android:id="@+id/cart_freezer_layout"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:background="@color/white"
                 android:layout_height="wrap_content">
@@ -194,6 +194,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:padding="16dp"
+                    tools:listitem="@layout/item_cart"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout> <!-- Cart Freezer Section-->
@@ -202,7 +203,7 @@
             <LinearLayout
                 android:id="@+id/cart_room_layout"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:background="@color/white"
@@ -224,15 +225,18 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:padding="16dp"
+                    tools:listitem="@layout/item_cart"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout> <!-- Cart Room Section-->
 
+            <!-- 결제정보 Section -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cart_cost_layout"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:paddingTop="18dp"
-                android:paddingBottom="68dp"
+                android:paddingBottom="132dp"
                 android:background="@color/white"
                 android:layout_height="wrap_content">
 
@@ -400,7 +404,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/cart_non_memeber_login_benefit2_textview"
                     app:layout_constraintEnd_toStartOf="@+id/cart_non_memeber_login_benefit2_textview"
                     app:layout_constraintTop_toTopOf="@+id/cart_non_memeber_login_benefit2_textview" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>  <!-- 결제정보 Section -->
 
 
         </LinearLayout> <!-- Background -->

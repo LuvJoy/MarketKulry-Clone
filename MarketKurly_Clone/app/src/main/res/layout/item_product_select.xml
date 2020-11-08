@@ -56,8 +56,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="100dp"
-        android:layout_height="32dp"
+        android:layout_width="96dp"
+        android:layout_height="34dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/shape_rounded_button_stroke"
         android:backgroundTint="@color/text_whitegray"
@@ -69,17 +69,17 @@
         <ImageView
             android:id="@+id/item_select_minus_button"
             android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:padding="6dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
             android:src="@drawable/ic_minus"
             app:tint="@color/kurly_purple" />
 
         <TextView
             android:id="@+id/item_select_count_textview"
-            android:layout_width="33dp"
-            android:layout_height="32dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/sandol_regular"
+            android:fontFamily="@font/sandol_bold"
             android:gravity="center"
             android:text="0"
             android:textColor="@color/text_black"
@@ -89,7 +89,7 @@
             android:id="@+id/item_select_plus_button"
             android:layout_width="32dp"
             android:layout_height="match_parent"
-            android:padding="6dp"
+            android:padding="8dp"
             android:src="@drawable/ic_plus"
             app:tint="@color/kurly_purple" />
     </LinearLayout>
