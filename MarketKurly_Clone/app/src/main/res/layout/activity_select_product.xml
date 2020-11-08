@@ -42,7 +42,6 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="12dp"
             android:background="@color/text_whitegray"
-            app:layout_constraintTop_toBottomOf="@+id/item_select_sale_price_textview"
             tools:layout_editor_absoluteX="12dp" />
 
         <androidx.recyclerview.widget.RecyclerView

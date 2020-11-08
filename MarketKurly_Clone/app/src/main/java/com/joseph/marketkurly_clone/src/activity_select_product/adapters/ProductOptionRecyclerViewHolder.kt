@@ -32,8 +32,10 @@ class ProductOptionRecyclerViewHolder(
         mProductOption = itemData
 
         tvTitle.text = itemData.name
+
         tvSalePrice.text = String.format(itemData.discountCost.toDecimalFormat()+"원")
         tvSalePrice.setStrikeThru()
+
         tvPrice.text = String.format(itemData.cost.toDecimalFormat()+"원")
         tvCount.text = mProductCount.toString()
         btnMinus.setOnClickListener(this)
@@ -43,11 +45,11 @@ class ProductOptionRecyclerViewHolder(
     override fun onClick(view: View?) {
         when (view) {
             btnMinus -> {
-                if (mProductCount >= 0) {
+                if (mProductCount > 0) {
                     mProductCount -= 1
-                    val totalPrice = mProductOption.cost * mProductCount
-                    val totalPoint = (totalPrice * 0.05).toInt()
-                    listener.onMinusClicked(mProductCount, totalPrice, totalPoint)
+                    val minusCost = mProductOption.cost
+                    val minusPoint = (minusCost * 0.05).toInt()
+                    listener.onMinusClicked(mProductOption, mProductCount, minusCost, minusPoint)
                 }
                 tvCount.text = mProductCount.toString()
             }
@@ -55,9 +57,9 @@ class ProductOptionRecyclerViewHolder(
             btnPlus -> {
                 if (mProductCount < 99) {
                     mProductCount += 1
-                    val totalPrice = mProductOption.cost * mProductCount
-                    val totalPoint = (totalPrice * 0.05).toInt()
-                    listener.onPlusClicked(mProductCount, totalPrice, totalPoint)
+                    val plusCost = mProductOption.cost
+                    val plusPoint = (plusCost * 0.05).toInt()
+                    listener.onPlusClicked(mProductOption, mProductCount, plusCost, plusPoint)
                 }
                 tvCount.text = mProductCount.toString()
             }

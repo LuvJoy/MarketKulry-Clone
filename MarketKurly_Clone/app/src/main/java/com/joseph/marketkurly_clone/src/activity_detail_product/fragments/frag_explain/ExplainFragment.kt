@@ -18,7 +18,7 @@ class ExplainFragment : BaseFragment(R.layout.fragment_detail_tab_explain) {
         super.onViewCreated(view, savedInstanceState)
 
         Glide.with(this)
-            .load(R.drawable.dummy_image2)
+            .load("https://firebasestorage.googleapis.com/v0/b/marketkurly-63933.appspot.com/o/product1_thumbnail.png?alt=media&token=f4ffa46a-5f86-4a50-b327-c0afcb31dffe")
             .into(detail_explain_product_imageview)
 
 
