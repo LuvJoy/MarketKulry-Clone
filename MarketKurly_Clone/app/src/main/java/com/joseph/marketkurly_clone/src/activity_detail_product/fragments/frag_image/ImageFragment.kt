@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_detail_product.ProductObject
 import com.joseph.marketkurly_clone.src.activity_image_viewer.ImageViewerActivity
 import kotlinx.android.synthetic.main.fragment_detail_tab_image.*
 import java.io.ByteArrayOutputStream
@@ -21,9 +22,9 @@ class ImageFragment : BaseFragment(R.layout.fragment_detail_tab_image) {
         super.onViewCreated(view, savedInstanceState)
 
         detail_image_imageview.setOnClickListener(this)
-        
+
         Glide.with(this)
-            .load("https://sub.marketkulry.shop/img/product1_detail.png")
+            .load(ProductObject.data?.detailImgUrl)
             .into(detail_image_imageview)
 
     }
@@ -32,7 +33,7 @@ class ImageFragment : BaseFragment(R.layout.fragment_detail_tab_image) {
         when(v?.id) {
             R.id.detail_image_imageview -> {
                 val intent = Intent(requireContext(), ImageViewerActivity::class.java)
-                intent.putExtra("url", "https://sub.marketkulry.shop/img/product1_detail.png")
+                intent.putExtra("url", ProductObject.data?.detailImgUrl)
                 startActivity(intent)
             }
         }

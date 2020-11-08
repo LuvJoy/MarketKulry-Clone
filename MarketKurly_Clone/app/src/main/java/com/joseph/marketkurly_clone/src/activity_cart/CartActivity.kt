@@ -67,4 +67,8 @@ class CartActivity : BaseActivity(), CartEvent {
         TODO("Not yet implemented")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mCartService.onCleared()
+    }
 }

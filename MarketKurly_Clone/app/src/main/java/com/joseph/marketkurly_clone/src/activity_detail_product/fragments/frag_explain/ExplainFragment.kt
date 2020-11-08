@@ -1,24 +1,47 @@
 package com.joseph.marketkurly_clone.src.activity_detail_product.fragments.frag_explain
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.core.view.isGone
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.joseph.marketkurly_clone.ApplicationClass
 import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
 import com.joseph.marketkurly_clone.src.activity_detail_product.ProductObject
+import com.joseph.marketkurly_clone.src.activity_detail_product.fragments.frag_explain.manager.ShareDialogManager
 import com.joseph.marketkurly_clone.src.models.Login
 import com.joseph.marketkurly_clone.src.util.*
+import kotlinx.android.synthetic.main.dialog_share.*
 import kotlinx.android.synthetic.main.fragment_detail_tab_explain.*
 
 class ExplainFragment : BaseFragment(R.layout.fragment_detail_tab_explain) {
 
+    private lateinit var mShareDialogManager: ShareDialogManager
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
         settingView(ProductObject.data!!)
+
+    }
+    fun initView() {
+        detail_explain_share_button.setOnClickListener(this)
+        mShareDialogManager = ShareDialogManager(fragContext!!, this)
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.detail_explain_share_button -> {
+                mShareDialogManager.showDialog(ProductObject.data!!)
+            }
+        }
     }
 
     fun settingView(data: ProductDetail) {

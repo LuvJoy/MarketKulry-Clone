@@ -116,6 +116,11 @@ class MainActivity : BaseActivity(),
         mCartService.loadCartSize()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mCartService.onCleared()
+    }
+
     override fun onLoadUserInfoFail(message: String) {
         CURRENT_USER = null
         LOGIN_STATUS = Login.NOT_LOGGED
