@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
@@ -63,6 +64,10 @@ dependencies {
 
     // Retrofit Logging Intercepter (1. 기본매개변수용 2. 로깅확인용)
     implementation "com.squareup.okhttp3:logging-interceptor:4.8.1"
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.6'
