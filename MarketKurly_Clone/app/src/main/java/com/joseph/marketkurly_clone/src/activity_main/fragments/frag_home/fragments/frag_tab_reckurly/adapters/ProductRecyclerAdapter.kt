@@ -3,10 +3,9 @@ package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragm
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.model.ProductCompact
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
 
 class ProductRecyclerAdapter(var context: Context) :
     RecyclerView.Adapter<ProductRecyclerViewHolder>() {

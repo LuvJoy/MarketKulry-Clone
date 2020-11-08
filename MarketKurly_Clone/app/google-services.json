@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "883648388793",
+    "firebase_url": "https://marketkurly-63933.firebaseio.com",
+    "project_id": "marketkurly-63933",
+    "storage_bucket": "marketkurly-63933.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883648388793:android:430791480109a19b380568",
+        "android_client_info": {
+          "package_name": "com.joseph.marketkurly_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883648388793-vq9164nrhi1rmug6mmah8easj2g4nuen.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joseph.marketkurly_clone",
+            "certificate_hash": "bdd729cc8df158bd2a173de9b7a395a402e38f24"
+          }
+        },
+        {
+          "client_id": "883648388793-93jhp4j5murmg2nesjc6sp9u87mn8nha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwUDRGSJOaIH2EL0pDY9By38VJLRd5FHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883648388793-93jhp4j5murmg2nesjc6sp9u87mn8nha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

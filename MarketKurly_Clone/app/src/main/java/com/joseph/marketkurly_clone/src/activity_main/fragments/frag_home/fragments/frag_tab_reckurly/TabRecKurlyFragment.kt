@@ -1,38 +1,28 @@
 package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.EventViewPagerAdapter
-import com.joseph.marketkurly_clone.src.util.NestedScrollableHost
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.ProductRecyclerAdapter
-import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.model.ProductCompact
-import com.joseph.marketkurly_clone.src.util.reduceDragSensitivity
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.interfaces.HomeProductApiEvent
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
 import kotlinx.android.synthetic.main.fragment_tab_rec_kurly.*
 
-class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly) {
+class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly), HomeProductApiEvent {
 
     private lateinit var mSuggestRecyclerViewAdapter: ProductRecyclerAdapter
     private lateinit var mEventViewPagerAdapter: EventViewPagerAdapter
+    private var mHomeProductService = HomeProductService(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragContext = requireContext()
         initAdapters()
 
-        val dummy = ProductCompact("00010", "[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
-        val dummy2 = ProductCompact("00010", "[남향푸드또띠아] 간편 간식 부리또 8종", "ㅇㅇ", 2800, null, null)
-        val dummy3 = ProductCompact("00010", "[해찬들] 태양초 순창 고추장", "ㅇㅇ", 6000, 4444, 30)
-        val dummy4 = ProductCompact("00010", "[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
-        val dummy5 = ProductCompact("00010", "[해찬들] 태양초 순창 고추장", "ㅇㅇ", 30000, 30000, 30)
-        val list = arrayListOf<ProductCompact>(dummy, dummy2, dummy3, dummy4, dummy5)
-        list.add(dummy)
-        mSuggestRecyclerViewAdapter.submitList(list)
+        mHomeProductService.getRecommendProduct()
     }
 
 
@@ -60,5 +50,13 @@ class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly) {
         reckurly_event_viewpager.isUserInputEnabled = true
         reckurly_event_viewpager.adapter = mEventViewPagerAdapter
         reckurly_event_viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+    }
+
+    override fun onProductLoadSuccess(list: ArrayList<ProductCompact>) {
+        mSuggestRecyclerViewAdapter.submitList(list)
+    }
+
+    override fun onProductLoadFail(message: String) {
+        showAlertDialog(message)
     }
 }

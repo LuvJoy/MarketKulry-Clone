@@ -2,7 +2,6 @@ package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragm
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Paint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.DetailProductActivity
-import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.model.ProductCompact
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
 import com.joseph.marketkurly_clone.src.util.setStrikeThru
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 
@@ -41,19 +40,19 @@ class ProductRecyclerViewHolder(private var itemView: View, private var context:
         this.itemData = product
 
         // 세일은 하지 않을수도 있기 때문에 null 체크를 해준다.
-        if (itemData.salePercentage != null) {
-            tvSalePercent.text = itemData.salePercentage.toString()
-            tvSalePrice.text = itemData.salePrice?.toDecimalFormat()
+        if (itemData.discountPercent != 0) {
+            tvSalePercent.text = itemData.discountPercent.toString()
+            tvSalePrice.text = itemData.cost.toDecimalFormat()
             tvSalePrice.setStrikeThru()
             tvSalePriceDummy.setStrikeThru()
             showSaleLayout()
         }
 
-        tvTitle.text = itemData.title
-        tvPrice.text = itemData.price.toDecimalFormat()
+        tvTitle.text = itemData.name
+        tvPrice.text = itemData.discountCost.toDecimalFormat()
 
         Glide.with(itemView)
-            .load(R.drawable.image_dummy_apple)
+            .load(itemData.thumbnailUrl)
             .into(imgProduct)
         itemView.setOnClickListener(this)
     }
@@ -68,6 +67,7 @@ class ProductRecyclerViewHolder(private var itemView: View, private var context:
         when(view) {
             itemView -> {
                 val intent = Intent(context, DetailProductActivity::class.java)
+                intent.putExtra("productId", itemData.productId)
                 context.startActivity(intent)
             }
         }

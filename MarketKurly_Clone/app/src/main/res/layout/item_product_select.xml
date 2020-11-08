@@ -21,34 +21,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/item_select_sale_price_textview"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:fontFamily="@font/sandol_extrabold"
-        android:text="5,950원"
-        android:textColor="@color/text_whitegray_deep"
-        android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/item_select_title_textview"
-        app:layout_constraintTop_toBottomOf="@+id/item_select_title_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/item_select_title_textview"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/item_select_price_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/sandol_extrabold"
-        android:text="5,950원"
-        android:textColor="@color/text_black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/item_select_sale_price_textview"
-        app:layout_constraintStart_toEndOf="@+id/item_select_sale_price_textview"
-        app:layout_constraintTop_toTopOf="@+id/item_select_sale_price_textview" />
+        <TextView
+            android:id="@+id/item_select_sale_price_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sandol_extrabold"
+            android:text="5,950원"
+            android:textColor="@color/text_whitegray_deep"
+            android:textSize="12dp"
+             />
+
+        <TextView
+            android:id="@+id/item_select_price_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/sandol_extrabold"
+            android:text="5,950원"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_select_sale_price_textview"
+            app:layout_constraintStart_toEndOf="@+id/item_select_sale_price_textview"
+            app:layout_constraintTop_toTopOf="@+id/item_select_sale_price_textview" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="110dp"
+        android:layout_width="100dp"
         android:layout_height="32dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/shape_rounded_button_stroke"

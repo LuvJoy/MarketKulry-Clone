@@ -19,27 +19,37 @@ import com.joseph.marketkurly_clone.src.activity_main.interfaces.LoadUserInfoEve
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
 import com.joseph.marketkurly_clone.src.db.Cart
 import com.joseph.marketkurly_clone.src.db.CartDatabase
+import com.joseph.marketkurly_clone.src.db.CartEvent
+import com.joseph.marketkurly_clone.src.db.CartService
 import com.joseph.marketkurly_clone.src.models.Login
 import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_main_top.*
 import kotlinx.android.synthetic.main.actionbar_main_top.view.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_mykurly.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity(),
-        BottomNavigationView.OnNavigationItemSelectedListener,
-        LoadUserInfoEvent {
+    BottomNavigationView.OnNavigationItemSelectedListener,
+    LoadUserInfoEvent, CartEvent {
+
+    val TAG = "[ 로그 ]"
 
     private var mUserInforService: UserInfoService = UserInfoService(this)
+    private var mCartService: CartService = CartService(this)
+
+    private var mCartCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mUserInforService.loadUserInfo()
+
+
         initActivity()
         initActionbar()
     }
@@ -50,7 +60,7 @@ class MainActivity : BaseActivity(),
     }
 
     fun initActionbar() {
-        ab_main_cart_imageview.setOnClickListener{
+        ab_main_cart_imageview.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }
@@ -96,13 +106,14 @@ class MainActivity : BaseActivity(),
     override fun onLoadUserInfoSuccess(user: UserInfo) {
         CURRENT_USER = user
         LOGIN_STATUS = Login.LOGGED
+        mCartCount += user.cartCount
+        mCartService.loadCartSize()
 
-        setCart(user.cartCount)
     }
 
     override fun onResume() {
         super.onResume()
-
+        mCartService.loadCartSize()
     }
 
     override fun onLoadUserInfoFail(message: String) {
@@ -111,7 +122,7 @@ class MainActivity : BaseActivity(),
     }
 
     fun setCart(count: Int) {
-        if(count != 0) {
+        if (count != 0) {
             main_actionbar.ab_main_cart_badge.text = count.toString()
             main_actionbar.ab_main_cart_badge.setVisible()
         } else {
@@ -123,13 +134,40 @@ class MainActivity : BaseActivity(),
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        when(requestCode) {
+        when (requestCode) {
             REQUEST_CODE_LOGIN -> {
-                if(resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     showSnackBar("로그인에 성공하였습니다.")
                 }
             }
         }
+    }
+
+    override fun onCartAddedSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartAddedFail() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartLoadSuccess(list: List<Cart>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartLoadFail() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartSizeLoadSuccess(size: Int) {
+        Log.d(TAG, "[MainActivity] - onCartSizeLoadSuccess() : $size")
+        mCartCount += size
+        setCart(mCartCount)
+        main_actionbar.ab_main_cart_badge.text = size.toString()
+    }
+
+    override fun onCartSizeLoadFail() {
+        TODO("Not yet implemented")
     }
 
 }

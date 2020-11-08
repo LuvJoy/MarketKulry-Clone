@@ -11,9 +11,7 @@ import com.joseph.marketkurly_clone.src.activity_detail_product.adapters.DetailT
 import com.joseph.marketkurly_clone.src.activity_detail_product.interfaces.LoadProductDetailEvent
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
 import com.joseph.marketkurly_clone.src.activity_select_product.SelectProductActivity
-import com.joseph.marketkurly_clone.src.util.setGone
-import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
-import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.ab_inner_toolbar
+import com.joseph.marketkurly_clone.src.util.*
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.div_line
 import kotlinx.android.synthetic.main.actionbar_inner_page_top_thin.view.*
 import kotlinx.android.synthetic.main.activity_detail_product.*
@@ -32,8 +30,8 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
         initActionBar()
         initView()
         showProgressBar()
-        mDetailProductService.loadProductDetail(1)
 
+        mDetailProductService.loadProductDetail(productId!!)
     }
 
     fun initActionBar() {
@@ -77,7 +75,8 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
     override fun onLoadDetailSuccess(detailData: ProductDetail) {
         hideProgressBar()
         mProductDetail = detailData
-        initViewPager(detailData.reviewCount)
+        ProductObject.data = detailData
+        initViewPager(detailData.reviewCount) // 후기 개수때문에 여기서 초기화 해준다.
     }
 
     override fun onLoadDetailFail(message: String) {
@@ -92,6 +91,8 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
             REQUEST_CODE_CART -> {
                 if(resultCode == RESULT_OK) {
                     showSnackBar("장바구니에 추가되었습니다!")
+                } else if(resultCode == 999){
+                    showSnackBar("오류가 발생했습니다. 잠시후 다시 시도해 주세요")
                 }
             }
         }

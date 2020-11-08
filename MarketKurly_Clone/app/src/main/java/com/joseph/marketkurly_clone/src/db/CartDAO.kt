@@ -6,16 +6,16 @@ import androidx.room.*
 interface CartDAO  {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun addCart(vararg carts: Cart)
+    suspend fun addCart(vararg carts: Cart)
 
     @Delete
-    fun deleteCart(vararg carts: Cart)
+    suspend fun deleteCart(vararg carts: Cart)
 
     @Query("DELETE FROM cart")
-    fun deleteAllCart()
+    suspend fun deleteAllCart()
 
     @Query("SELECT * FROM cart")
-    fun loadAllCart(): List<Cart>
+    suspend fun loadAllCart(): List<Cart>
 
 
 }

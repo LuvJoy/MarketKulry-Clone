@@ -9,6 +9,7 @@ import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
 import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.PlusMinusButtonListener
 import com.joseph.marketkurly_clone.src.activity_select_product.models.ProductOption
+import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setStrikeThru
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 
@@ -33,10 +34,15 @@ class ProductOptionRecyclerViewHolder(
 
         tvTitle.text = itemData.name
 
-        tvSalePrice.text = String.format(itemData.discountCost.toDecimalFormat()+"원")
-        tvSalePrice.setStrikeThru()
+        if(itemData.cost == itemData.discountCost) {
+            tvSalePrice.setGone()
+        } else {
+            tvSalePrice.text = String.format(itemData.cost.toDecimalFormat()+"원")
+            tvSalePrice.setStrikeThru()
+        }
 
-        tvPrice.text = String.format(itemData.cost.toDecimalFormat()+"원")
+
+        tvPrice.text = String.format(itemData.discountCost.toDecimalFormat()+"원")
         tvCount.text = mProductCount.toString()
         btnMinus.setOnClickListener(this)
         btnPlus.setOnClickListener(this)
@@ -47,7 +53,7 @@ class ProductOptionRecyclerViewHolder(
             btnMinus -> {
                 if (mProductCount > 0) {
                     mProductCount -= 1
-                    val minusCost = mProductOption.cost
+                    val minusCost = mProductOption.discountCost
                     val minusPoint = (minusCost * 0.05).toInt()
                     listener.onMinusClicked(mProductOption, mProductCount, minusCost, minusPoint)
                 }
@@ -57,7 +63,7 @@ class ProductOptionRecyclerViewHolder(
             btnPlus -> {
                 if (mProductCount < 99) {
                     mProductCount += 1
-                    val plusCost = mProductOption.cost
+                    val plusCost = mProductOption.discountCost
                     val plusPoint = (plusCost * 0.05).toInt()
                     listener.onPlusClicked(mProductOption, mProductCount, plusCost, plusPoint)
                 }

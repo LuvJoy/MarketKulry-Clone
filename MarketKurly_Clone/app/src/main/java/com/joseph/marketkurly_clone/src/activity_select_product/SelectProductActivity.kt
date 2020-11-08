@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
+import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_CART
 import com.joseph.marketkurly_clone.R
@@ -14,13 +16,17 @@ import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.PlusM
 import com.joseph.marketkurly_clone.src.activity_select_product.interfaces.ProductOptionApiEvent
 import com.joseph.marketkurly_clone.src.activity_select_product.models.ProductOption
 import com.joseph.marketkurly_clone.src.db.Cart
-import com.joseph.marketkurly_clone.src.db.CartRepository
+import com.joseph.marketkurly_clone.src.db.CartEvent
+import com.joseph.marketkurly_clone.src.db.CartService
+import com.joseph.marketkurly_clone.src.models.Login
+import com.joseph.marketkurly_clone.src.util.setGone
+import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
 import kotlinx.android.synthetic.main.activity_select_product.*
 
-class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOptionApiEvent {
+class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOptionApiEvent, CartEvent {
 
     private lateinit var mProductOptionRecyclerViewAdapter: ProductOptionRecyclerAdapter
     private lateinit var mProductDetail: ProductDetail
@@ -30,6 +36,7 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
 
     private var mIdxCounterHash = hashMapOf<ProductOption, Int>()
     private var mOptionList = ArrayList<ProductOption>()
+    private var mCartService = CartService(this)
 
     val TAG = "[ 로그 ]"
 
@@ -72,11 +79,21 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
     fun settingView() {
         product_select_add_cart_button.setOnClickListener(this)
         product_select_title_textview.text = mProductDetail.name
-        product_select_mileage_textview.text =
-            String.format(mTotalPoint.toString() + "원 적립")
-
         product_select_price_textview.text =
             String.format(mTotalPoint.toString() + "원")
+
+
+
+        if(LOGIN_STATUS == Login.LOGGED) {
+            product_select_mileage_dummy.setVisible()
+            product_select_mileage_textview.setVisible()
+            product_select_mileage_textview.text =
+                String.format(mTotalPoint.toString() + "원 적립")
+        } else {
+            product_select_mileage_dummy.setGone()
+            product_select_mileage_textview.setGone()
+            product_select_mileage_non_memeber_textview.setVisible()
+        }
 
         product_select_save_mileage_badge.setVisible()
     }
@@ -105,18 +122,9 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
                 if(addedList.size == 0) {
                     showSnackBar("수량은 반드시 1이여야 합니다.")
                 } else {
-                    addedList.forEach {
-                        CartRepository.addCartItem(it)
-                    }
-                    val intent = Intent()
-                    setResult(REQUEST_CODE_CART, intent)
-                    finish()
+                    mCartService.addCartItem(addedList)
                 }
-
             }
-
-
-
         }
     }
 
@@ -159,4 +167,37 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
         showAlertDialog(message)
     }
 
+    // 장바구니
+    override fun onCartAddedSuccess() {
+        val intent = Intent()
+        setResult(RESULT_OK, intent)
+        finish()
+    }
+
+    override fun onCartAddedFail() {
+        val intent = Intent()
+        setResult(999, intent)
+        finish()
+    }
+
+    override fun onCartLoadSuccess(list: List<Cart>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartLoadFail() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartSizeLoadSuccess(size: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCartSizeLoadFail() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mCartService.onCleared()
+    }
 }

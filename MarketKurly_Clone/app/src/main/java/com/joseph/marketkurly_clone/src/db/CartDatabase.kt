@@ -11,15 +11,23 @@ abstract class CartDatabase: RoomDatabase() {
 
     companion object {
 
-        private var mAppDatabase: CartDatabase? = null
+        private var INSTANCE: CartDatabase? = null
 
-        fun getInstance(context: Context): CartDatabase? {
-            if(mAppDatabase == null) {
-                mAppDatabase = Room.databaseBuilder(context.applicationContext,
-                    CartDatabase::class.java, "cart-cb").build()
-
+        fun getInstance(context: Context): CartDatabase {
+            if (INSTANCE == null) {
+                synchronized(this) {
+                    INSTANCE = buildRoomDB(context)
+                }
             }
-            return mAppDatabase
+            return INSTANCE!!
         }
+
+        private fun buildRoomDB(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                CartDatabase::class.java,
+                "cart-cb"
+            ).build()
+
     }
 }
