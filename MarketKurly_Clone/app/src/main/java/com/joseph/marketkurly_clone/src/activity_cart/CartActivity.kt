@@ -1,11 +1,14 @@
 package com.joseph.marketkurly_clone.src.activity_cart
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.DB_CART
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_search_address.SearchAddressActivity
 import com.joseph.marketkurly_clone.src.db.Cart
 import com.joseph.marketkurly_clone.src.db.CartEvent
 import com.joseph.marketkurly_clone.src.db.CartService
@@ -27,7 +30,7 @@ class CartActivity : BaseActivity(), CartEvent {
         setContentView(R.layout.activity_cart)
 
         initActionbar()
-
+        initViews()
         mCartService.loadAllCart()
 
         sticky_scrollview
@@ -40,7 +43,18 @@ class CartActivity : BaseActivity(), CartEvent {
             setNavigationOnClickListener { onBackPressed() }
         }
     }
+    fun initViews() {
+        cart_put_address_button.setOnClickListener(this)
+    }
 
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.cart_put_address_button -> {
+                val intent = Intent(this, SearchAddressActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
     override fun onCartAddedSuccess() {
         Log.d(TAG, "[CartActivity] - onAddedSuccess() : good")
     }
