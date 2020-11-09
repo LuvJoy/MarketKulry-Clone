@@ -101,9 +101,15 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
         when(v?.id) {
             R.id.product_select_add_cart_button -> {
                 val addedList = ArrayList<Cart>()
+                val optionCount = mIdxCounterHash.keys.size
 
+                if(optionCount == 1) {
+                    var firstOption = mIdxCounterHash.keys.first()
+                    mProductDetail.name = firstOption.name
+                }
                 mIdxCounterHash.keys.forEach {
                     if(mIdxCounterHash[it] != 0) {
+
                         var addedItem = Cart(
                             cost = it.cost,
                             count = mIdxCounterHash[it]!!,

@@ -14,7 +14,7 @@ interface CartApi {
     @GET("cart")
     fun getCart(): Call<JsonObject>
 
-    @DELETE("/cart/{productId{/{optionIdx}")
+    @DELETE("/cart/{productId}/{optionIdx}")
     fun removeCart(
         @Path("productId") productId: Int,
         @Path("optionIdx") optionIdx: Int

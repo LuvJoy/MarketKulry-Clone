@@ -1,6 +1,8 @@
 package com.joseph.marketkurly_clone.src.db
 
 
+import androidx.annotation.Nullable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -22,7 +24,7 @@ data class Cart(
     @SerializedName("package")
     var packageX: String,
     @SerializedName("product_name")
-    var productName: String,
+    var productName: String?,
     @SerializedName("sold_out")
     var soldOut: String,
     @SerializedName("thumbnail_url")

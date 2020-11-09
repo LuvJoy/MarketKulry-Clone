@@ -1,6 +1,8 @@
 package com.joseph.marketkurly_clone.src.db
 
+import android.content.ClipData
 import android.util.Log
+import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.joseph.marketkurly_clone.ApplicationClass
@@ -69,20 +71,8 @@ class CartService(private var listener: CartEvent) {
             }
             size = list!!.size
 
-            if(LOGIN_STATUS == Login.LOGGED) {
-                val body = withContext(Dispatchers.IO){
-                    mCartRetrofit.getCart().execute().body()
-                }
-                val isSuccess = body?.get("is_success")?.asBoolean
+            listener.onCartSizeLoadSuccess(size)
 
-                if(isSuccess!!) {
-                    val userCartsize = body.get("products").asJsonArray.size()
-                    listener.onCartSizeLoadSuccess(size + userCartsize)
-                }
-
-            } else {
-                listener.onCartSizeLoadSuccess(size)
-            }
         }
 
     }
@@ -93,9 +83,27 @@ class CartService(private var listener: CartEvent) {
                 DB_CART?.cartDao()?.deleteAllCart()
             }
 
-            if(LOGIN_STATUS == Login.LOGGED) {
-                for(item in items) {
-                    withContext(Dispatchers.IO){
+            if (LOGIN_STATUS == Login.LOGGED) {
+                for (item in items) {
+                    withContext(Dispatchers.IO) {
+                        mCartRetrofit.removeCart(item.productId, item.optionIdx).execute()
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteCart(items: List<Cart>) {
+        coroutineScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
+                for (item in items) {
+                    DB_CART?.cartDao()?.deleteCart(item)
+                }
+            }
+
+            if (LOGIN_STATUS == Login.LOGGED) {
+                withContext(Dispatchers.IO) {
+                    for (item in items) {
                         mCartRetrofit.removeCart(item.productId, item.optionIdx).execute()
                     }
                 }
@@ -105,18 +113,48 @@ class CartService(private var listener: CartEvent) {
 
 
     fun loadAllCart() {
-        var cartList: List<Cart>? = listOf()
+        var dbCartList: List<Cart>? = listOf()
 
         coroutineScope.launch {
-            cartList = withContext(Dispatchers.IO) {
+            dbCartList = withContext(Dispatchers.IO) {
                 Log.d(TAG, "[CartService] - loadAllCart() : LOADING")
                 DB_CART?.cartDao()?.loadAllCart()
             }
 
-            if(CURRENT_USER != null) {
+            if (LOGIN_STATUS == Login.LOGGED) {
+                var response = withContext(Dispatchers.IO) {
+                    mCartRetrofit.getCart().execute()
+                }
+                var isSuccess = response.body()?.get("is_success")?.asBoolean
+                var serverCartList = ArrayList<Cart>()
+                if (isSuccess!!) {
+                    val list = response.body()?.get("products")?.asJsonArray
+                    list?.forEach {
+                        var item = Gson().fromJson(it, Cart::class.java)
+                        Log.d(TAG, "[CartService] - loadAllCart() server item : $item")
+                        serverCartList.add(item)
+                    }
 
+                    withContext(Dispatchers.IO) {
+                        serverCartList.forEach {
+                            DB_CART?.cartDao()?.addCart(it)
+                        }
+                    }
+
+                    var unionList = withContext(Dispatchers.IO) {
+                        DB_CART?.cartDao()?.loadAllCart()
+                    }
+
+                    listener.onCartLoadSuccess(unionList)
+                } else {
+                    listener.onCartLoadFail()
+                }
+
+            } else {
+                listener.onCartLoadSuccess(dbCartList)
             }
-            listener.onCartLoadSuccess(cartList)
+
+
         }
     }
 
