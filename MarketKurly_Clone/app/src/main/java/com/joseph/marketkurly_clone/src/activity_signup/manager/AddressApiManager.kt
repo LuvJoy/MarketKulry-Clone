@@ -4,15 +4,14 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.os.Build
 import android.os.Handler
-import android.os.Message
 import android.util.Log
 import android.webkit.*
 import com.joseph.marketkurly_clone.Constants.TAG
-import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddressApiEvent
+import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddresApiEvent
 
 
 class AddressApiManager(private var webView: WebView,
-                        private var addressApiListener: AddressApiEvent) {
+                        private var addressApiListener: AddresApiEvent) {
 
     private var handler: Handler? = Handler()
 

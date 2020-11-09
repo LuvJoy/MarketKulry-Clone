@@ -16,6 +16,8 @@ object Constants {
 
     val REQUEST_CODE_LOGIN = 1001
     val REQUEST_CODE_CART = 1002
+    val REQUEST_CODE_ADDRESS = 1003
+    val REQUEST_CODE_ADDRESS_EDIT = 1004
 }
 
 object NetworkConstants {

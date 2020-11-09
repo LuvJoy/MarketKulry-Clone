@@ -16,7 +16,7 @@ import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.KurlyConstants.POST_SHIPPING
 import com.joseph.marketkurly_clone.KurlyConstants.STAR_SHIPPING
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddressApiEvent
+import com.joseph.marketkurly_clone.src.activity_signup.interfaces.AddresApiEvent
 import com.joseph.marketkurly_clone.src.activity_signup.interfaces.SignUpValidationEvent
 import com.joseph.marketkurly_clone.src.activity_signup.manager.AddressApiManager
 import com.joseph.marketkurly_clone.src.activity_signup.manager.SignUpValidationManager
@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.layout_signup_adress.*
 
-class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddressApiEvent, SignUpValidationEvent {
+class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddresApiEvent, SignUpValidationEvent {
 
     val TAG = "[ 로그 ]"
     private lateinit var mSignUpValidationManager: SignUpValidationManager
