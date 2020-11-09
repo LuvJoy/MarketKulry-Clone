@@ -14,6 +14,9 @@ object Constants {
     val MEDIA_TYPE_JSON: MediaType = "application/json; charset=uft-8".toMediaTypeOrNull()!!
     val MEDIA_TYPE_JPEG: MediaType = "image/jpeg".toMediaTypeOrNull()!!
 
+    val RESULT_CODE_SAVE_ADDRESS = 445
+    val RESULT_CODE_REMOVE_ADDRESS = 444
+
     val REQUEST_CODE_LOGIN = 1001
     val REQUEST_CODE_CART = 1002
     val REQUEST_CODE_ADDRESS = 1003

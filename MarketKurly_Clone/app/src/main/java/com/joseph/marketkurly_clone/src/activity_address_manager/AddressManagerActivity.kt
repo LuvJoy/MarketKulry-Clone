@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.Constants
 import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_ADDRESS
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_ADDRESS_EDIT
+import com.joseph.marketkurly_clone.Constants.RESULT_CODE_REMOVE_ADDRESS
+import com.joseph.marketkurly_clone.Constants.RESULT_CODE_SAVE_ADDRESS
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_address_manager.adapters.UserAddressRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_address_manager.interfaces.UserAddressApiEvent
@@ -80,6 +84,15 @@ class AddressManagerActivity : BaseActivity(), UserAddressApiEvent, UserAddressH
             REQUEST_CODE_ADDRESS -> {
                 if(resultCode == RESULT_OK){
                     var address = data?.extras?.getString("address")
+                }
+            }
+
+            REQUEST_CODE_ADDRESS_EDIT -> {
+                if(resultCode == RESULT_CODE_SAVE_ADDRESS){
+
+                }
+                if(resultCode == RESULT_CODE_REMOVE_ADDRESS){
+
                 }
             }
         }

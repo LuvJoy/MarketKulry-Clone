@@ -21,10 +21,7 @@ import com.joseph.marketkurly_clone.src.activity_signup.interfaces.SignUpValidat
 import com.joseph.marketkurly_clone.src.activity_signup.manager.AddressApiManager
 import com.joseph.marketkurly_clone.src.activity_signup.manager.SignUpValidationManager
 import com.joseph.marketkurly_clone.src.activity_signup.models.PersonalData
-import com.joseph.marketkurly_clone.src.util.getShippingType
-import com.joseph.marketkurly_clone.src.util.isAgree
-import com.joseph.marketkurly_clone.src.util.setGone
-import com.joseph.marketkurly_clone.src.util.setVisible
+import com.joseph.marketkurly_clone.src.util.*
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.layout_signup_adress.*
@@ -278,6 +275,7 @@ class SignUpActivity : BaseActivity(), View.OnFocusChangeListener, AddresApiEven
                             postCode = address_layout_addnumber_textview.text.toString(),
                             recommendUserId = signup_additional_id_edittext.text.toString(),
                             smsAgree = signup_consent_sms_radiobutton.isChecked.isAgree(),
+                            morinigDelivery = signup_address_textview.text.toString().getShippingTypeYN()!!
                     )
 
                     Log.d(TAG, "[SignUpActivity] - User : ${user.toString()}")

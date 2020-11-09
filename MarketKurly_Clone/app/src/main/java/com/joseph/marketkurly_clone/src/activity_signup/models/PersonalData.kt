@@ -36,5 +36,7 @@ data class PersonalData(
     @SerializedName("recommend_user_id")
     var recommendUserId: String? =null,
     @SerializedName("sms_agree")
-    var smsAgree: String
+    var smsAgree: String,
+    @SerializedName("morning_delivery")
+    var morinigDelivery: String
 ): Serializable

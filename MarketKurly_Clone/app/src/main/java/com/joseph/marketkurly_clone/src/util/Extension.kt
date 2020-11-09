@@ -68,8 +68,6 @@ fun View.setFadeOutAnimation(context: Context) {
     this.animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
 }
 
-
-
 // 주소가 샛별배송인지 아닌지를 리턴해준다.
 fun String.getShippingType(): String? {
 
@@ -79,6 +77,16 @@ fun String.getShippingType(): String? {
 
     return if (isStarShipping) KurlyConstants.STAR_SHIPPING else KurlyConstants.POST_SHIPPING
 }
+
+fun String.getShippingTypeYN(): String? {
+
+    val isStarShipping = this.contains("인천") ||
+            this.contains("서울") ||
+            this.contains("경기")
+
+    return if (isStarShipping) "Y" else "N"
+}
+
 
 // 상품종류가 냉동, 냉장, 상온인지 분류해준다.
 fun String.convertPackage(): String {

@@ -65,6 +65,7 @@ class SignUpService(private var validationListener: SignUpValidationEvent) {
             addProperty("personal_agree", user.personalAgree)
             addProperty("email_agree", user.emailAgree)
             addProperty("sms_agree", user.smsAgree)
+            addProperty("morning_delivery", user.morinigDelivery)
         }
 
         mRetrofitClient.signUp(jsonObject).enqueue(object: Callback<JsonObject> {

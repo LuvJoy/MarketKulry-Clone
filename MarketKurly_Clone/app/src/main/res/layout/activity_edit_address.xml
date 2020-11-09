@@ -18,7 +18,7 @@
         android:padding="18dp">
 
         <TextView
-            android:id="@+id/edit_address_default_textview"
+            android:id="@+id/edit_address_textview"
             android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,6 @@
             style="@style/kurly_edittext_style"/>
 
         <TextView
-            android:id="@+id/edit_address_phone_number_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="휴대폰 번호"
@@ -69,6 +68,7 @@
             android:textColor="@color/text_black"/>
 
         <EditText
+            android:id="@+id/edit_address_phone_number_edittext"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
@@ -77,6 +77,45 @@
             android:background="@drawable/selector_edittext"
             style="@style/kurly_edittext_style"/>
 
+        <CheckBox
+            android:id="@+id/edit_address_save_default_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_consent_radiobutton"
+            android:text="기본 배송지로 저장"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="8dp"
+            android:fontFamily="@font/sandol_regular"
+            android:textSize="16sp"/>
+
+
+        <Button
+            android:id="@+id/edit_address_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_rounded_button"
+            android:fontFamily="@font/sandol_medium"
+            android:letterSpacing="0.01"
+            android:text="저장"
+            android:textSize="16sp"
+            app:backgroundTint="@color/kurly_purple" />
+
+        <Button
+            android:id="@+id/edit_address_remove_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_rounded_button_stroke"
+            android:fontFamily="@font/sandol_medium"
+            android:letterSpacing="0.01"
+            android:text="삭제"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            app:backgroundTint="@color/text_whitegray" />
+
     </LinearLayout>
+
+
 
 </LinearLayout>
