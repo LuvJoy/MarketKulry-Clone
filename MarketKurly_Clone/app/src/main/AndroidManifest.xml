@@ -17,9 +17,12 @@
         android:theme="@style/Theme.MarketKurly_Clone"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
+        <activity android:name=".src.activity_address_manager.AddressManagerActivity"
+            android:theme="@style/InnerActivityTheme"
+            ></activity>
         <activity
             android:name=".src.activity_search_address.SearchAddressActivity"
-            android:theme="@style/InnerActivityTheme"></activity>
+            android:theme="@style/InnerActivityTheme" />
         <activity
             android:name=".src.activity_cart.CartActivity"
             android:theme="@style/InnerActivityTheme" />

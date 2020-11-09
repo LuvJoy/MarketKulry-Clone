@@ -135,6 +135,7 @@ class MainActivity : BaseActivity(),
             REQUEST_CODE_LOGIN -> {
                 if (resultCode == RESULT_OK) {
                     showSnackBar("로그인에 성공하였습니다.")
+                    mCartService.loadAllCart()
                 }
             }
         }
@@ -149,7 +150,13 @@ class MainActivity : BaseActivity(),
     }
 
     override fun onCartLoadSuccess(list: List<Cart>?) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "[MainActivity] - onCartLoadSuccess() : ${list!!.size}")
+        if(list.isNotEmpty()){
+            mCartCount = list.size
+            setCart(mCartCount)
+            main_actionbar.ab_main_cart_badge.text = mCartCount.toString()
+        }
+
     }
 
     override fun onCartLoadFail() {

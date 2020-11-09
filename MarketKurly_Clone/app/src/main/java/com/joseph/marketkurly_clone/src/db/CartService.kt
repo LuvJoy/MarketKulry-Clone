@@ -77,18 +77,10 @@ class CartService(private var listener: CartEvent) {
 
     }
 
-    fun deleteAllCart(items: List<Cart>) {
+    fun deleteAllCart() {
         coroutineScope.launch {
             CoroutineScope(Dispatchers.IO).launch {
                 DB_CART?.cartDao()?.deleteAllCart()
-            }
-
-            if (LOGIN_STATUS == Login.LOGGED) {
-                for (item in items) {
-                    withContext(Dispatchers.IO) {
-                        mCartRetrofit.removeCart(item.productId, item.optionIdx).execute()
-                    }
-                }
             }
         }
     }

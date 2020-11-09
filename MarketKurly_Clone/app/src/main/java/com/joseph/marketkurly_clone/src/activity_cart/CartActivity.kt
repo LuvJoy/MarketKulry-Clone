@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_address_manager.AddressManagerActivity
 import com.joseph.marketkurly_clone.src.activity_cart.adapters.CartRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_cart.interfaces.ViewHolderClickListener
 import com.joseph.marketkurly_clone.src.activity_search_address.SearchAddressActivity
@@ -18,7 +20,9 @@ import com.joseph.marketkurly_clone.src.db.CartEvent
 import com.joseph.marketkurly_clone.src.db.CartService
 import com.joseph.marketkurly_clone.src.models.Login
 import com.joseph.marketkurly_clone.src.util.setGone
+import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
+import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
 import kotlinx.android.synthetic.main.activity_cart.*
 
@@ -44,6 +48,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
         initlayout()
 
         mCartService.loadAllCart()
+        showProgressBar()
     }
 
     fun initActionbar() {
@@ -51,6 +56,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             title = "장바구니"
             setNavigationOnClickListener { onBackPressed() }
         }
+        cart_actionbar.div_line.setInVisible()
     }
 
 
@@ -63,10 +69,12 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             mFridgeRecyclerAdapter.checkAll(isChecked)
             mFreezerRecyclerAdapter.checkAll(isChecked)
         }
+
+        cart_member_address_layout.setOnClickListener(this)
     }
 
     fun initlayout() {
-        if(LOGIN_STATUS == Login.LOGGED) {
+        if (LOGIN_STATUS == Login.LOGGED) {
             cart_member_address_layout.setVisible()
             cart_put_address_button.setGone()
         } else {
@@ -122,6 +130,11 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
                 val intent = Intent(this, SearchAddressActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.cart_member_address_layout -> {
+                val intent = Intent(this, AddressManagerActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
@@ -149,6 +162,53 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             mRoomRecyclerAdapter.submitList(roomList)
             Log.d(TAG, "[CartActivity] - Freezer submitList() : $roomList")
         }
+
+        setTotalCost()
+    }
+
+    private fun setTotalCost() {
+        var totalCost =
+            mFreezerRecyclerAdapter.getTotalCost() +
+                    mFridgeRecyclerAdapter.getTotalCost() +
+                    mRoomRecyclerAdapter.getTotalCost()
+
+        var totalDiscount =
+            mFreezerRecyclerAdapter.getTotalDiscount() +
+                    mFridgeRecyclerAdapter.getTotalDiscount() +
+                    mRoomRecyclerAdapter.getTotalDiscount()
+
+        var shippingCost = 3000
+
+        cart_cost_textview.text = String.format(totalCost.toDecimalFormat() + " 원")
+        cart_discount_textview.text = String.format(totalDiscount.toDecimalFormat() + " 원")
+
+        if (totalCost > 20000) {
+            shippingCost = 0
+            cart_shipping_cost_textview.text = "0 원"
+        } else {
+            shippingCost = 3000
+            cart_shipping_cost_textview.text = String.format(3000.toDecimalFormat() + " 원")
+        }
+
+        if (LOGIN_STATUS == Login.LOGGED) {
+            cart_total_cost_textview.text =
+                String.format((totalCost + totalDiscount + shippingCost).toDecimalFormat())
+            var mileage = ((totalCost + totalDiscount + shippingCost) * 0.05).toInt()
+
+            cart_member_mileage_textview.text = String.format(mileage.toDecimalFormat()+" 원 적립")
+
+            cart_non_memeber_login_benefit_textview.setGone()
+            cart_non_memeber_login_benefit2_textview.setGone()
+            cart_member_mileage_layout.setVisible()
+
+        } else {
+            cart_total_cost_textview.text =
+                String.format((totalCost + shippingCost).toDecimalFormat() + " 원")
+            cart_non_memeber_login_benefit_textview.setVisible()
+            cart_non_memeber_login_benefit2_textview.setVisible()
+            cart_member_mileage_layout.setGone()
+        }
+
     }
 
     override fun onCartLoadSuccess(list: List<Cart>?) {
@@ -168,6 +228,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
         }
 
         checkRecyclerView()
+        hideProgressBar()
     }
 
     // 카트 이벤트 처리
@@ -199,27 +260,28 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
     //  뷰홀더 클릭이벤트 처리
     override fun onRemoveButtonClicked(item: Cart, position: Int, adapterName: String) {
 
-            AlertDialog.Builder(this).setTitle("정말 삭제하시겠습니까?")
-                .setPositiveButton("확인") { dialog, which ->
-                    when (adapterName) {
-                        "냉장" -> {
-                            mFridgeRecyclerAdapter.removeItem(position)
-                        }
-                        "냉동" -> {
-                            mFreezerRecyclerAdapter.removeItem(position)
-                        }
-                        "상온" -> {
-                            mRoomRecyclerAdapter.removeItem(position)
-                        }
+        AlertDialog.Builder(this).setTitle("정말 삭제하시겠습니까?")
+            .setPositiveButton("확인") { dialog, which ->
+                when (adapterName) {
+                    "냉장" -> {
+                        mFridgeRecyclerAdapter.removeItem(position)
                     }
-                    checkRecyclerView()
-                    mCartService.deleteCart(listOf(item))
+                    "냉동" -> {
+                        mFreezerRecyclerAdapter.removeItem(position)
+                    }
+                    "상온" -> {
+                        mRoomRecyclerAdapter.removeItem(position)
+                    }
                 }
-                .setNegativeButton("취소") { dialog, which ->
-                    dialog.dismiss()
-                }
-                .show()
+                checkRecyclerView()
+                mCartService.deleteCart(listOf(item))
+            }
+            .setNegativeButton("취소") { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
 
+        setTotalCost()
     }
 
     override fun onCheckBoxClicked(isChecked: Boolean, position: Int, adapterName: String) {
@@ -234,6 +296,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
                 mRoomRecyclerAdapter.checkChange(isChecked, position)
             }
         }
+        setTotalCost()
     }
 
     override fun onPlusButtonClicked(count: Int, position: Int, adapterName: String) {
@@ -248,6 +311,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
                 mRoomRecyclerAdapter.changeCount(count, position)
             }
         }
+        setTotalCost()
     }
 
     override fun onMinusButtonClicked(count: Int, position: Int, adapterName: String) {
@@ -262,5 +326,6 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
                 mRoomRecyclerAdapter.changeCount(count, position)
             }
         }
+        setTotalCost()
     }
 }

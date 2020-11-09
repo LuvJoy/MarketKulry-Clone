@@ -10,7 +10,11 @@ import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_cart.interfaces.ViewHolderClickListener
 import com.joseph.marketkurly_clone.src.db.Cart
 
-class CartRecyclerAdapter(private var context: Context, private var itemListener: ViewHolderClickListener, adapterName: String) :
+class CartRecyclerAdapter(
+    private var context: Context,
+    private var itemListener: ViewHolderClickListener,
+    adapterName: String
+) :
     RecyclerView.Adapter<CartRecyclerViewHolder>() {
 
     private var cartList = ArrayList<Cart>()
@@ -45,16 +49,33 @@ class CartRecyclerAdapter(private var context: Context, private var itemListener
         cartList[position].count = count
     }
 
-    fun checkChange(isChecked:Boolean, position: Int) {
+    fun checkChange(isChecked: Boolean, position: Int) {
         positionSelectedChecker[position] = isChecked
         Log.d(TAG, "[CartRecyclerAdapter] - checkChange() : ${positionSelectedChecker.toString()}")
     }
 
     fun checkAll(isChecked: Boolean) {
 
-        for(position in cartList.indices) {
+        for (position in cartList.indices) {
             positionSelectedChecker[position] = isChecked
             notifyItemChanged(position)
         }
+    }
+
+    fun getTotalCost(): Int {
+        var totalCost = 0
+
+        cartList.forEach {
+            totalCost += (it.discountCost * it.count)
+        }
+        return totalCost
+    }
+
+    fun getTotalDiscount(): Int {
+        var totalDiscount = 0
+        cartList.forEach {
+            totalDiscount += (it.discountCost - it.cost) * it.count
+        }
+        return totalDiscount
     }
 }

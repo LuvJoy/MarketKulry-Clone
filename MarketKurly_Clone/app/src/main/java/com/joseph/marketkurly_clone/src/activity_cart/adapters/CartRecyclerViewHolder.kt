@@ -13,9 +13,7 @@ import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_cart.interfaces.ActivityClickListener
 import com.joseph.marketkurly_clone.src.activity_cart.interfaces.ViewHolderClickListener
 import com.joseph.marketkurly_clone.src.db.Cart
-import com.joseph.marketkurly_clone.src.util.setGone
-import com.joseph.marketkurly_clone.src.util.setVisible
-import com.joseph.marketkurly_clone.src.util.toDecimalFormat
+import com.joseph.marketkurly_clone.src.util.*
 
 class CartRecyclerViewHolder(
     private var itemView: View,
@@ -25,6 +23,7 @@ class CartRecyclerViewHolder(
     RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     private var tvCost = itemView.findViewById<TextView>(R.id.item_cart_cost_textview)
+    private var tvSaleCost = itemView.findViewById<TextView>(R.id.item_cart_sale_cost_textview)
     private var tvName = itemView.findViewById<TextView>(R.id.item_cart_name_textview)
     private var tvOption = itemView.findViewById<TextView>(R.id.item_cart_option_name_textview)
     private var btnPlus = itemView.findViewById<ImageView>(R.id.item_cart_plus_button)
@@ -35,13 +34,24 @@ class CartRecyclerViewHolder(
     private var cbSelect = itemView.findViewById<CheckBox>(R.id.item_cart_select_checkbox)
 
     private lateinit var holderItem: Cart
+    private var saleProduct: Boolean = false
 
     fun onBind(itemData: Cart) {
         holderItem = itemData
 
         holderItem.apply {
-            tvCost.text = this.discountCost.toDecimalFormat()
+            tvCost.text = String.format(this.discountCost.toDecimalFormat()+"원")
             tvUnitCount.text = this.count.toString()
+
+            if(this.cost == this.discountCost) {
+                saleProduct = false
+                tvSaleCost.setInVisible()
+            } else {
+                saleProduct = true
+                tvSaleCost.text = String.format(this.cost.toDecimalFormat()+"원")
+                tvSaleCost.setStrikeThru()
+                tvSaleCost.setVisible()
+            }
         }
         if(itemData.productName == "" || itemData.productName == null) {
             tvName.text = itemData.optionName
@@ -52,12 +62,9 @@ class CartRecyclerViewHolder(
             tvOption.setVisible()
         }
 
-
         Glide.with(itemView.context)
             .load(holderItem.thumbnailUrl)
             .into(imgProduct)
-
-        cbSelect.isChecked = true
 
         cbSelect.setOnCheckedChangeListener { buttonView, isChecked ->
             Log.d(TAG, "[CartRecyclerViewHolder] - onBind() : $isChecked")
@@ -75,6 +82,14 @@ class CartRecyclerViewHolder(
                 if (holderItem.count < 100) {
                     holderItem.count += 1
                     tvUnitCount.text = holderItem.count.toString()
+
+                    if(saleProduct) {
+                        tvCost.text = String.format((holderItem.discountCost*holderItem.count).toDecimalFormat()+"원")
+                        tvSaleCost.text = String.format((holderItem.cost*holderItem.count).toDecimalFormat()+"원")
+                    } else {
+                        tvCost.text = String.format((holderItem.discountCost*holderItem.count).toDecimalFormat()+"원")
+                    }
+
                     clickListener.onPlusButtonClicked(holderItem.count, adapterPosition, adapterName)
                 }
             }
@@ -85,8 +100,18 @@ class CartRecyclerViewHolder(
                 if (holderItem.count > 1) {
                     holderItem.count -= 1
                     tvUnitCount.text = holderItem.count.toString()
+
+                    if(saleProduct) {
+                        tvCost.text = String.format((holderItem.discountCost*holderItem.count).toDecimalFormat()+"원")
+                        tvSaleCost.text = String.format((holderItem.cost*holderItem.count).toDecimalFormat()+"원")
+                    } else {
+                        tvCost.text = String.format((holderItem.discountCost*holderItem.count).toDecimalFormat()+"원")
+                    }
+
                     clickListener.onMinusButtonClicked(holderItem.count, adapterPosition, adapterName)
                 }
+
+
 
             }
         }
