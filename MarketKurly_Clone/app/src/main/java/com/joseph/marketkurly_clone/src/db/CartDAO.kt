@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface CartDAO  {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCart(vararg carts: Cart)
 
     @Delete

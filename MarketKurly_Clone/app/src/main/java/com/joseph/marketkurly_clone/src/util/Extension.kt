@@ -11,8 +11,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.gson.Gson
 import com.joseph.marketkurly_clone.KurlyConstants
 import com.joseph.marketkurly_clone.R
-import com.joseph.marketkurly_clone.src.db.Cart
-import com.joseph.marketkurly_clone.src.db.CartDatabase
 import java.text.DecimalFormat
 
 // 문자열이 JSON 형태인지, JSON 배열 형태인지
@@ -46,15 +44,6 @@ fun SharedPreferences.setToken(token: String?) {
 
 fun SharedPreferences.getToken(): String? {
     return this.getString("X-ACCESS-TOKEN", null)
-}
-
-// Cart
-fun SharedPreferences.addCart(item: Cart) {
-    val jsonItem = Gson().toJson(item)
-    this.edit().apply {
-        putString("CART", jsonItem)
-        apply()
-    }
 }
 
 // 뷰의 보이게하기 안보이게 하기
@@ -91,6 +80,10 @@ fun String.getShippingType(): String? {
     return if (isStarShipping) KurlyConstants.STAR_SHIPPING else KurlyConstants.POST_SHIPPING
 }
 
+// 상품종류가 냉동, 냉장, 상온인지 분류해준다.
+fun String.convertPackage(): String {
+    return this.substring(0..1)
+}
 
 
 // 문자열이 동의인지 아닌지로 변환해준다.

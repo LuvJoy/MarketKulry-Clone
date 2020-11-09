@@ -22,7 +22,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:button="@drawable/selector_consent_radiobutton"
-            android:buttonTint="@color/text_whitegray"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="16dp" />
@@ -102,7 +101,7 @@
         app:layout_constraintStart_toEndOf="@+id/item_cart_product_imageview">
 
         <ImageView
-            android:id="@+id/item_scart_minus_button"
+            android:id="@+id/item_cart_minus_button"
             android:layout_width="32dp"
             android:layout_height="match_parent"
             android:padding="8dp"

@@ -1,7 +1,6 @@
 package com.joseph.marketkurly_clone.src.activity_main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -18,7 +17,6 @@ import com.joseph.marketkurly_clone.src.activity_cart.CartActivity
 import com.joseph.marketkurly_clone.src.activity_main.interfaces.LoadUserInfoEvent
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo
 import com.joseph.marketkurly_clone.src.db.Cart
-import com.joseph.marketkurly_clone.src.db.CartDatabase
 import com.joseph.marketkurly_clone.src.db.CartEvent
 import com.joseph.marketkurly_clone.src.db.CartService
 import com.joseph.marketkurly_clone.src.models.Login
@@ -27,10 +25,6 @@ import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_main_top.*
 import kotlinx.android.synthetic.main.actionbar_main_top.view.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_mykurly.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener,
@@ -48,7 +42,6 @@ class MainActivity : BaseActivity(),
         setContentView(R.layout.activity_main)
 
         mUserInforService.loadUserInfo()
-
 
         initActivity()
         initActionbar()
@@ -108,7 +101,6 @@ class MainActivity : BaseActivity(),
         LOGIN_STATUS = Login.LOGGED
         mCartCount += user.cartCount
         mCartService.loadCartSize()
-
     }
 
     override fun onResume() {

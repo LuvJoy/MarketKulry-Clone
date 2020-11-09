@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.joseph.marketkurly_clone.ApplicationClass.Companion.CURRENT_USER
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.BaseActivity
-import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_CART
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_detail_product.models.ProductDetail
 import com.joseph.marketkurly_clone.src.activity_select_product.adapters.ProductOptionRecyclerAdapter
@@ -19,8 +17,8 @@ import com.joseph.marketkurly_clone.src.db.Cart
 import com.joseph.marketkurly_clone.src.db.CartEvent
 import com.joseph.marketkurly_clone.src.db.CartService
 import com.joseph.marketkurly_clone.src.models.Login
+import com.joseph.marketkurly_clone.src.util.convertPackage
 import com.joseph.marketkurly_clone.src.util.setGone
-import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
 import com.joseph.marketkurly_clone.src.util.toDecimalFormat
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
@@ -110,10 +108,13 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
                             cost = it.cost,
                             count = mIdxCounterHash[it]!!,
                             discountCost = it.discountCost,
-                            optionName = mProductDetail.expiration,
+                            optionName = it.name,
+                            soldOut = it.soldOut,
                             productId = it.productId,
                             productName = mProductDetail.name,
-                            thumbnailUrl = mProductDetail.thumbnailUrl
+                            thumbnailUrl = mProductDetail.thumbnailUrl,
+                            packageX = mProductDetail.packageX.convertPackage(),
+                            optionIdx = it.optionIdx
                         )
                         addedList.add(addedItem)
                     }

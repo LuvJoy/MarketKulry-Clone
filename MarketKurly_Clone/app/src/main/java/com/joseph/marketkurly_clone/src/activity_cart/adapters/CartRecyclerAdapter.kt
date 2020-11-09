@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.db.Cart
-import kotlinx.android.synthetic.main.item_cart.view.*
 
 class CartRecyclerAdapter(var context: Context) :
     RecyclerView.Adapter<CartRecyclerViewHolder>() {

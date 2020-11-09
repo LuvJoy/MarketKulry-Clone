@@ -26,7 +26,7 @@ abstract class CartDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 CartDatabase::class.java,
-                "cart-cb"
+                "cart-db-1.02"
             ).build()
 
     }

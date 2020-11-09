@@ -4,9 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.joseph.marketkurly_clone.ApplicationClass.Companion.sSharedPreferences
 import com.joseph.marketkurly_clone.Constants.SHARED_PREPERENCE_KEY
 import com.joseph.marketkurly_clone.Constants.TAG
 import com.joseph.marketkurly_clone.src.activity_main.models.UserInfo

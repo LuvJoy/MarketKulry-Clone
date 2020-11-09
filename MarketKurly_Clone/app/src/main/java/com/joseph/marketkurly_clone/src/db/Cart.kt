@@ -1,16 +1,16 @@
 package com.joseph.marketkurly_clone.src.db
 
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "Cart")
+@Entity(tableName = "Cart", primaryKeys = ["productId", "optionIdx"])
 data class Cart(
-    @PrimaryKey
     @SerializedName("product_id")
     var productId: Int,
+    @SerializedName("option_idx")
+    var optionIdx: Int,
     @SerializedName("cost")
     var cost: Int,
     @SerializedName("count")
@@ -19,8 +19,13 @@ data class Cart(
     var discountCost: Int,
     @SerializedName("option_name")
     var optionName: String,
+    @SerializedName("package")
+    var packageX: String,
     @SerializedName("product_name")
     var productName: String,
+    @SerializedName("sold_out")
+    var soldOut: String,
     @SerializedName("thumbnail_url")
     var thumbnailUrl: String
+
 )
