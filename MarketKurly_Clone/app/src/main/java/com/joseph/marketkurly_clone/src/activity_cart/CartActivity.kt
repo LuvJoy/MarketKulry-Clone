@@ -201,7 +201,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
                 String.format((totalCost + totalDiscount + shippingCost).toDecimalFormat())
             var mileage = ((totalCost + totalDiscount + shippingCost) * 0.05).toInt()
 
-            cart_member_mileage_textview.text = String.format(mileage.toDecimalFormat()+" 원 적립")
+            cart_member_mileage_textview.text = String.format(mileage.toDecimalFormat()+"원 적립")
 
             cart_non_memeber_login_benefit_textview.setGone()
             cart_non_memeber_login_benefit2_textview.setGone()

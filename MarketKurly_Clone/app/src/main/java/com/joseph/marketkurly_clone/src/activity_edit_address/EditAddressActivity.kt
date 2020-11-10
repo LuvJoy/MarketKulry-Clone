@@ -13,6 +13,8 @@ import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_address_manager.models.UserAddress
 import com.joseph.marketkurly_clone.src.activity_edit_address.interfaces.EditAddressApiEvent
 import com.joseph.marketkurly_clone.src.util.isAgree
+import com.joseph.marketkurly_clone.src.util.setGone
+import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_inner_page_top.view.*
 import kotlinx.android.synthetic.main.activity_edit_address.*
 
@@ -46,6 +48,10 @@ class EditAddressActivity : BaseActivity(), EditAddressApiEvent {
     private fun settingView() {
         edit_address_textview.text = mUserAddress.address
         edit_address_detail_address_edittext.setText(mUserAddress.addressDetail)
+
+        if(mUserAddress.isBasic == "Y") {
+            edit_address_remove_button.setGone()
+        }
     }
 
     fun setListener() {

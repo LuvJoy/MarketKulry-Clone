@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface HomeProductApi {
 
-    @GET("recommendedProducts")
+    @GET("recommended-products")
     fun getRecommendProduct() : Call<JsonObject>
 }

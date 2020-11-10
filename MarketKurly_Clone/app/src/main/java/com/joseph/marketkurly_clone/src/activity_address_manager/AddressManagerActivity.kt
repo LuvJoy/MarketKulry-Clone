@@ -34,6 +34,7 @@ class AddressManagerActivity : BaseActivity(), UserAddressApiEvent, UserAddressH
         initRecyclerView()
 
         mUserAddressService.getUserAddress()
+        showProgressBar()
     }
 
     fun initActionbar(){
@@ -72,6 +73,7 @@ class AddressManagerActivity : BaseActivity(), UserAddressApiEvent, UserAddressH
 
     override fun onLoadUserAddressSuccess(list: ArrayList<UserAddress>) {
         mAddressRecyclerAdapter.submitList(list)
+        hideProgressBar()
     }
 
     override fun onLoadUserAddressFail(message: String) {

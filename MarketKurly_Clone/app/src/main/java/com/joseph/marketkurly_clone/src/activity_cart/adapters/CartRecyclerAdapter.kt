@@ -28,6 +28,8 @@ class CartRecyclerAdapter(
 
     override fun onBindViewHolder(holder: CartRecyclerViewHolder, position: Int) {
         holder.onBind(cartList[position])
+
+
     }
 
     override fun getItemCount(): Int {
@@ -59,6 +61,10 @@ class CartRecyclerAdapter(
         for (position in cartList.indices) {
             positionSelectedChecker[position] = isChecked
             notifyItemChanged(position)
+        }
+
+        cartList.forEach {
+
         }
     }
 

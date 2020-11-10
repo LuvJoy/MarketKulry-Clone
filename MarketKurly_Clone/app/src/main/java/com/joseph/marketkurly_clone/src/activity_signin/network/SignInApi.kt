@@ -7,7 +7,7 @@ import retrofit2.http.*
 interface SignInApi {
 
     // 로그인 체크
-    @POST("signIn")
+    @POST("sign-in")
     fun signIn(
             @Body user: JsonObject,
             @Header("Content-Type") Content_Type: String = "application/json"

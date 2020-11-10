@@ -7,6 +7,6 @@ import retrofit2.http.POST
 
 interface UserInfoApi {
 
-    @GET("userInfo")
+    @GET("user-info")
     fun loadUserInfo(): Call<JsonObject>
 }

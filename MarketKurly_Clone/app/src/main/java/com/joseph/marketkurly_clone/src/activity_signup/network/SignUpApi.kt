@@ -6,14 +6,14 @@ import retrofit2.http.*
 
 interface SignUpApi {
 
-    @GET("checkID?")
+    @GET("check-id?")
     fun checkDuplicateID(
             @Query("id") id: String
     ): Call<JsonObject>
 
-    @GET("checkPhoneNumber?")
+    @GET("check-phonenumber?")
     fun checkPhoneNumber(
-            @Query("phoneNumber") phoneNumber: String
+            @Query("phonenumber") phoneNumber: String
     ): Call<JsonObject>
 
     @POST("user")

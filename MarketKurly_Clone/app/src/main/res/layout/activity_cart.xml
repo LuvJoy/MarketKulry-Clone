@@ -28,7 +28,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal"
                 android:padding="16dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/cart_actionbar">
 
                 <ImageView
@@ -48,13 +48,13 @@
                         android:id="@+id/cart_address_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/sandol_medium"
+                        android:fontFamily="@font/sandol_regular"
                         android:gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingTop="2dp"
                         android:text="서울 강남구 양재천로 16"
                         android:textColor="@color/text_black"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/cart_shipping_type_textview"
@@ -62,7 +62,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/sandol_bold"
                         android:paddingLeft="8dp"
-                        android:paddingTop="8dp"
+                        android:paddingTop="4dp"
                         android:text="샛별배송"
                         android:textColor="@color/kurly_purple"
                         android:textSize="14sp" />
@@ -131,7 +131,7 @@
                     android:gravity="right"
                     android:text="선택삭제"
                     android:textColor="@color/text_black"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
             </LinearLayout><!-- Cart Select Control -->
 
             <!-- Cart Fridge Section-->
@@ -383,7 +383,7 @@
                     <TextView
                         android:id="@+id/cart_save_mileage_badge"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="18dp"
                         android:layout_marginRight="8dp"
                         android:background="@drawable/shape_save_icon"
                         android:fontFamily="@font/sandol_bold"
@@ -418,14 +418,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/sandol_regular"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textColor="@color/default_gray"
                             android:layout_marginRight="4dp"
                             android:text="구매 시"/>
                         <TextView
                             android:id="@+id/cart_member_mileage_textview"
                             android:fontFamily="@font/sandol_bold"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textColor="@color/default_gray"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
