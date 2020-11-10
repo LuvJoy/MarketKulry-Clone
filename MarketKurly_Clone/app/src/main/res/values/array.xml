@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="filter">
+    <string-array name="filterShipping">
         <item>샛별지역상품</item>
         <item>택배지역상품</item>
     </string-array>
+
+    <string-array name="filterProduct">
+        <item>신상품순</item>
+        <item>인기상품순</item>
+        <item>낮은 가격순</item>
+        <item>높은 가격순</item>
+    </string-array>
+
 
 </resources>

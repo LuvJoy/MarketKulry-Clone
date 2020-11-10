@@ -1,9 +1,7 @@
-package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_newproduct.adapters
+package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.adapters
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +13,7 @@ import com.joseph.marketkurly_clone.src.util.*
 import kotlinx.android.synthetic.main.layout_sign_sale.view.*
 import java.util.*
 
-class NewProductRecyclerViewHolder(private var itemView: View, private var context: Context) :
+class ProductRecyclerViewHolder(private var itemView: View, private var context: Context) :
     RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     private var tvName = itemView.findViewById<TextView>(R.id.item_product_grid_name_textview)
@@ -38,7 +36,7 @@ class NewProductRecyclerViewHolder(private var itemView: View, private var conte
         viewHolderData = itemData
 
         tvName.text = viewHolderData.name
-        tvDiscountCost.text = viewHolderData.discountCost.toDecimalFormat()
+        tvDiscountCost.text = String.format(viewHolderData.discountCost.toDecimalFormat()+"원")
 
         if (viewHolderData.discountPercent != 0) {
             tvCost.text = String.format(itemData.cost.toDecimalFormat() + "원")

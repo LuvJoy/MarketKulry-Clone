@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fragment_background"
         android:orientation="vertical"
         tools:context=".src.activity_main.fragments.frag_home.fragments.frag_tab_newproduct.TabNewProductFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingTop="12dp"
-            android:paddingRight="16dp">
+            android:paddingLeft="4dp"
+            android:paddingTop="16dp"
+            android:paddingRight="4dp">
 
             <Spinner
-                android:layout_width="0dp"
+                android:layout_width="120dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"
-                android:dropDownSelector="@drawable/ic_cross"
-                android:entries="@array/filter"
-                android:paddingRight="16dp" />
+                android:layout_gravity="right"
+                android:entries="@array/filterShipping"
+                android:paddingRight="30dp"
+                android:theme="@style/SpinnerFont"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:layout_width="0dp"
+                android:layout_width="120dp"
+                android:textAlignment="viewEnd"
                 android:layout_height="30dp"
-                android:layout_weight="1"
-                android:entries="@array/filter"
-                android:textAlignment="viewEnd" />
+                android:layout_gravity="start"
+                android:entries="@array/filterProduct"
+                android:paddingRight="30dp"
+                android:theme="@style/SpinnerFont"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView

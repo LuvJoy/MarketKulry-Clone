@@ -1,8 +1,7 @@
-package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_newproduct.adapters
+package com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.joseph.marketkurly_clone.R
@@ -11,17 +10,17 @@ import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models
 
 
 
-class NewProductRecyclerAdapter(var context: Context) :
-    RecyclerView.Adapter<NewProductRecyclerViewHolder>() {
+class ProductRecyclerAdapter(var context: Context) :
+    RecyclerView.Adapter<ProductRecyclerViewHolder>() {
 
     private var productList = ArrayList<ProductCompact>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewProductRecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductRecyclerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product_grid, parent, false)
-        return NewProductRecyclerViewHolder(view, context)
+        return ProductRecyclerViewHolder(view, context)
     }
 
-    override fun onBindViewHolder(holder: NewProductRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProductRecyclerViewHolder, position: Int) {
         holder.onBind(productList[position])
     }
 
