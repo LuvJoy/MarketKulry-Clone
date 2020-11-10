@@ -17,7 +17,7 @@ class CartRecyclerAdapter(
 ) :
     RecyclerView.Adapter<CartRecyclerViewHolder>() {
 
-    private var cartList = ArrayList<Cart>()
+    var cartList = ArrayList<Cart>()
     private var apapterName = adapterName
     var positionSelectedChecker = hashMapOf<Int, Boolean>()
 

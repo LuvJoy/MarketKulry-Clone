@@ -65,6 +65,8 @@ class CartRecyclerViewHolder(
         Glide.with(itemView.context)
             .load(holderItem.thumbnailUrl)
             .into(imgProduct)
+        
+        cbSelect.isChecked = true
 
         cbSelect.setOnCheckedChangeListener { buttonView, isChecked ->
             Log.d(TAG, "[CartRecyclerViewHolder] - onBind() : $isChecked")

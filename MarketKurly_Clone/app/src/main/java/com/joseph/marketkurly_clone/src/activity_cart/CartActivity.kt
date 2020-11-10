@@ -14,6 +14,7 @@ import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_address_manager.AddressManagerActivity
 import com.joseph.marketkurly_clone.src.activity_cart.adapters.CartRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_cart.interfaces.ViewHolderClickListener
+import com.joseph.marketkurly_clone.src.activity_order.OrderActivity
 import com.joseph.marketkurly_clone.src.activity_search_address.SearchAddressActivity
 import com.joseph.marketkurly_clone.src.activity_search_address.models.Address
 import com.joseph.marketkurly_clone.src.db.Cart
@@ -72,6 +73,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
         }
 
         cart_member_address_layout.setOnClickListener(this)
+        cart_buy_button.setOnClickListener(this)
     }
 
     fun initlayout() {
@@ -133,13 +135,23 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             }
 
             R.id.cart_member_address_layout -> {
-                if(LOGIN_STATUS == Login.LOGGED){
+                if (LOGIN_STATUS == Login.LOGGED) {
                     val intent = Intent(this, AddressManagerActivity::class.java)
                     startActivity(intent)
                 } else {
                     val intent = Intent(this, SearchAddressActivity::class.java)
                     startActivityForResult(intent, REQUEST_CODE_ADDRESS)
                 }
+            }
+            R.id.cart_buy_button -> {
+                var unionList = ArrayList<Cart>()
+                unionList.addAll(mRoomRecyclerAdapter.cartList)
+                unionList.addAll( mFridgeRecyclerAdapter.cartList)
+                unionList.addAll(mFreezerRecyclerAdapter.cartList)
+
+                val intent = Intent(this, OrderActivity::class.java)
+                intent.putExtra("cartList", unionList)
+                startActivity(intent)
             }
         }
     }
@@ -201,7 +213,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
                 String.format((totalCost + totalDiscount + shippingCost).toDecimalFormat())
             var mileage = ((totalCost + totalDiscount + shippingCost) * 0.05).toInt()
 
-            cart_member_mileage_textview.text = String.format(mileage.toDecimalFormat()+"원 적립")
+            cart_member_mileage_textview.text = String.format(mileage.toDecimalFormat() + "원 적립")
 
             cart_non_memeber_login_benefit_textview.setGone()
             cart_non_memeber_login_benefit2_textview.setGone()
@@ -215,9 +227,10 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             cart_member_mileage_layout.setGone()
         }
 
-        cart_buy_button.text = String.format((totalCost + totalDiscount + shippingCost).toDecimalFormat()+"원 주문하기")
+        cart_buy_button.text =
+            String.format((totalCost + totalDiscount + shippingCost).toDecimalFormat() + "원 주문하기")
 
-   }
+    }
 
     override fun onCartLoadSuccess(list: List<Cart>?) {
         list?.forEach {
@@ -357,22 +370,33 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
+        when (requestCode) {
             REQUEST_CODE_ADDRESS -> {
-                if(resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     val bundle = data?.extras?.getBundle("bundle")
                     val address = bundle?.getSerializable("address") as Address
 
                     cart_put_address_button.setGone()
                     cart_member_address_layout.setVisible()
 
-                    cart_address_textview.text = String.format("${address.address} ${address.addressDetail}")
-                    if(address.isStarShipping == "Y") {
+                    cart_address_textview.text =
+                        String.format("${address.address} ${address.addressDetail}")
+                    if (address.isStarShipping == "Y") {
                         cart_shipping_type_textview.text = "샛별배송"
-                        cart_shipping_type_textview.setTextColor(ContextCompat.getColor(this, R.color.kurly_purple))
+                        cart_shipping_type_textview.setTextColor(
+                            ContextCompat.getColor(
+                                this,
+                                R.color.kurly_purple
+                            )
+                        )
                     } else {
                         cart_shipping_type_textview.text = "택배배송"
-                        cart_shipping_type_textview.setTextColor(ContextCompat.getColor(this, R.color.default_gray))
+                        cart_shipping_type_textview.setTextColor(
+                            ContextCompat.getColor(
+                                this,
+                                R.color.default_gray
+                            )
+                        )
                     }
 
                 }
