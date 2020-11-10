@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".src.activity_main.fragments.frag_home.fragments.frag_tab_alshopping.TabAlShoppingFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/fragment_background"
+        android:orientation="vertical"
+        tools:context=".src.activity_main.fragments.frag_home.fragments.frag_tab_newproduct.TabNewProductFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="4dp"
+            android:paddingTop="16dp"
+            android:paddingRight="4dp">
+
+            <Spinner
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:entries="@array/filterShipping"
+                android:paddingRight="30dp"
+                android:theme="@style/SpinnerFont"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:layout_width="120dp"
+                android:textAlignment="viewEnd"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:entries="@array/filterProduct"
+                android:paddingRight="30dp"
+                android:theme="@style/SpinnerFont"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tab_al_shopping_product_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="12dp" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
