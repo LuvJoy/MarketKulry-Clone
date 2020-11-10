@@ -215,7 +215,9 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             cart_member_mileage_layout.setGone()
         }
 
-    }
+        cart_buy_button.text = String.format((totalCost + totalDiscount + shippingCost).toDecimalFormat()+"원 주문하기")
+
+   }
 
     override fun onCartLoadSuccess(list: List<Cart>?) {
         list?.forEach {
@@ -247,6 +249,14 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
     }
 
     override fun onCartSizeLoadFail() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateSuccess() {
+        setTotalCost()
+    }
+
+    override fun onUpdateFail() {
         TODO("Not yet implemented")
     }
 
@@ -306,33 +316,43 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
     }
 
     override fun onPlusButtonClicked(count: Int, position: Int, adapterName: String) {
+        var clickedItem: Cart? = null
         when (adapterName) {
             "냉장" -> {
                 mFridgeRecyclerAdapter.changeCount(count, position)
+                clickedItem = mFridgeRecyclerAdapter.getPositionCart(position)
             }
             "냉동" -> {
                 mFreezerRecyclerAdapter.changeCount(count, position)
+                clickedItem = mFreezerRecyclerAdapter.getPositionCart(position)
             }
             "상온" -> {
                 mRoomRecyclerAdapter.changeCount(count, position)
+                clickedItem = mRoomRecyclerAdapter.getPositionCart(position)
             }
         }
-        setTotalCost()
+        mCartService.updateCart(clickedItem!!, count)
+
     }
 
     override fun onMinusButtonClicked(count: Int, position: Int, adapterName: String) {
+        var clickedItem: Cart? = null
         when (adapterName) {
             "냉장" -> {
                 mFridgeRecyclerAdapter.changeCount(count, position)
+                clickedItem = mFridgeRecyclerAdapter.getPositionCart(position)
             }
             "냉동" -> {
                 mFreezerRecyclerAdapter.changeCount(count, position)
+                clickedItem = mFreezerRecyclerAdapter.getPositionCart(position)
             }
             "상온" -> {
                 mRoomRecyclerAdapter.changeCount(count, position)
+                clickedItem = mRoomRecyclerAdapter.getPositionCart(position)
             }
         }
-        setTotalCost()
+        mCartService.updateCart(clickedItem!!, count)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

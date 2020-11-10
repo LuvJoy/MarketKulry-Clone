@@ -203,6 +203,14 @@ class SelectProductActivity : BaseActivity(), PlusMinusButtonListener, ProductOp
         TODO("Not yet implemented")
     }
 
+    override fun onUpdateSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateFail() {
+        TODO("Not yet implemented")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mCartService.onCleared()

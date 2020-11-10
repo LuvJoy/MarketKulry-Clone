@@ -84,4 +84,8 @@ class CartRecyclerAdapter(
         }
         return totalDiscount
     }
+
+    fun getPositionCart(position: Int): Cart {
+        return cartList[position]
+    }
 }

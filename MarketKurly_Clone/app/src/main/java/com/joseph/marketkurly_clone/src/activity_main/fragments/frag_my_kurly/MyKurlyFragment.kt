@@ -114,4 +114,12 @@ class MyKurlyFragment : BaseFragment(R.layout.fragment_mykurly), CartEvent {
     override fun onCartSizeLoadFail() {
         TODO("Not yet implemented")
     }
+
+    override fun onUpdateSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateFail() {
+        TODO("Not yet implemented")
+    }
 }

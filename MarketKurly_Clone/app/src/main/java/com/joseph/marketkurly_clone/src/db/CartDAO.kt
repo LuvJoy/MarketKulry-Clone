@@ -17,5 +17,6 @@ interface CartDAO  {
     @Query("SELECT * FROM cart")
     suspend fun loadAllCart(): List<Cart>
 
-
+    @Update
+    suspend fun updateCart(vararg carts: Cart)
 }

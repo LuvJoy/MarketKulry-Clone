@@ -175,4 +175,12 @@ class MainActivity : BaseActivity(),
         TODO("Not yet implemented")
     }
 
+    override fun onUpdateSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onUpdateFail() {
+        TODO("Not yet implemented")
+    }
+
 }

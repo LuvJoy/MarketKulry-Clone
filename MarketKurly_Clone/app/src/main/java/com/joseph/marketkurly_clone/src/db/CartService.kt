@@ -150,6 +150,38 @@ class CartService(private var listener: CartEvent) {
         }
     }
 
+    fun updateCart(cart: Cart, count: Int) {
+        coroutineScope.launch {
+
+            cart.count = count
+
+            CoroutineScope(Dispatchers.IO).launch {
+                DB_CART?.cartDao()?.updateCart(cart)
+            }
+
+            if(LOGIN_STATUS == Login.LOGGED) {
+                val json = JsonObject()
+                json.apply {
+                    addProperty("product_id", cart.productId)
+                    addProperty("option_idx", cart.optionIdx)
+                    addProperty("count", cart.count)
+                }
+                var response = withContext(Dispatchers.IO){
+                    mCartRetrofit.updateCart(json).execute()
+                }
+                val is_success = response.body()?.get("is_success")?.asBoolean
+                if(is_success!!) {
+                    listener.onUpdateSuccess()
+                } else {
+                    listener.onUpdateFail()
+                }
+            } else {
+                listener.onUpdateSuccess()
+            }
+
+        }
+    }
+
 
     fun onCleared() {
         job.cancel()

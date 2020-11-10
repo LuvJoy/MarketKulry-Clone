@@ -10,4 +10,8 @@ interface CartEvent {
 
     fun onCartSizeLoadSuccess(size: Int)
     fun onCartSizeLoadFail()
+
+    fun onUpdateSuccess()
+    fun onUpdateFail()
+
 }
