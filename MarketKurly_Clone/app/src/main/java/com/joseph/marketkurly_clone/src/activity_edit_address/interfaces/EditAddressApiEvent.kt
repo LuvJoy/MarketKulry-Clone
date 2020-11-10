@@ -4,4 +4,7 @@ interface EditAddressApiEvent {
 
     fun onEditSuccess()
     fun onEditFail(message: String)
+
+    fun onRemoveSuccess()
+    fun onRemoveFail(message: String)
 }

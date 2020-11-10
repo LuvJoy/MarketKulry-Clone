@@ -65,7 +65,7 @@ class AddressManagerActivity : BaseActivity(), UserAddressApiEvent, UserAddressH
         when(v?.id) {
             R.id.add_manager_add_address_button -> {
                 val intent = Intent(this, SearchAddressActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, REQUEST_CODE_ADDRESS)
             }
         }
     }
@@ -84,15 +84,18 @@ class AddressManagerActivity : BaseActivity(), UserAddressApiEvent, UserAddressH
             REQUEST_CODE_ADDRESS -> {
                 if(resultCode == RESULT_OK){
                     var address = data?.extras?.getString("address")
+                    mUserAddressService.getUserAddress()
                 }
             }
 
             REQUEST_CODE_ADDRESS_EDIT -> {
                 if(resultCode == RESULT_CODE_SAVE_ADDRESS){
-
+                    showSnackBar("수정이 반영되었습니다.")
+                    mUserAddressService.getUserAddress()
                 }
                 if(resultCode == RESULT_CODE_REMOVE_ADDRESS){
-
+                    showSnackBar("성공적으로 삭제했습니다.")
+                    mUserAddressService.getUserAddress()
                 }
             }
         }

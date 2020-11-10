@@ -160,7 +160,8 @@ class MainActivity : BaseActivity(),
     }
 
     override fun onCartLoadFail() {
-        TODO("Not yet implemented")
+        Log.d(TAG, "[MainActivity] - onCartLoadFail() : 카트 로드 실패")
+
     }
 
     override fun onCartSizeLoadSuccess(size: Int) {

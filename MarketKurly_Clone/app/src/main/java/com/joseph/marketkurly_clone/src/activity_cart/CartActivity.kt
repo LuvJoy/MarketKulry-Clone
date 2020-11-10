@@ -5,14 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joseph.marketkurly_clone.ApplicationClass.Companion.LOGIN_STATUS
 import com.joseph.marketkurly_clone.BaseActivity
+import com.joseph.marketkurly_clone.Constants.REQUEST_CODE_ADDRESS
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_address_manager.AddressManagerActivity
 import com.joseph.marketkurly_clone.src.activity_cart.adapters.CartRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_cart.interfaces.ViewHolderClickListener
 import com.joseph.marketkurly_clone.src.activity_search_address.SearchAddressActivity
+import com.joseph.marketkurly_clone.src.activity_search_address.models.Address
 import com.joseph.marketkurly_clone.src.db.Cart
 import com.joseph.marketkurly_clone.src.db.CartEvent
 import com.joseph.marketkurly_clone.src.db.CartService
@@ -126,12 +129,17 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
         when (v?.id) {
             R.id.cart_put_address_button -> {
                 val intent = Intent(this, SearchAddressActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, REQUEST_CODE_ADDRESS)
             }
 
             R.id.cart_member_address_layout -> {
-                val intent = Intent(this, AddressManagerActivity::class.java)
-                startActivity(intent)
+                if(LOGIN_STATUS == Login.LOGGED){
+                    val intent = Intent(this, AddressManagerActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, SearchAddressActivity::class.java)
+                    startActivityForResult(intent, REQUEST_CODE_ADDRESS)
+                }
             }
         }
     }
@@ -201,7 +209,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
 
         } else {
             cart_total_cost_textview.text =
-                String.format((totalCost + shippingCost).toDecimalFormat() + " 원")
+                String.format((totalCost + shippingCost).toDecimalFormat())
             cart_non_memeber_login_benefit_textview.setVisible()
             cart_non_memeber_login_benefit2_textview.setVisible()
             cart_member_mileage_layout.setGone()
@@ -325,5 +333,30 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
             }
         }
         setTotalCost()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            REQUEST_CODE_ADDRESS -> {
+                if(resultCode == RESULT_OK) {
+                    val bundle = data?.extras?.getBundle("bundle")
+                    val address = bundle?.getSerializable("address") as Address
+
+                    cart_put_address_button.setGone()
+                    cart_member_address_layout.setVisible()
+
+                    cart_address_textview.text = String.format("${address.address} ${address.addressDetail}")
+                    if(address.isStarShipping == "Y") {
+                        cart_shipping_type_textview.text = "샛별배송"
+                        cart_shipping_type_textview.setTextColor(ContextCompat.getColor(this, R.color.kurly_purple))
+                    } else {
+                        cart_shipping_type_textview.text = "택배배송"
+                        cart_shipping_type_textview.setTextColor(ContextCompat.getColor(this, R.color.default_gray))
+                    }
+
+                }
+            }
+        }
     }
 }

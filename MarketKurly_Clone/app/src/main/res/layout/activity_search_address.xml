@@ -63,7 +63,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/search_address_detail_address_textview"
+            android:id="@+id/search_address_address_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="서울 강남구 압구정로 102(형지제2빌딩)"
@@ -83,6 +83,7 @@
             android:background="@drawable/selector_edittext"/>
 
         <TextView
+            android:id="@+id/search_address_non_memeber_notice_textview"
             android:fontFamily="@font/sandol_regular"
             android:textSize="14sp"
             android:layout_marginTop="12dp"
@@ -91,12 +92,22 @@
             android:textColor="@color/default_gray"
             android:text="저장된 배송지는 최대 7일 간 임시 저장 후 삭제됩니다.\n로그인 할 경우, 회원미의 배송지 목록에 추가됩니다."/>
 
+        <CheckBox
+            android:id="@+id/search_address_member_save_default_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_consent_radiobutton"
+            android:text="기본 배송지로 저장"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="8dp"
+            android:fontFamily="@font/sandol_regular"
+            android:textSize="16sp"/>
 
         <Button
             android:id="@+id/search_address_detail_save_button"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="18dp"
             android:text="저장"
             android:textSize="16sp"
             android:fontFamily="@font/sandol_bold"

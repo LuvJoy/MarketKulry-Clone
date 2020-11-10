@@ -80,14 +80,7 @@ class EditAddressActivity : BaseActivity(), EditAddressApiEvent {
                         phoneNumber = edit_address_phone_number_edittext.text.toString()
                         isBasic = edit_address_save_default_checkbox.isChecked.isAgree()
                     }
-                    val bundle = Bundle()
-                    val intent = Intent()
-
-                    bundle.putSerializable("userAddress", mUserAddress)
-                    intent.putExtra("bundle", intent)
-
-                    setResult(RESULT_CODE_SAVE_ADDRESS, intent)
-                    finish()
+                    mEditAddressService.editAddress(mUserAddress)
                 } else {
                     showAlertDialog("올바른 휴대폰 번호를 입력해 주세요")
                 }
@@ -95,12 +88,8 @@ class EditAddressActivity : BaseActivity(), EditAddressApiEvent {
             }
 
             R.id.edit_address_remove_button -> {
-                val bundle = Bundle()
-                val intent = Intent()
-                bundle.putSerializable("userAddress", mUserAddress)
-                intent.putExtra("bundle", intent)
-                setResult(RESULT_CODE_REMOVE_ADDRESS, intent)
-                finish()
+
+                mEditAddressService.removeAddress(mUserAddress.addressId)
             }
         }
     }
@@ -108,10 +97,32 @@ class EditAddressActivity : BaseActivity(), EditAddressApiEvent {
     override fun onEditSuccess() {
         Log.d(TAG, "[EditAddressActivity] - onEditSuccess() : 서버 반영 성공")
 
+        val bundle = Bundle()
+        val intent = Intent()
+
+        bundle.putSerializable("userAddress", mUserAddress)
+        intent.putExtra("bundle", bundle)
+
+        setResult(RESULT_CODE_SAVE_ADDRESS, intent)
+        finish()
+
     }
 
     override fun onEditFail(message: String) {
         Log.d(TAG, "[EditAddressActivity] - onEditSuccess() : 서버 반영 실")
+    }
+
+    override fun onRemoveSuccess() {
+        val bundle = Bundle()
+        val intent = Intent()
+        bundle.putSerializable("userAddress", mUserAddress)
+        intent.putExtra("bundle", bundle)
+        setResult(RESULT_CODE_REMOVE_ADDRESS, intent)
+        finish()
+    }
+
+    override fun onRemoveFail(message: String) {
+        showSnackBar(message)
     }
 
 
