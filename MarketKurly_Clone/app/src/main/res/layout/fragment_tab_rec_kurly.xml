@@ -46,6 +46,10 @@
                 android:text="이 상품 어때요?"
                 android:textColor="@color/title_gray"
                 android:textSize="18sp" />
+            <com.joseph.marketkurly_clone.src.util.NestedScrollableHost
+                android:id="@+id/reckurly_suggest_recyclerview_frame"
+                android:layout_width="match_parent"
+                android:layout_height="368dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reckurly_suggest_recyclerview"
@@ -55,6 +59,7 @@
                 android:paddingTop="12dp"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_product" />
+            </com.joseph.marketkurly_clone.src.util.NestedScrollableHost>
 
         </LinearLayout>
 

@@ -21,6 +21,8 @@ object Constants {
     val REQUEST_CODE_CART = 1002
     val REQUEST_CODE_ADDRESS = 1003
     val REQUEST_CODE_ADDRESS_EDIT = 1004
+
+    val REQUEST_CODE_ORDER_ADDRESS_CHANGE = 1007
 }
 
 object NetworkConstants {
