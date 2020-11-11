@@ -2,6 +2,7 @@ package com.joseph.marketkurly_clone.src.activity_order.models
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class OrderAddress(
     @SerializedName("address")
@@ -20,4 +21,4 @@ data class OrderAddress(
     var place: String,
     @SerializedName("place_detail")
     var placeDetail: String
-)
+): Serializable

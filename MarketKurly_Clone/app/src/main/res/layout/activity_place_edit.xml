@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fragment_background"
+    android:orientation="vertical"
+    tools:context=".src.activity_place_edit.PlaceEditActivity">
+
+    <include
+        android:id="@+id/place_edit_actionbar"
+        layout="@layout/actionbar_inner_page_top" />
+
+    <ScrollView
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="받으실 장소*"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/place_edit_place_radiogroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp">
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_door_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="문 앞"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_office_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="경비실"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_postbox_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="택배함"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_etc_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="기타장소"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="공동현관 출입 방법*"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/place_edit_place_door_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp">
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_door_password_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="공동현관 비밀번호"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/place_edit_place_door_password_edittext"
+                            style="@style/kurly_edittext_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/selector_edittext"
+                            android:hint="예: #1234" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/sandol_regular"
+                            android:paddingLeft="2dp"
+                            android:text="특수문자를 포함한 정확한 비밀번호를 입력해 주세요."
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_door_free_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="자유 출입 가능"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_door_etc_radiobutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center"
+                        android:text="기타"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#F7F1FA"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_alert_circle_gray"
+                        android:drawablePadding="8dp"
+                        android:drawableTint="@color/text_black"
+                        android:fontFamily="@font/sandol_bold"
+                        android:text="확인해주세요!"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:lineSpacingExtra="2sp"
+                        android:text="비밀번호가 정확하지 않을 경우, 부득이하게 1층 공동현관 앞 또는 경비실 앞에 배송될 수 있습니다."
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="배송 완료 메시지 전송*"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+
+                <RadioGroup
+                    android:id="@+id/place_edit_place_message_radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_message_direct_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="배송 직후"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/place_edit_place_message_7am_radiobutton"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_radiobutton"
+                        android:drawablePadding="16dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:gravity="center_vertical"
+                        android:text="오전 7시"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/place_edit_check_button"
+                android:text="확인"
+                android:background="@drawable/shape_rounded_button"
+                android:fontFamily="@font/sandol_regular"
+                android:textSize="16sp"
+                android:layout_margin="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

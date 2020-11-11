@@ -128,9 +128,40 @@ class OrderActivity : BaseActivity(), OrderApiEvnet {
             order_userinfo_name_textview.text = userInfo.name
             order_userinfo_phone_textview.text = userInfo.phoneNumber
         }
+
+        if(address?.delivery == "샛별배송") {
+            order_address_shipping_morning_badge.setVisible()
+            order_address_shipping_post_badge.setGone()
+        } else {
+            order_address_shipping_morning_badge.setGone()
+            order_address_shipping_post_badge.setVisible()
+        }
+        order_address_textview.text = address?.address
+
+
     }
 
     override fun onGetSheetFail(message: String) {
         showSnackBar(message)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode) {
+            REQUEST_CODE_ORDER_ADDRESS_CHANGE -> {
+                if(resultCode == RESULT_OK) {
+                    var orderAddress = data?.extras?.getSerializable("orderAddress") as OrderAddress
+                    if(orderAddress?.delivery == "샛별배송") {
+                        order_address_shipping_morning_badge.setVisible()
+                        order_address_shipping_post_badge.setGone()
+                    } else {
+                        order_address_shipping_morning_badge.setGone()
+                        order_address_shipping_post_badge.setVisible()
+                    }
+                    order_address_receiver_textview.text = String.format("${orderAddress.name}, ${orderAddress.phoneNumber}")
+                    order_address_textview.text = orderAddress.address
+                }
+            }
+        }
     }
 }

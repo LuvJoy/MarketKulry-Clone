@@ -4,8 +4,234 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".src.activity_order_address_edit.OrderAddressEditActivity">
 
+    <include
+        android:id="@+id/order_address_edit_actionbar"
+        layout="@layout/actionbar_inner_page_top" />
 
+    <ScrollView
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="18dp">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="받는 분 이름*"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/order_address_edit_name_edittext"
+                style="@style/kurly_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/selector_edittext"
+                android:hint="이름을 입력해 주세요" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="받는 분 휴대폰*"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/order_address_edit_phone_edittext"
+                style="@style/kurly_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/selector_edittext"
+                android:hint="휴대폰 번호를 입력해 주세요"
+                android:inputType="phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="주소*"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/shape_rounded_button_stroke"
+                android:backgroundTint="@color/text_whitegray"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/order_address_edit_morning_shipping_badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edge_oval_button_stroke"
+                            android:backgroundTint="@color/kurly_purple"
+                            android:fontFamily="@font/sandol_regular"
+                            android:gravity="center"
+                            android:paddingLeft="6dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="6dp"
+                            android:paddingBottom="2dp"
+                            android:text="샛별배송"
+                            android:textColor="@color/kurly_purple"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/order_address_edit_post_shipping_badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edge_oval_button_stroke"
+                            android:backgroundTint="@color/default_gray"
+                            android:fontFamily="@font/sandol_regular"
+                            android:gravity="center"
+                            android:paddingLeft="6dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="6dp"
+                            android:paddingBottom="2dp"
+                            android:text="택배배송"
+                            android:textColor="@color/default_gray"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/order_address_edit_address_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/sandol_regular"
+                        android:text="서울 강남구 압구정로 102 (형지제2빌딩)"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/order_address_edit_find_address_button"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="6dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/text_black" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="상세 주소*"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/order_address_edit_detail_address_edittext"
+                style="@style/kurly_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/selector_edittext"
+                android:hint="자세한 주소를 입력해주세요"
+                android:inputType="phone" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="받으실 장소*"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/order_address_edit_shipping_place_textview"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/selector_edittext"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:drawableTint="@color/text_black"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:text="문 앞 (출입방법 : 자유 출입 가능)"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/order_address_edit_base_address_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:button="@drawable/selector_consent_radiobutton"
+                android:fontFamily="@font/sandol_regular"
+                android:paddingLeft="8dp"
+                android:text="기본 배송지로 저장"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/sandol_regular"
+                android:text="배송 정보 저장에 동의합니다."
+                android:textColor="@color/default_gray"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/order_address_edit_save_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/shape_rounded_button"
+                android:backgroundTint="@color/kurly_purple"
+                android:fontFamily="@font/sandol_regular"
+                android:text="저장"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
