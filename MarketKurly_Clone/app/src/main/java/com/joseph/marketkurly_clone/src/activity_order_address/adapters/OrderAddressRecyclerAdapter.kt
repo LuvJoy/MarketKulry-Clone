@@ -48,7 +48,7 @@ class OrderAddressRecyclerAdapter(private var activity: Activity) :
             address = addressData.address
             delivery = addressData.delivery
             phoneNumber = addressData.phoneNumber
-            place = addressData.place
+            place = addressData.placeInfo
             name = addressData.name
         }
 
