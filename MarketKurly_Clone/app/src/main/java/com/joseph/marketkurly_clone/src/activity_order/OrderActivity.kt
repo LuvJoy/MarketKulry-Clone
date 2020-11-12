@@ -19,6 +19,7 @@ import com.joseph.marketkurly_clone.src.activity_order.models.OrderProduct
 import com.joseph.marketkurly_clone.src.activity_order.models.OrderUserInfo
 import com.joseph.marketkurly_clone.src.activity_order_address.OrderAddressActivity
 import com.joseph.marketkurly_clone.src.activity_order.models.Order
+import com.joseph.marketkurly_clone.src.activity_order_success.OrderSuccessActivity
 import com.joseph.marketkurly_clone.src.db.Cart
 import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setVisible
@@ -300,13 +301,16 @@ class OrderActivity : BaseActivity(), OrderApiEvnet {
         showSnackBar(message)
     }
 
-    override fun onOrderSuccess() {
+    override fun onOrderSuccess(order: Order) {
         showSnackBar("주문 성공")
         coroutineScope.launch {
             CoroutineScope(Dispatchers.IO).launch {
                 ApplicationClass.DB_CART?.cartDao()?.deleteAllCart()
             }
         }
+        val intent = Intent(this, OrderSuccessActivity::class.java)
+        intent.putExtra("order", order)
+        startActivity(intent)
     }
 
     override fun onOrderFail(message: String) {

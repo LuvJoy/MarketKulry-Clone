@@ -1,9 +1,6 @@
 package com.joseph.marketkurly_clone.src.activity_order.interfaces
 
-import com.joseph.marketkurly_clone.src.activity_order.models.OrderAddress
-import com.joseph.marketkurly_clone.src.activity_order.models.OrderPrice
-import com.joseph.marketkurly_clone.src.activity_order.models.OrderProduct
-import com.joseph.marketkurly_clone.src.activity_order.models.OrderUserInfo
+import com.joseph.marketkurly_clone.src.activity_order.models.*
 
 interface OrderApiEvnet {
 
@@ -16,6 +13,6 @@ interface OrderApiEvnet {
 
     fun onGetSheetFail(message: String)
 
-    fun onOrderSuccess()
+    fun onOrderSuccess(order: Order)
     fun onOrderFail(message: String)
 }

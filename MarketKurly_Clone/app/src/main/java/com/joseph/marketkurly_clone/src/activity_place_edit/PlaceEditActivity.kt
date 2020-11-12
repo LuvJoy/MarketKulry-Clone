@@ -44,6 +44,7 @@ class PlaceEditActivity : BaseActivity() {
                                 entrancePassword = place_edit_place_door_password_edittext.text.toString()
                             }
                             R.id.place_edit_place_door_etc_radiobutton -> {
+                                entranceType = "자유 출입 가능"
 
                             }
                             R.id.place_edit_place_door_free_radiobutton ->{

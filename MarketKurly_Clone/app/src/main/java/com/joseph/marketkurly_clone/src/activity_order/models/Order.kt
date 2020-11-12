@@ -1,6 +1,7 @@
 package com.joseph.marketkurly_clone.src.activity_order.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Order(
     @SerializedName("payment_method")
@@ -49,4 +50,4 @@ data class Order(
     var edtInfo: String?,
     @SerializedName("message")
     var message: String,
-)
+): Serializable

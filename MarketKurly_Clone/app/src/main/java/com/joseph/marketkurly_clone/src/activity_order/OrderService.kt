@@ -125,7 +125,7 @@ class OrderService(private var listener: OrderApiEvnet) {
                 val isSuccess = body?.get("is_success")?.asBoolean
 
                 if(isSuccess!!) {
-                    listener.onOrderSuccess()
+                    listener.onOrderSuccess(order)
                 } else {
                     val message = body?.get("message").asString
                     listener.onOrderFail(message)
