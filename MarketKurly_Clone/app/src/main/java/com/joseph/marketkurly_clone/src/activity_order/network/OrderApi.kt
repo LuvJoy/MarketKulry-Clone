@@ -12,4 +12,10 @@ interface OrderApi {
     fun getOrderSheet(
         @Body jsonObject: JsonObject
     ): Call<JsonObject>
+
+    @POST("order")
+    fun order(
+        @Body order: JsonObject
+    ) : Call<JsonObject>
+
 }

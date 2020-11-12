@@ -20,5 +20,7 @@ data class OrderAddress(
     @SerializedName("place")
     var place: String,
     @SerializedName("place_detail")
-    var placeDetail: String
-): Serializable
+    var placeDetail: String,
+    @SerializedName("post_code")
+    var postCode: String? = null
+) : Serializable

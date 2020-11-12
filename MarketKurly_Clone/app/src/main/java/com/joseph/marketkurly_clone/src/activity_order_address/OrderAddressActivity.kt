@@ -74,9 +74,9 @@ class OrderAddressActivity : BaseActivity(), OrderAddressApiEvent {
                     name = data.name,
                     phoneNumber = data.phoneNumber,
                     place = data.place,
-                    placeDetail = data.place
+                    placeDetail = data.place,
+                    postCode = data.postCode
                 )
-
                 val intent = Intent()
                 intent.putExtra("orderAddress", address)
                 setResult(RESULT_OK, intent)

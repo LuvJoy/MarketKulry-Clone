@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="24dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -381,6 +382,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/order_place_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sandol_regular"
@@ -390,6 +392,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/order_place_entrance_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -440,13 +443,14 @@
                     android:fontFamily="@font/sandol_bold"
                     android:text="쿠폰"
                     android:textColor="@color/text_black"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     style="@style/kurly_edittext_style"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/text_whitegray"
                     android:background="@drawable/selector_edittext"
                     android:drawableRight="@drawable/ic_chevron_right"
                     android:drawableTint="@color/title_gray"
@@ -454,9 +458,11 @@
                     android:textColor="@color/text_black" />
 
                 <TextView
+                    android:id="@+id/order_coupon_count_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/sandol_regular"
                     android:text="사용 가능 쿠폰 0장 / 전체 5장"
                     android:textColor="@color/text_black" />
@@ -468,15 +474,17 @@
                     android:fontFamily="@font/sandol_bold"
                     android:text="적립금"
                     android:textColor="@color/text_black"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/order_point_edittext"
                         style="@style/kurly_edittext_style"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
@@ -492,6 +500,7 @@
                         style="@style/kurly_edittext_style"
                         android:layout_width="96dp"
                         android:layout_height="48dp"
+                        android:gravity="center"
                         android:background="@drawable/selector_edittext"
                         android:fontFamily="@font/sandol_regular"
                         android:text="모두 사용"
@@ -503,9 +512,11 @@
 
 
                 <TextView
+                    android:id="@+id/order_point_available_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/sandol_regular"
                     android:text="사용 가능 적립금 0원"
                     android:textColor="@color/text_black" />
@@ -545,6 +556,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/order_price_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -572,6 +584,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/order_price_product_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -590,6 +603,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -599,6 +613,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/order_price_discount_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -626,6 +641,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/order_price_shipping_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -653,6 +669,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/order_price_coupon_discount_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -680,6 +697,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/order_price_mileage_discount_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -715,6 +733,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/order_price_total_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -730,6 +749,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
+                    android:layout_marginTop="2dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -759,6 +779,7 @@
 
 
                     <TextView
+                        android:id="@+id/order_price_add_mileage_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sandol_regular"
@@ -788,7 +809,194 @@
                     android:textColor="@color/text_black"
                     android:textSize="16sp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/order_payment_creditcard_textview"
+                        android:layout_width="0dp"
+                        android:background="@drawable/shape_edge_oval_button_stroke"
+                        android:layout_height="48dp"
+                        android:text="신용카드"
+                        android:gravity="center"
+                        android:fontFamily="@font/sandol_regular"
+                        android:textColor="@color/text_black"
+                        android:textSize="18sp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/order_payment_chai_textview"
+                        android:layout_width="0dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/image_chai"
+                        android:padding="10dp"
+                        android:background="@drawable/shape_edge_oval_button_stroke"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/order_payment_toss_textview"
+                        android:layout_width="0dp"
+                        android:background="@drawable/shape_edge_oval_button_stroke"
+                        android:layout_height="48dp"
+                        android:src="@drawable/image_toss"
+                        android:padding="16dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/order_payment_payco_textview"
+                        android:layout_width="0dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/image_payco"
+                        android:padding="17dp"
+                        android:background="@drawable/shape_edge_oval_button_stroke"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/order_payment_npay_textview"
+                        android:layout_width="0dp"
+                        android:background="@drawable/shape_edge_oval_button_stroke"
+                        android:layout_height="48dp"
+                        android:src="@drawable/image_npay"
+                        android:padding="14dp"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/order_payment_smilepay_textview"
+                        android:layout_width="0dp"
+                        android:layout_margin="8dp"
+                        android:padding="2dp"
+                        android:src="@drawable/image_smile_pay"
+                        android:background="@drawable/shape_edge_oval_button_stroke"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"/>
+
+
+                </LinearLayout>
+
+
+                <CheckBox
+                    android:id="@+id/order_payment_save_payment_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:button="@null"
+                    android:layout_marginTop="12dp"
+                    android:drawableStart="@drawable/selector_consent_radiobutton"
+                    android:drawablePadding="12dp"
+                    android:fontFamily="@font/sandol_regular"
+                    android:gravity="center_vertical"
+                    android:text="선택한 결제 수단을 다음에도 사용"
+                    android:textColor="@color/title_gray"
+                    android:textSize="16sp" />
+
             </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <CheckBox
+                android:id="@+id/order_consent_pay_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:button="@null"
+                android:drawableStart="@drawable/selector_consent_radiobutton"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/sandol_regular"
+                android:gravity="center_vertical"
+                android:text="결제 진행 필수 동의"
+                android:textColor="@color/title_gray"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_black"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="개인 정보 수집 및 이용 위탁 동의 (필수)"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/kurly_purple"
+                    android:fontFamily="@font/sandol_regular"
+                    android:text="약관 보기 >"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/order_order_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shape_rounded_button"
+                android:text="결제하기"
+                android:fontFamily="@font/sandol_regular"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                android:textColor="@color/default_gray"
+                android:fontFamily="@font/sandol_regular"
+                android:text="* 직접 주문취소는 '입금확인 상태일 경우에만 가능합니다."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/default_gray"
+                android:fontFamily="@font/sandol_regular"
+                android:text="* 미성년자가 결제 시 법정대리인이 그 거래를 취소할 수 있습니다."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/text_black"
+                android:fontFamily="@font/sandol_regular"
+                android:text="* 상품 미배송 시, 결제수단으로 환불됩니다."/>
+        </LinearLayout>
 
 
         </LinearLayout>

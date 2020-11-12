@@ -15,4 +15,7 @@ interface OrderApiEvnet {
     )
 
     fun onGetSheetFail(message: String)
+
+    fun onOrderSuccess()
+    fun onOrderFail(message: String)
 }

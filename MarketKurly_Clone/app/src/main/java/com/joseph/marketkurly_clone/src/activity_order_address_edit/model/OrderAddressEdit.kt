@@ -30,5 +30,7 @@ data class OrderAddressEdit(
     @SerializedName("place_info")
     var placeInfo: String,
     @SerializedName("security_info")
-    var securityInfo: String
-): Serializable
+    var securityInfo: String,
+    @SerializedName("post_code")
+    var postCode: String? = null
+) : Serializable

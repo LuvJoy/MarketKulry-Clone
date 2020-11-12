@@ -20,5 +20,7 @@ data class OrderAddressCombine(
     @SerializedName("phone_number")
     var phoneNumber: String,
     @SerializedName("place")
-    var place: String
-): Serializable
+    var place: String,
+    @SerializedName("post_code")
+    var postCode: String? = null
+) : Serializable

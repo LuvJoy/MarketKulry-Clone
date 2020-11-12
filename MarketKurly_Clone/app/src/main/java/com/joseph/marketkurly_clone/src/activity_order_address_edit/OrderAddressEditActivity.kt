@@ -24,6 +24,7 @@ class OrderAddressEditActivity : BaseActivity(), OrderAddressEditApiEvent {
     private var mAddressId: Int? = null
     private var mOrderAddressEditService = OrderAddressEditService(this)
     private var mShippingPlace = OrderPlace("", "", "", "", "", "", "", "")
+    private lateinit var mEditAddress: OrderAddressEdit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +74,8 @@ class OrderAddressEditActivity : BaseActivity(), OrderAddressEditApiEvent {
                     mailboxInfo = mShippingPlace.mailboxInfo!! ?: "",
                     place = mShippingPlace.place!! ?: "",
                     placeInfo = mShippingPlace.placeInfo!! ?: "",
-                    securityInfo = mShippingPlace.securityInfo!! ?: ""
+                    securityInfo = mShippingPlace.securityInfo!! ?: "",
+                    postCode = mEditAddress.postCode
                 )
 
                 var intent = Intent()
@@ -90,6 +92,8 @@ class OrderAddressEditActivity : BaseActivity(), OrderAddressEditApiEvent {
     }
 
     override fun onEditDataLoadSuccess(data: OrderAddressEdit) {
+        mEditAddress = data
+
         order_address_edit_name_edittext.setText(data.name)
         order_address_edit_phone_edittext.setText(data.phoneNumber)
 

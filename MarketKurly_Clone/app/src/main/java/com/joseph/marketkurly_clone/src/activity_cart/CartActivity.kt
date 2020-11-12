@@ -250,6 +250,7 @@ class CartActivity : BaseActivity(), CartEvent, ViewHolderClickListener {
 
         checkRecyclerView()
         hideProgressBar()
+        cart_cost_layout.setVisible()
     }
 
     // 카트 이벤트 처리
