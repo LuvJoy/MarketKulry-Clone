@@ -6,18 +6,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.joseph.marketkurly_clone.R
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompactL
 
-class ProductRecyclerAdapter(var context: Context) :
-    RecyclerView.Adapter<ProductRecyclerViewHolder>() {
+class ProductLRecyclerAdapter(var context: Context) :
+    RecyclerView.Adapter<ProductLRecyclerViewHolder>() {
 
-    private var productList = ArrayList<ProductCompact>()
+    private var productList = ArrayList<ProductCompactL>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductRecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductLRecyclerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product_grid, parent, false)
-        return ProductRecyclerViewHolder(view, context)
+        return ProductLRecyclerViewHolder(view, context)
     }
 
-    override fun onBindViewHolder(holder: ProductRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProductLRecyclerViewHolder, position: Int) {
         holder.onBind(productList[position])
     }
 
@@ -25,7 +26,7 @@ class ProductRecyclerAdapter(var context: Context) :
         return productList.size
     }
 
-    fun submitList(list: ArrayList<ProductCompact>) {
+    fun submitList(list: ArrayList<ProductCompactL>) {
         this.productList = list
         notifyDataSetChanged()
     }

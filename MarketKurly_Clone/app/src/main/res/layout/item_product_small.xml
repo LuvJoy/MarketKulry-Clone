@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="140dp"
+    android:layout_height="280dp"
+    android:layout_marginRight="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/item_small_image_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_dummy_apple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/item_small_product_grid_addcart_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/shape_circle_button"
+        android:padding="8dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintBottom_toBottomOf="@+id/item_small_image_imageview"
+        app:layout_constraintEnd_toEndOf="@+id/item_small_image_imageview"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/item_small_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/sandol_regular"
+        android:gravity="start"
+        android:letterSpacing="0.01"
+        android:lineSpacingExtra="-2dp"
+        android:maxLines="2"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="[남향푸드또띠아] 간편 간식 부리또 8종"
+        android:textColor="@color/title_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_small_image_imageview" />
+
+    <TextView
+        android:id="@+id/item_small_price_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sandol_extrabold"
+        android:letterSpacing="0.01"
+        android:maxHeight="200dp"
+        android:maxLines="1"
+        android:paddingLeft="4dp"
+        android:text="3,500"
+        android:textColor="@color/title_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_small_title_textview" />
+
+    <TextView
+        android:id="@+id/item_small_price_dummytext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/sandol_bold"
+        android:text="원"
+        android:textColor="@color/title_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_small_price_textview"
+        app:layout_constraintStart_toEndOf="@+id/item_small_price_textview"
+        app:layout_constraintTop_toTopOf="@+id/item_small_price_textview" />
+
+    <TextView
+        android:id="@+id/item_small_sale_price_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sandol_regular"
+        android:letterSpacing="0.01"
+        android:maxLines="1"
+        android:paddingLeft="4dp"
+        android:text="200,000"
+        android:textColor="@color/text_whitegray"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_small_price_dummytext" />
+
+    <TextView
+        android:id="@+id/item_sale_price_dummytext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/sandol_regular"
+        android:gravity="center_vertical"
+        android:text="원"
+        android:textColor="@color/text_whitegray"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/item_small_sale_price_textview"
+        app:layout_constraintStart_toEndOf="@+id/item_small_sale_price_textview"
+        app:layout_constraintTop_toBottomOf="@+id/item_small_price_dummytext" />
+
+
+    <include
+        android:id="@+id/item_small_sale_percentage_layout"
+        layout="@layout/layout_sign_sale"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

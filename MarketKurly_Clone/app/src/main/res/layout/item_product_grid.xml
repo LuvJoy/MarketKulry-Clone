@@ -94,6 +94,8 @@
             android:paddingTop="2dp"
             android:paddingRight="6dp"
             android:paddingBottom="2dp"
+            android:layout_marginRight="4dp"
+            android:visibility="gone"
             android:text="한정수량"
             android:textColor="@color/kurly_purple"
             android:textSize="10dp"
@@ -101,7 +103,7 @@
 
         <TextView
             android:id="@+id/item_product_grid_kurlyonly_badge"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_rectangle_stroke"

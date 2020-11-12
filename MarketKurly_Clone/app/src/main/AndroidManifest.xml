@@ -17,12 +17,15 @@
         android:theme="@style/Theme.MarketKurly_Clone"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".src.activity_order_success.OrderSuccessActivity"
-            android:theme="@style/InnerActivityTheme"
-            ></activity>
-        <activity android:name=".src.activity_place_edit.PlaceEditActivity"
-            android:theme="@style/InnerActivityTheme"
-            />
+        <activity
+            android:name=".src.activity_search_result.SearchResultActivity"
+            android:theme="@style/InnerActivityTheme"></activity>
+        <activity
+            android:name=".src.activity_order_success.OrderSuccessActivity"
+            android:theme="@style/InnerActivityTheme" />
+        <activity
+            android:name=".src.activity_place_edit.PlaceEditActivity"
+            android:theme="@style/InnerActivityTheme" />
         <activity
             android:name=".src.activity_order_address_edit.OrderAddressEditActivity"
             android:theme="@style/InnerActivityTheme" />

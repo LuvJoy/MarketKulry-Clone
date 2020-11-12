@@ -20,6 +20,7 @@ import com.joseph.marketkurly_clone.src.db.Cart
 import com.joseph.marketkurly_clone.src.db.CartEvent
 import com.joseph.marketkurly_clone.src.db.CartService
 import com.joseph.marketkurly_clone.src.models.Login
+import com.joseph.marketkurly_clone.src.util.setGone
 import com.joseph.marketkurly_clone.src.util.setInVisible
 import com.joseph.marketkurly_clone.src.util.setVisible
 import kotlinx.android.synthetic.main.actionbar_main_top.*

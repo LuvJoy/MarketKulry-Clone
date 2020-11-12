@@ -9,29 +9,31 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.adapters.ProductLRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.adapters.ProductRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.HomeProductService
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.interfaces.HomeProductApiEvent
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompactL
 import kotlinx.android.synthetic.main.fragment_tab_al_shopping.*
 import kotlinx.android.synthetic.main.fragment_tab_best.*
 import kotlinx.android.synthetic.main.fragment_tab_best.tab_best_product_recyclerview
 
 class TabAlShoppingFragment : BaseFragment(R.layout.fragment_tab_al_shopping), HomeProductApiEvent {
 
-    private lateinit var mAlShoppingProductRecyclerAdapter: ProductRecyclerAdapter
+    private lateinit var mAlShoppingProductRecyclerAdapter: ProductLRecyclerAdapter
     private var mProductSevice = HomeProductService(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
-        mProductSevice.getRecommendProduct()
+        mProductSevice.getSaleProduct()
     }
 
     fun initRecyclerView() {
 
-        mAlShoppingProductRecyclerAdapter = ProductRecyclerAdapter(fragContext!!)
+        mAlShoppingProductRecyclerAdapter = ProductLRecyclerAdapter(fragContext!!)
 
         tab_al_shopping_product_recyclerview.apply {
             adapter = mAlShoppingProductRecyclerAdapter
@@ -47,13 +49,18 @@ class TabAlShoppingFragment : BaseFragment(R.layout.fragment_tab_al_shopping), H
     }
 
     override fun onProductLoadSuccess(list: ArrayList<ProductCompact>) {
-        list.shuffle()
-        mAlShoppingProductRecyclerAdapter.submitList(list)
-
     }
 
     override fun onProductLoadFail(message: String) {
         val ac = activity as BaseActivity
         ac.showSnackBar(message)
+    }
+
+    override fun onLProductLoadSuccess(list: ArrayList<ProductCompactL>) {
+        mAlShoppingProductRecyclerAdapter.submitList(list)
+    }
+
+    override fun onLProductLoadFail(message: String) {
+        TODO("Not yet implemented")
     }
 }

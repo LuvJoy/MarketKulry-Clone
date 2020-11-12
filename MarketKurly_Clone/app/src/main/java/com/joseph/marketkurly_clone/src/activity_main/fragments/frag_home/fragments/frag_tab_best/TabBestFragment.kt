@@ -9,29 +9,31 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.joseph.marketkurly_clone.BaseActivity
 import com.joseph.marketkurly_clone.BaseFragment
 import com.joseph.marketkurly_clone.R
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.adapters.ProductLRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.adapters.ProductRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.HomeProductService
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.interfaces.HomeProductApiEvent
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompactL
 import kotlinx.android.synthetic.main.fragment_tab_best.*
 import kotlinx.android.synthetic.main.fragment_tab_new_product.*
 import kotlinx.android.synthetic.main.fragment_tab_new_product.tab_new_product_recyclerview
 
 class TabBestFragment : BaseFragment(R.layout.fragment_tab_best), HomeProductApiEvent {
 
-    private lateinit var mBestProductRecyclerAdapter: ProductRecyclerAdapter
+    private lateinit var mBestProductRecyclerAdapter: ProductLRecyclerAdapter
     private var mProductSevice = HomeProductService(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
-        mProductSevice.getRecommendProduct()
+        mProductSevice.getBestProduct()
     }
 
     fun initRecyclerView() {
 
-        mBestProductRecyclerAdapter = ProductRecyclerAdapter(fragContext!!)
+        mBestProductRecyclerAdapter = ProductLRecyclerAdapter(fragContext!!)
 
         tab_best_product_recyclerview.apply {
             adapter = mBestProductRecyclerAdapter
@@ -47,13 +49,20 @@ class TabBestFragment : BaseFragment(R.layout.fragment_tab_best), HomeProductApi
     }
 
     override fun onProductLoadSuccess(list: ArrayList<ProductCompact>) {
-        list.shuffle()
-        mBestProductRecyclerAdapter.submitList(list)
+
 
     }
 
     override fun onProductLoadFail(message: String) {
         val ac = activity as BaseActivity
         ac.showSnackBar(message)
+    }
+
+    override fun onLProductLoadSuccess(list: ArrayList<ProductCompactL>) {
+        mBestProductRecyclerAdapter.submitList(list)
+    }
+
+    override fun onLProductLoadFail(message: String) {
+        TODO("Not yet implemented")
     }
 }

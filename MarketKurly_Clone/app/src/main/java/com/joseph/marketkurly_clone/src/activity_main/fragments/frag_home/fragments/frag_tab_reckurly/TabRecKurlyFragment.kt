@@ -10,6 +10,7 @@ import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragme
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.adapters.ProductRecyclerAdapter
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.fragments.frag_tab_reckurly.interfaces.HomeProductApiEvent
 import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompact
+import com.joseph.marketkurly_clone.src.activity_main.fragments.frag_home.models.ProductCompactL
 import kotlinx.android.synthetic.main.fragment_tab_rec_kurly.*
 
 class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly), HomeProductApiEvent {
@@ -58,5 +59,13 @@ class TabRecKurlyFragment : BaseFragment(R.layout.fragment_tab_rec_kurly), HomeP
 
     override fun onProductLoadFail(message: String) {
         showAlertDialog(message)
+    }
+
+    override fun onLProductLoadSuccess(list: ArrayList<ProductCompactL>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLProductLoadFail(message: String) {
+        TODO("Not yet implemented")
     }
 }

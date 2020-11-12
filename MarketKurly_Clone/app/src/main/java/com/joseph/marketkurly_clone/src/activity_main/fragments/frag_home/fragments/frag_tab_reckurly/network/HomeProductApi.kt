@@ -8,4 +8,13 @@ interface HomeProductApi {
 
     @GET("recommended-products")
     fun getRecommendProduct() : Call<JsonObject>
+
+    @GET("new-products")
+    fun getNewProduct() : Call<JsonObject>
+
+    @GET("best-products")
+    fun getBestProduct() : Call<JsonObject>
+
+    @GET("sale-products")
+    fun getSaleProduct() : Call<JsonObject>
 }
