@@ -72,7 +72,7 @@ class CartRecyclerAdapter(
         var totalCost = 0
 
         cartList.forEach {
-            totalCost += (it.discountCost * it.count)
+            totalCost += (it.cost * it.count)
         }
         return totalCost
     }

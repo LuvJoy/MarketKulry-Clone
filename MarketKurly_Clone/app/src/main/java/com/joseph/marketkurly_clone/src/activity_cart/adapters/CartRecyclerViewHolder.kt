@@ -40,7 +40,7 @@ class CartRecyclerViewHolder(
         holderItem = itemData
 
         holderItem.apply {
-            tvCost.text = String.format(this.discountCost.toDecimalFormat()+"원")
+            tvCost.text = String.format((this.discountCost*this.count).toDecimalFormat()+"원")
             tvUnitCount.text = this.count.toString()
 
             if(this.cost == this.discountCost) {
@@ -48,7 +48,7 @@ class CartRecyclerViewHolder(
                 tvSaleCost.setInVisible()
             } else {
                 saleProduct = true
-                tvSaleCost.text = String.format(this.cost.toDecimalFormat()+"원")
+                tvSaleCost.text = String.format((this.cost*this.count).toDecimalFormat()+"원")
                 tvSaleCost.setStrikeThru()
                 tvSaleCost.setVisible()
             }

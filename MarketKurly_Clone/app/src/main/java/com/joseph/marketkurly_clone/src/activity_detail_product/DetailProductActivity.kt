@@ -49,7 +49,7 @@ class DetailProductActivity : BaseActivity(), LoadProductDetailEvent{
                     0 ->  tab.text = "상품설명"
                     1 ->  tab.text = "상품이미지"
                     2 ->  tab.text = "상세정보"
-                    3 ->  tab.text = "후기\n(${reviewCount})"
+                    3 ->  tab.text = "후기"
                     4 ->  tab.text = "상품문의"
                 }
             }
