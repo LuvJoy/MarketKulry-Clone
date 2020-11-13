@@ -61,6 +61,158 @@
                 tools:listitem="@layout/item_product" />
             </com.joseph.marketkurly_clone.src.util.NestedScrollableHost>
 
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:padding="18dp"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sandol_bold"
+                android:letterSpacing="0.01"
+
+                android:text="이벤트 소식"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:textColor="@color/title_gray"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_rice2"
+                    android:layout_height="100dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="18dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="쌀, 잡곡, 20% 쿠폰 EVENT"
+                        android:fontFamily="@font/sandol_extrabold"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp"
+                        android:letterSpacing="0.01"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="밥맛 좋아지는 컬리 쌀 가게"
+                        android:fontFamily="@font/sandol_regular"
+                        android:textColor="@color/default_gray"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:letterSpacing="0.01"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_chicken2"
+                    android:layout_height="100dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="18dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="맥주엔 역시 치킨"
+                        android:fontFamily="@font/sandol_extrabold"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp"
+                        android:letterSpacing="0.01"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="매일이 즐거워지는 컬리의 맥주안주들"
+                        android:fontFamily="@font/sandol_regular"
+                        android:textColor="@color/default_gray"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:letterSpacing="0.01"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_kimchi2"
+                    android:layout_height="100dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="18dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="김장 대전 EVENT"
+                        android:fontFamily="@font/sandol_extrabold"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp"
+                        android:letterSpacing="0.01"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="절임배추 특가부터 20% 쿠폰까지"
+                        android:fontFamily="@font/sandol_regular"
+                        android:textColor="@color/default_gray"
+                        android:textSize="14sp"
+                        android:layout_marginTop="2dp"
+                        android:letterSpacing="0.01"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

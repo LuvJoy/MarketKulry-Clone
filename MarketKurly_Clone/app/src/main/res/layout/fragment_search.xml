@@ -15,7 +15,7 @@
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_search"
         android:drawableTint="@color/title_gray"
-        android:drawablePadding="6dp"
+        android:drawablePadding="12dp"
         android:padding="12dp"
         android:imeOptions="actionSearch"
         android:inputType="text"
